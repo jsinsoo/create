@@ -1,0 +1,402 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>과학고 정보 창의력 경진대회 반복 판단 처리 순환 서술형 30문항</title><style>
+*{box-sizing:border-box} body{margin:0;font-family:'Malgun Gothic','Apple SD Gothic Neo',Arial,sans-serif;background:linear-gradient(135deg,#edf5ff,#fff7e9);color:#172033}
+header{position:sticky;top:0;background:rgba(255,255,255,.96);border-bottom:1px solid #dce7ff;z-index:10;backdrop-filter:blur(8px)}
+.head{max-width:1420px;margin:auto;padding:18px 24px;display:flex;justify-content:space-between;gap:16px;align-items:center} h1{margin:0;font-size:27px}.sub{margin:6px 0 0;color:#526078;font-weight:700}.pill{background:#172033;color:white;border-radius:999px;padding:11px 16px;font-weight:900}
+.layout{max-width:1420px;margin:22px auto;padding:0 18px;display:grid;grid-template-columns:275px 1fr;gap:18px}
+aside{position:sticky;top:92px;align-self:start;background:white;border:1px solid #dce7ff;border-radius:24px;padding:16px;box-shadow:0 14px 32px rgba(49,87,213,.13)}
+aside input{width:100%;padding:11px;border:1px solid #cbd8ff;border-radius:12px;margin-bottom:8px;font-size:15px}
+.guide{background:#eef4ff;border-radius:16px;padding:13px;line-height:1.65;margin:10px 0}
+.pbtn,.save{display:block;width:100%;border:1px solid #dce7ff;border-radius:14px;padding:12px;margin:6px 0;background:#f8fbff;font-weight:900;text-align:left;text-decoration:none;color:#172033}.pbtn:hover,.save{background:#3157d5;color:white}.save{border:0;text-align:center;cursor:pointer;background:#172033}
+.nav{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.nav a{text-decoration:none;text-align:center;background:#fff;border:1px solid #dce7ff;border-radius:10px;padding:8px 0;font-weight:900;color:#172033}.nav a:hover{background:#172033;color:white}
+main{background:white;border:1px solid #dce7ff;border-radius:28px;padding:26px;box-shadow:0 14px 34px rgba(49,87,213,.12)}
+.hero{background:linear-gradient(135deg,#172033,#3157d5);color:white;border-radius:24px;padding:30px;margin-bottom:22px}.hero h2{margin:0;font-size:30px}.hero p{font-size:17px;line-height:1.8}
+h2{margin:30px 0 16px;padding:16px 20px;background:#172033;color:white;border-radius:18px;font-size:23px}
+.card{border:1px solid #dce7ff;border-radius:24px;padding:22px;margin:18px 0;background:linear-gradient(#fff,#fbfdff);scroll-margin-top:110px}
+.meta{display:flex;gap:8px;align-items:center}.meta b{background:#3157d5;color:white;border-radius:999px;padding:8px 13px}.meta span{background:#eef4ff;color:#284698;border-radius:999px;padding:8px 13px;font-weight:900}
+h3{font-size:24px;margin:16px 0 10px}.story{font-size:18px;line-height:1.85;background:#fffaf0;border:1px solid #ffe2a8;border-left:8px solid #ffb703;border-radius:16px;padding:16px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}.box{margin:12px 0;padding:15px;border:1px solid #dce7ff;background:#f8fbff;border-radius:18px;overflow:auto}.box h4{margin:0 0 10px;color:#21376e}
+.tbl{border-collapse:collapse;width:100%;min-width:430px;background:white}.tbl th{background:#172033;color:white}.tbl th,.tbl td{border:1px solid #d7e1ff;padding:9px;text-align:center}
+.pseudo{font-family:'Malgun Gothic',Consolas,sans-serif;background:#101828;color:#d8e7ff;border-left:8px solid #00a896;border-radius:16px;padding:16px;line-height:1.85;font-size:16px}
+.flow{display:flex;flex-direction:column;align-items:center;gap:5px}.process,.diamond{background:white;border:2px solid #3157d5;border-radius:12px;padding:9px 14px;min-width:170px;text-align:center;font-weight:900}.diamond{background:#fff7e6;border-color:#fb8500;transform:skew(-8deg)}.arrow{font-size:22px;color:#3157d5;font-weight:900}
+.diagram{font-size:21px;line-height:1.9;text-align:center;background:white;border:1px dashed #9fb7ff;border-radius:16px;padding:22px;min-height:135px;display:flex;align-items:center;justify-content:center}
+.prompt{font-size:19px;line-height:1.75;font-weight:900;background:#effaf7;border:1px solid #bdeede;border-radius:16px;padding:15px;margin-top:12px}
+textarea{width:100%;min-height:150px;margin-top:12px;border:2px solid #dce7ff;border-radius:16px;padding:14px;font-size:17px;line-height:1.6;font-family:inherit;resize:vertical}textarea:focus{outline:0;border-color:#3157d5;box-shadow:0 0 0 4px rgba(49,87,213,.14)}
+button{border:0;border-radius:13px;background:#00a896;color:white;font-weight:900;padding:11px 15px;margin-top:10px;cursor:pointer}.sol{display:none;background:#fff8e8;border:1px solid #f2d28b;border-radius:16px;padding:14px;line-height:1.8;margin-top:10px}
+footer{text-align:center;padding:28px;color:#53627a}
+@media(max-width:950px){.layout{grid-template-columns:1fr}aside{position:static}.twocol{grid-template-columns:1fr}.nav{grid-template-columns:repeat(10,1fr)}}
+@media print{header,aside,button{display:none!important}.layout{display:block}main{box-shadow:none;border:0}.card{break-inside:avoid}.sol{display:block}textarea{min-height:100px}}
+</style></head><body>
+<header><div class="head"><div><h1>🧠 과학고등학교 정보 창의력 경진대회</h1><p class="sub">실생활 · 수학 · 공학 · 생명과학 · 지구과학 · 물리학 · 의생명과학 · 유기화학 · 무기화학 기반 서술형 평가</p></div><div class="pill">반복 · 판단 · 처리 · 순환 구조</div></div></header>
+<div class="layout"><aside><input id="sid" placeholder="학번 입력"><input id="name" placeholder="이름 입력"><div class="guide"><b>응시 안내</b><br>표, 그림, 다이어그램, 한글 Pseudo Code와 순서도를 읽고 반복·판단·처리·순환 구조를 근거로 서술하세요.</div><a class="pbtn" href="#p1">Part 1 기초</a><a class="pbtn" href="#p2">Part 2 응용</a><a class="pbtn" href="#p3">Part 3 심화</a><div class="nav"><a href='#q1'>1</a><a href='#q2'>2</a><a href='#q3'>3</a><a href='#q4'>4</a><a href='#q5'>5</a><a href='#q6'>6</a><a href='#q7'>7</a><a href='#q8'>8</a><a href='#q9'>9</a><a href='#q10'>10</a><a href='#q11'>11</a><a href='#q12'>12</a><a href='#q13'>13</a><a href='#q14'>14</a><a href='#q15'>15</a><a href='#q16'>16</a><a href='#q17'>17</a><a href='#q18'>18</a><a href='#q19'>19</a><a href='#q20'>20</a><a href='#q21'>21</a><a href='#q22'>22</a><a href='#q23'>23</a><a href='#q24'>24</a><a href='#q25'>25</a><a href='#q26'>26</a><a href='#q27'>27</a><a href='#q28'>28</a><a href='#q29'>29</a><a href='#q30'>30</a></div><button class="save" onclick="saveHTML()">결과 HTML 저장</button></aside>
+<main><div class="hero"><h2>창의력은 구조를 읽고 근거 있게 설명하는 힘입니다.</h2><p>각 문항은 반복, 판단, 처리, 순환 구조가 포함된 문제입니다. 학생은 자료를 해석하고 알고리즘 흐름을 따라가며 과학·수학·공학적 근거를 연결해 서술합니다.</p></div><h2 id='p1'>Part 1. 기초 문제 10개: 반복·판단 구조 이해</h2>
+<section class="card part1" id="q1">
+ <div class="meta"><b>문항 1</b><span>실생활·수학</span></div>
+ <h3>스마트 급식 줄 순환 관리</h3>
+ <p class="story">점심시간 급식실에는 학생이 계속 들어오고 나간다. 줄 길이를 반복 확인하여 배식대를 추가로 열지 판단한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>시각</th><th>줄 길이</th><th>배식대 수</th><th>평균 대기</th></tr><tr><td>12:10</td><td>18명</td><td>2개</td><td>5분</td></tr><tr><td>12:20</td><td>42명</td><td>2개</td><td>13분</td></tr><tr><td>12:30</td><td>20명</td><td>3개</td><td>6분</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>줄 길이를 측정한다<br>대기 시간을 계산한다<br>줄 길이가 30명보다 큰지 판단한다<br>만약 크면 배식대 1개를 추가한다<br>처리 결과를 기록한다<br>5분 뒤 다시 측정 단계로 돌아간다<br>종료 조건: 점심시간 종료</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">측정</div><div class='arrow'>↓</div><div class="process">계산 처리</div><div class='arrow'>↓</div><div class="diamond">30명 초과?</div><div class='arrow'>↓</div><div class="process">예: 배식대 추가</div><div class='arrow'>↓</div><div class="process">기록</div><div class='arrow'>↓</div><div class="process">5분 후 반복</div><div class='arrow'>↓</div><div class="process">종료</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">👥 학생 유입 ↺ 줄 측정 → 배식대 조정 → 대기 시간 감소</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: 12:20에 어떤 판단과 처리가 필요한지 반복 구조를 포함하여 서술하시오.</div>
+ <textarea id="a1" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(1)">예시 답안 보기</button>
+ <div class="sol" id="s1"><b>예시 답안</b><br>12:20에는 줄 길이가 42명으로 30명을 초과하므로 배식대 추가 처리가 필요하다. 이후 5분 뒤 다시 줄 길이와 대기 시간을 측정하는 순환 구조가 필요하다.</div>
+</section>
+
+<section class="card part1" id="q2">
+ <div class="meta"><b>문항 2</b><span>수학·물리학</span></div>
+ <h3>평균 속도 안전 알림</h3>
+ <p class="story">자율주행 카트는 일정 구간마다 거리와 시간을 기록하고 평균 속도가 기준을 넘으면 감속한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>구간</th><th>거리</th><th>시간</th><th>평균 속도</th></tr><tr><td>A</td><td>20m</td><td>10초</td><td>2m/s</td></tr><tr><td>B</td><td>30m</td><td>10초</td><td>3m/s</td></tr><tr><td>C</td><td>24m</td><td>12초</td><td>2m/s</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>구간 거리와 시간을 입력한다<br>평균 속도 = 거리 ÷ 시간으로 처리한다<br>평균 속도가 2.5m/s보다 큰지 판단한다<br>크면 감속 명령을 보낸다<br>다음 구간으로 이동한다<br>모든 구간이 끝날 때까지 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">자료 입력</div><div class='arrow'>↓</div><div class="process">속도 계산</div><div class='arrow'>↓</div><div class="diamond">기준 초과?</div><div class='arrow'>↓</div><div class="process">감속/유지</div><div class='arrow'>↓</div><div class="process">다음 구간</div><div class='arrow'>↓</div><div class="process">반복</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🚗 카트 → 거리/시간 처리 → 속도 판단 ↺ 다음 구간</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: B 구간에서 감속 명령이 필요한 이유를 계산과 판단 과정으로 서술하시오.</div>
+ <textarea id="a2" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(2)">예시 답안 보기</button>
+ <div class="sol" id="s2"><b>예시 답안</b><br>B 구간의 평균 속도는 30÷10=3m/s이다. 기준 2.5m/s보다 크므로 감속 명령을 보내야 하며, 이후 다음 구간도 같은 절차로 반복 점검한다.</div>
+</section>
+
+<section class="card part1" id="q3">
+ <div class="meta"><b>문항 3</b><span>실생활·지구과학</span></div>
+ <h3>교실 공기질 환기 루프</h3>
+ <p class="story">교실 공기질 센서는 이산화탄소 농도와 창문 상태를 반복 확인한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>시간</th><th>CO₂</th><th>창문</th><th>상태</th></tr><tr><td>09:00</td><td>650ppm</td><td>닫힘</td><td>양호</td></tr><tr><td>10:00</td><td>1350ppm</td><td>닫힘</td><td>나쁨</td></tr><tr><td>10:15</td><td>800ppm</td><td>열림</td><td>개선</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>CO₂ 농도를 측정한다<br>농도가 1000ppm보다 높은지 판단한다<br>높으면 창문 열기 알림을 처리한다<br>10분 후 다시 CO₂를 측정한다<br>농도가 낮아질 때까지 순환한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">CO₂ 측정</div><div class='arrow'>↓</div><div class="diamond">1000ppm 초과?</div><div class='arrow'>↓</div><div class="process">예: 환기 처리</div><div class='arrow'>↓</div><div class="process">10분 대기</div><div class='arrow'>↓</div><div class="process">다시 측정 ↺</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🫁 교실 공기 → 센서 → 환기 알림 ↺ 재측정</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: 10:00 상황에서 환기 알림 후 왜 재측정 순환이 필요한지 서술하시오.</div>
+ <textarea id="a3" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(3)">예시 답안 보기</button>
+ <div class="sol" id="s3"><b>예시 답안</b><br>10:00에는 CO₂가 1350ppm으로 기준을 넘는다. 창문 열기 알림을 처리한 뒤 실제로 농도가 낮아졌는지 확인해야 하므로 10분 후 재측정하는 순환이 필요하다.</div>
+</section>
+
+<section class="card part1" id="q4">
+ <div class="meta"><b>문항 4</b><span>생명과학·실생활</span></div>
+ <h3>식물 물주기 판단 반복</h3>
+ <p class="story">스마트 화분은 매일 아침 흙 습도와 잎 상태를 보고 물주기 여부를 판단한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>화분</th><th>흙 습도</th><th>잎 상태</th><th>전날 물주기</th></tr><tr><td>A</td><td>낮음</td><td>시듦</td><td>없음</td></tr><tr><td>B</td><td>높음</td><td>잎 처짐</td><td>있음</td></tr><tr><td>C</td><td>적정</td><td>정상</td><td>없음</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>화분 목록을 하나씩 확인한다<br>흙 습도를 측정한다<br>잎 상태를 관찰한다<br>습도가 낮고 잎이 시들었는지 판단한다<br>참이면 물주기를 처리한다<br>다음 화분으로 이동한다<br>모든 화분을 반복 확인한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">화분 선택</div><div class='arrow'>↓</div><div class="process">습도 측정</div><div class='arrow'>↓</div><div class="process">상태 관찰</div><div class='arrow'>↓</div><div class="diamond">물 필요?</div><div class='arrow'>↓</div><div class="process">물주기/건너뜀</div><div class='arrow'>↓</div><div class="process">다음 화분 ↺</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🌱 화분 A,B,C를 차례로 점검 ↺</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: A와 B에 대해 각각 어떤 처리 판단을 해야 하는지 서술하시오.</div>
+ <textarea id="a4" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(4)">예시 답안 보기</button>
+ <div class="sol" id="s4"><b>예시 답안</b><br>A는 습도가 낮고 잎이 시들어 물주기 처리가 필요하다. B는 습도가 높고 전날 물주기도 있었으므로 물을 더 주면 과습 위험이 있어 건너뛰어야 한다.</div>
+</section>
+
+<section class="card part1" id="q5">
+ <div class="meta"><b>문항 5</b><span>의생명과학</span></div>
+ <h3>손 씻기 효과 반복 실험</h3>
+ <p class="story">보건 동아리는 손 씻기 방법별 세균 수를 반복 측정하여 가장 효과적인 방법을 찾는다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>방법</th><th>1회</th><th>2회</th><th>3회</th></tr><tr><td>물만</td><td>48</td><td>52</td><td>45</td></tr><tr><td>비누</td><td>8</td><td>7</td><td>9</td></tr><tr><td>손소독제</td><td>15</td><td>12</td><td>14</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>손 씻기 방법을 선택한다<br>세균 수를 측정한다<br>측정값을 기록한다<br>3회 측정했는지 판단한다<br>아니면 같은 방법을 다시 반복한다<br>3회가 끝나면 평균을 계산한다<br>평균이 가장 낮은 방법을 선택한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">방법 선택</div><div class='arrow'>↓</div><div class="process">측정</div><div class='arrow'>↓</div><div class="process">기록</div><div class='arrow'>↓</div><div class="diamond">3회 완료?</div><div class='arrow'>↓</div><div class="process">아니오: 반복</div><div class='arrow'>↓</div><div class="process">예: 평균 계산</div><div class='arrow'>↓</div><div class="process">최소 선택</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🖐️ 방법별 실험 ↺ 3회 반복 → 평균 비교</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: 비누가 가장 효과적이라고 판단하는 과정을 반복 측정과 평균 관점에서 서술하시오.</div>
+ <textarea id="a5" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(5)">예시 답안 보기</button>
+ <div class="sol" id="s5"><b>예시 답안</b><br>비누는 8,7,9로 세 번 모두 낮은 값을 보인다. 반복 측정 후 평균을 비교하면 비누의 평균이 가장 낮으므로 가장 효과적이라고 판단할 수 있다.</div>
+</section>
+
+<section class="card part1" id="q6">
+ <div class="meta"><b>문항 6</b><span>무기화학·물리학</span></div>
+ <h3>소금물 전도도 검사 순환</h3>
+ <p class="story">전도도 실험 장치는 여러 용액을 차례로 검사하고 전구 밝기를 기록한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>용액</th><th>전구 밝기</th><th>판단</th></tr><tr><td>증류수</td><td>꺼짐</td><td>전도 낮음</td></tr><tr><td>소금물</td><td>밝음</td><td>전도 높음</td></tr><tr><td>설탕물</td><td>꺼짐</td><td>전도 낮음</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>검사할 용액을 선택한다<br>전극을 넣는다<br>전구 밝기를 관찰한다<br>밝은지 판단한다<br>밝으면 이온 존재 가능성으로 기록한다<br>다음 용액으로 이동한다<br>용액이 남아 있으면 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">용액 선택</div><div class='arrow'>↓</div><div class="process">전극 넣기</div><div class='arrow'>↓</div><div class="process">밝기 관찰</div><div class='arrow'>↓</div><div class="diamond">밝음?</div><div class='arrow'>↓</div><div class="process">기록</div><div class='arrow'>↓</div><div class="process">다음 용액 ↺</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🔌 전극 → 용액 검사 ↺ 목록 전체 반복</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: 소금물과 설탕물을 비교하여 전도도 판단이 어떻게 달라지는지 서술하시오.</div>
+ <textarea id="a6" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(6)">예시 답안 보기</button>
+ <div class="sol" id="s6"><b>예시 답안</b><br>소금물은 전구가 밝아 이온이 있어 전류가 잘 흐른다고 판단한다. 설탕물은 전구가 꺼져 이온 전도가 낮다고 기록하고 다음 용액 검사로 넘어간다.</div>
+</section>
+
+<section class="card part1" id="q7">
+ <div class="meta"><b>문항 7</b><span>유기화학·물리학</span></div>
+ <h3>방향제 확산 관찰</h3>
+ <p class="story">향기 분자가 교실 앞에서 뒤쪽으로 퍼지는 과정을 시간 간격으로 반복 관찰한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>시간</th><th>앞자리</th><th>중간</th><th>뒷자리</th></tr><tr><td>0분</td><td>강함</td><td>없음</td><td>없음</td></tr><tr><td>3분</td><td>보통</td><td>약함</td><td>없음</td></tr><tr><td>6분</td><td>약함</td><td>보통</td><td>약함</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>시간을 0분으로 설정한다<br>각 위치의 냄새 세기를 기록한다<br>3분을 더한다<br>다시 위치별 세기를 기록한다<br>뒷자리에서 냄새가 감지되는지 판단한다<br>감지될 때까지 반복한다<br>확산으로 해석한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">시간 설정</div><div class='arrow'>↓</div><div class="process">세기 기록</div><div class='arrow'>↓</div><div class="process">3분 증가</div><div class='arrow'>↓</div><div class="process">재기록</div><div class='arrow'>↓</div><div class="diamond">뒷자리 감지?</div><div class='arrow'>↓</div><div class="process">반복/해석</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🌸 앞자리 → 중간 → 뒷자리 / 시간 반복 관찰 ↺</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: 표를 보고 확산이 일어났다고 판단하는 과정을 시간 반복 관찰로 서술하시오.</div>
+ <textarea id="a7" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(7)">예시 답안 보기</button>
+ <div class="sol" id="s7"><b>예시 답안</b><br>0분에는 앞자리만 강하지만 3분 뒤 중간, 6분 뒤 뒷자리까지 냄새가 나타난다. 시간 간격을 두고 반복 관찰한 결과 공간적으로 퍼지는 변화가 확인되므로 확산으로 해석한다.</div>
+</section>
+
+<section class="card part1" id="q8">
+ <div class="meta"><b>문항 8</b><span>공학·실생활</span></div>
+ <h3>재활용 로봇 분류 처리</h3>
+ <p class="story">재활용 로봇은 물체를 하나씩 집어 카메라와 자석 센서로 분류한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>물체</th><th>투명도</th><th>자석 반응</th><th>예상 분류</th></tr><tr><td>유리병</td><td>투명</td><td>없음</td><td>유리</td></tr><tr><td>철못</td><td>불투명</td><td>있음</td><td>철</td></tr><tr><td>캔</td><td>불투명</td><td>없음</td><td>알루미늄</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>물체를 하나 집는다<br>자석 반응을 확인한다<br>자석에 붙는지 판단한다<br>붙으면 철로 처리한다<br>붙지 않으면 카메라로 투명도를 판단한다<br>분류함에 넣는다<br>물체가 남아 있으면 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">물체 선택</div><div class='arrow'>↓</div><div class="process">자석 판단</div><div class='arrow'>↓</div><div class="diamond">붙음?</div><div class='arrow'>↓</div><div class="process">철/추가 판단</div><div class='arrow'>↓</div><div class="process">분류함</div><div class='arrow'>↓</div><div class="process">다음 물체 ↺</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🤖 집기 → 센서 판단 → 분류함 ↺</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: 철못과 유리병이 서로 다른 과정으로 분류되는 이유를 서술하시오.</div>
+ <textarea id="a8" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(8)">예시 답안 보기</button>
+ <div class="sol" id="s8"><b>예시 답안</b><br>철못은 자석에 붙으므로 바로 철로 분류된다. 유리병은 붙지 않기 때문에 투명도 같은 추가 정보를 처리하여 유리로 분류한다.</div>
+</section>
+
+<section class="card part1" id="q9">
+ <div class="meta"><b>문항 9</b><span>수학·정보·공학</span></div>
+ <h3>간단한 미로 탐색</h3>
+ <p class="story">로봇은 미로에서 앞을 보고 갈 수 있으면 전진하고, 벽이면 오른쪽으로 돈다. 탈출구를 찾을 때까지 반복한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>칸</th><th>앞 상태</th><th>오른쪽 상태</th><th>처리</th></tr><tr><td>1</td><td>길</td><td>길</td><td>전진</td></tr><tr><td>2</td><td>벽</td><td>길</td><td>오른쪽 회전</td></tr><tr><td>3</td><td>길</td><td>출구</td><td>전진 후 종료</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>현재 칸에서 앞을 확인한다<br>앞이 길인지 판단한다<br>길이면 전진한다<br>벽이면 오른쪽으로 회전한다<br>현재 칸이 출구인지 판단한다<br>출구가 아니면 다시 앞 확인으로 돌아간다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">앞 확인</div><div class='arrow'>↓</div><div class="diamond">길인가?</div><div class='arrow'>↓</div><div class="process">전진/회전</div><div class='arrow'>↓</div><div class="diamond">출구인가?</div><div class='arrow'>↓</div><div class="process">아니오: 반복</div><div class='arrow'>↓</div><div class="process">예: 끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🤖 미로 로봇 ↺ 판단-이동-재판단</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: 이 미로 탐색이 반복과 판단 구조를 모두 포함하는 이유를 서술하시오.</div>
+ <textarea id="a9" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(9)">예시 답안 보기</button>
+ <div class="sol" id="s9"><b>예시 답안</b><br>로봇은 매 칸마다 앞이 길인지 판단하고 전진 또는 회전을 처리한다. 출구가 아니면 다시 앞 확인으로 돌아가므로 반복 구조가 포함된다.</div>
+</section>
+
+<section class="card part1" id="q10">
+ <div class="meta"><b>문항 10</b><span>화학·수학</span></div>
+ <h3>온도별 용해도 비교</h3>
+ <p class="story">실험반은 소금과 설탕의 용해량을 온도별로 반복 측정해 증가량을 비교한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>물질</th><th>20℃</th><th>60℃</th><th>증가량</th></tr><tr><td>소금</td><td>36g</td><td>37g</td><td>1g</td></tr><tr><td>설탕</td><td>204g</td><td>287g</td><td>83g</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>물질을 선택한다<br>20℃ 용해량을 기록한다<br>60℃ 용해량을 기록한다<br>증가량을 계산한다<br>증가량이 큰지 판단한다<br>다음 물질로 반복한다<br>가장 큰 증가량 물질을 선택한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">물질 선택</div><div class='arrow'>↓</div><div class="process">두 온도 기록</div><div class='arrow'>↓</div><div class="process">증가량 계산</div><div class='arrow'>↓</div><div class="process">다음 물질 ↺</div><div class='arrow'>↓</div><div class="process">최대 선택</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🌡️ 온도 변화 → 용해량 처리 ↺ 물질별 비교</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: 설탕이 온도 영향을 더 크게 받는다고 판단하는 과정을 서술하시오.</div>
+ <textarea id="a10" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(10)">예시 답안 보기</button>
+ <div class="sol" id="s10"><b>예시 답안</b><br>설탕은 204g에서 287g으로 83g 증가하고 소금은 1g만 증가한다. 물질별로 같은 계산을 반복해 비교하면 설탕의 증가량이 훨씬 크다.</div>
+</section>
+<h2 id='p2'>Part 2. 응용 문제 10개: 처리·순환 구조 활용</h2>
+<section class="card part2" id="q11">
+ <div class="meta"><b>문항 11</b><span>지구과학·수학·공학</span></div>
+ <h3>홍수 위험 순환 예측</h3>
+ <p class="story">강수량과 하천 수위는 시간에 따라 계속 변한다. 시스템은 매시간 위험도를 다시 계산한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>시간</th><th>강수량</th><th>수위</th><th>위험도</th></tr><tr><td>09시</td><td>보통</td><td>낮음</td><td>낮음</td></tr><tr><td>12시</td><td>높음</td><td>보통</td><td>보통</td></tr><tr><td>15시</td><td>높음</td><td>높음</td><td>높음</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>강수량을 읽는다<br>하천 수위를 읽는다<br>위험도 점수를 계산한다<br>위험도가 높음인지 판단한다<br>높으면 대피 알림을 처리한다<br>1시간 뒤 다시 자료를 읽는다<br>비가 그칠 때까지 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">자료 읽기</div><div class='arrow'>↓</div><div class="process">위험도 계산</div><div class='arrow'>↓</div><div class="diamond">높음?</div><div class='arrow'>↓</div><div class="process">대피 알림</div><div class='arrow'>↓</div><div class="process">1시간 후 반복</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🌧️ 강수 ↺ 수위 변화 ↺ 위험도 갱신</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: 15시에 대피 알림이 필요한 이유를 순환 예측 구조로 서술하시오.</div>
+ <textarea id="a11" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(11)">예시 답안 보기</button>
+ <div class="sol" id="s11"><b>예시 답안</b><br>15시는 강수량과 수위가 모두 높아 위험도가 높다. 시스템은 매시간 반복 계산하다가 기준을 넘는 시점에 대피 알림을 처리해야 한다.</div>
+</section>
+
+<section class="card part2" id="q12">
+ <div class="meta"><b>문항 12</b><span>공학·수학</span></div>
+ <h3>드론 구조 경로 재계산</h3>
+ <p class="story">구조 드론은 배터리와 바람을 확인하며 목표 지점까지 경로를 계속 재계산한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>지점</th><th>거리</th><th>구조 필요도</th><th>바람</th></tr><tr><td>A</td><td>가까움</td><td>낮음</td><td>약함</td></tr><tr><td>B</td><td>보통</td><td>높음</td><td>보통</td></tr><tr><td>C</td><td>멂</td><td>높음</td><td>강함</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>후보 지점을 읽는다<br>거리 비용을 계산한다<br>구조 필요도 점수를 계산한다<br>바람 위험을 계산한다<br>종합 점수가 가장 좋은 지점을 선택한다<br>이동 후 배터리를 다시 확인한다<br>구조 완료 전까지 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">후보 읽기</div><div class='arrow'>↓</div><div class="process">점수 처리</div><div class='arrow'>↓</div><div class="process">최고점 판단</div><div class='arrow'>↓</div><div class="process">이동</div><div class='arrow'>↓</div><div class="process">배터리 확인</div><div class='arrow'>↓</div><div class="process">반복</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🚁 드론 → 점수 계산 ↺ 배터리 확인 ↺ 경로 재계산</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: B 지점이 우선 후보가 되는 이유를 비용과 필요도 관점에서 서술하시오.</div>
+ <textarea id="a12" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(12)">예시 답안 보기</button>
+ <div class="sol" id="s12"><b>예시 답안</b><br>B는 구조 필요도가 높고 거리와 바람 위험이 감당 가능한 수준이다. C는 필요도는 높지만 거리와 바람 비용이 크므로 종합 점수에서 B가 유리하다.</div>
+</section>
+
+<section class="card part2" id="q13">
+ <div class="meta"><b>문항 13</b><span>생명과학·의생명</span></div>
+ <h3>효소 반응 최적 조건 탐색</h3>
+ <p class="story">효소 반응 속도는 온도와 pH에 따라 달라진다. 여러 조건을 반복 실험하여 최적 조건을 찾는다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>조건</th><th>온도</th><th>pH</th><th>반응 속도</th></tr><tr><td>A</td><td>10℃</td><td>7</td><td>느림</td></tr><tr><td>B</td><td>37℃</td><td>7</td><td>빠름</td></tr><tr><td>C</td><td>70℃</td><td>7</td><td>거의 없음</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>실험 조건을 선택한다<br>온도와 pH를 설정한다<br>반응 속도를 측정한다<br>최고 속도인지 판단한다<br>결과를 저장한다<br>다음 조건으로 반복한다<br>가장 빠른 조건을 선택한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">조건 선택</div><div class='arrow'>↓</div><div class="process">설정</div><div class='arrow'>↓</div><div class="process">측정</div><div class='arrow'>↓</div><div class="diamond">최고?</div><div class='arrow'>↓</div><div class="process">저장</div><div class='arrow'>↓</div><div class="process">다음 조건 ↺</div><div class='arrow'>↓</div><div class="process">선택</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🧬 효소 조건 A,B,C ↺ 반복 실험 → 최적 조건</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: B 조건이 최적에 가까운 이유와 반복 실험의 필요성을 서술하시오.</div>
+ <textarea id="a13" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(13)">예시 답안 보기</button>
+ <div class="sol" id="s13"><b>예시 답안</b><br>B는 37℃, pH 7에서 반응 속도가 빠르다. 여러 조건을 반복 측정해야 온도 과다나 부족에 따른 차이를 비교하고 최적 조건을 찾을 수 있다.</div>
+</section>
+
+<section class="card part2" id="q14">
+ <div class="meta"><b>문항 14</b><span>유기화학·공학</span></div>
+ <h3>유기 합성 공정 판단</h3>
+ <p class="story">유기 합성 조건은 수율, 부산물, 반응 시간을 함께 고려하여 반복 개선한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>조건</th><th>수율</th><th>부산물</th><th>시간</th></tr><tr><td>A</td><td>85%</td><td>많음</td><td>30분</td></tr><tr><td>B</td><td>78%</td><td>적음</td><td>25분</td></tr><tr><td>C</td><td>90%</td><td>많음</td><td>80분</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>조건을 하나 선택한다<br>수율을 기록한다<br>부산물 양을 기록한다<br>시간을 기록한다<br>세 기준의 균형을 판단한다<br>조건을 수정하거나 다음 조건을 실험한다<br>목표 조건을 찾을 때까지 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">조건 선택</div><div class='arrow'>↓</div><div class="process">자료 처리</div><div class='arrow'>↓</div><div class="process">균형 판단</div><div class='arrow'>↓</div><div class="process">수정/다음</div><div class='arrow'>↓</div><div class="process">반복</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🧪 조건 실험 ↺ 수율·부산물·시간 개선</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: B가 공정상 더 적절할 수 있는 이유를 종합 판단으로 서술하시오.</div>
+ <textarea id="a14" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(14)">예시 답안 보기</button>
+ <div class="sol" id="s14"><b>예시 답안</b><br>B는 수율이 최고는 아니지만 부산물이 적고 시간이 짧다. 공정에서는 정제와 시간 비용이 중요하므로 세 기준의 균형상 B가 적절할 수 있다.</div>
+</section>
+
+<section class="card part2" id="q15">
+ <div class="meta"><b>문항 15</b><span>물리학·지구과학</span></div>
+ <h3>소행성 위험 등급 갱신</h3>
+ <p class="story">소행성 관측값은 매일 업데이트된다. 크기, 속도, 접근 거리로 위험 등급을 반복 갱신한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>소행성</th><th>크기</th><th>속도</th><th>접근 거리</th></tr><tr><td>A</td><td>작음</td><td>느림</td><td>멂</td></tr><tr><td>B</td><td>큼</td><td>빠름</td><td>가까움</td></tr><tr><td>C</td><td>큼</td><td>느림</td><td>멂</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>새 관측값을 읽는다<br>크기 점수를 처리한다<br>속도 점수를 처리한다<br>거리 점수를 처리한다<br>총 위험 점수를 계산한다<br>위험 등급을 갱신한다<br>다음 관측일에 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">관측 읽기</div><div class='arrow'>↓</div><div class="process">점수 계산</div><div class='arrow'>↓</div><div class="process">총점 처리</div><div class='arrow'>↓</div><div class="process">등급 판단</div><div class='arrow'>↓</div><div class="process">갱신</div><div class='arrow'>↓</div><div class="process">반복</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">☄️ 관측 ↺ 점수 계산 ↺ 위험 등급 업데이트</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: B의 위험 등급이 높은 이유를 세 점수의 결합으로 서술하시오.</div>
+ <textarea id="a15" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(15)">예시 답안 보기</button>
+ <div class="sol" id="s15"><b>예시 답안</b><br>B는 크고 빠르며 접근 거리가 가깝다. 세 위험 요소가 모두 크게 나타나므로 총 위험 점수가 높아 위험 등급이 높다.</div>
+</section>
+
+<section class="card part2" id="q16">
+ <div class="meta"><b>문항 16</b><span>무기화학·의생명</span></div>
+ <h3>전해질 농도 제어</h3>
+ <p class="story">수액의 전해질 농도는 너무 낮거나 높으면 위험하다. 장치는 농도를 반복 측정하고 보정한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>시각</th><th>나트륨 농도</th><th>판단</th></tr><tr><td>1회</td><td>135</td><td>정상</td></tr><tr><td>2회</td><td>128</td><td>낮음</td></tr><tr><td>3회</td><td>140</td><td>정상</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>나트륨 농도를 측정한다<br>정상 범위인지 판단한다<br>낮으면 보충 처리를 한다<br>높으면 희석 처리를 한다<br>처리 후 다시 측정한다<br>정상 범위가 될 때까지 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">농도 측정</div><div class='arrow'>↓</div><div class="diamond">정상?</div><div class='arrow'>↓</div><div class="process">보충/희석</div><div class='arrow'>↓</div><div class="process">재측정 ↺</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🧴 수액 → 농도 측정 ↺ 보정 순환</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: 2회 측정값에서 어떤 처리가 필요하고 왜 재측정해야 하는지 서술하시오.</div>
+ <textarea id="a16" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(16)">예시 답안 보기</button>
+ <div class="sol" id="s16"><b>예시 답안</b><br>2회 나트륨 농도 128은 낮음으로 표시되어 보충 처리가 필요하다. 처리 후 정상 범위에 들어왔는지 확인해야 하므로 재측정 반복이 필요하다.</div>
+</section>
+
+<section class="card part2" id="q17">
+ <div class="meta"><b>문항 17</b><span>공학·물리학</span></div>
+ <h3>교량 진동 센서 점검</h3>
+ <p class="story">교량 센서는 진동 데이터를 반복 수집하고 기준 초과 횟수가 많으면 점검 알림을 보낸다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>시간</th><th>진동</th><th>기준 초과</th></tr><tr><td>09시</td><td>보통</td><td>아니오</td></tr><tr><td>10시</td><td>높음</td><td>예</td></tr><tr><td>11시</td><td>높음</td><td>예</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>진동 값을 측정한다<br>기준 초과인지 판단한다<br>초과이면 초과 횟수를 1 증가시킨다<br>초과 횟수가 2회 이상인지 판단한다<br>2회 이상이면 점검 알림을 보낸다<br>다음 시간에 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">진동 측정</div><div class='arrow'>↓</div><div class="diamond">초과?</div><div class='arrow'>↓</div><div class="process">횟수 증가</div><div class='arrow'>↓</div><div class="diamond">2회 이상?</div><div class='arrow'>↓</div><div class="process">알림</div><div class='arrow'>↓</div><div class="process">반복</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🌉 센서 측정 ↺ 초과 횟수 누적 → 알림</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: 11시에 점검 알림이 필요한 이유를 누적 판단 구조로 서술하시오.</div>
+ <textarea id="a17" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(17)">예시 답안 보기</button>
+ <div class="sol" id="s17"><b>예시 답안</b><br>10시와 11시에 연속으로 기준 초과가 발생하여 초과 횟수가 2회가 된다. 단발성 변화가 아니라 반복 초과이므로 점검 알림이 필요하다.</div>
+</section>
+
+<section class="card part2" id="q18">
+ <div class="meta"><b>문항 18</b><span>생명과학·의생명</span></div>
+ <h3>PCR 온도 사이클</h3>
+ <p class="story">PCR은 변성, 결합, 신장 단계를 한 사이클로 반복하여 DNA를 증폭한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>단계</th><th>온도</th><th>역할</th></tr><tr><td>변성</td><td>95℃</td><td>DNA 분리</td></tr><tr><td>결합</td><td>55℃</td><td>프라이머 결합</td></tr><tr><td>신장</td><td>72℃</td><td>DNA 합성</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>사이클 수를 0으로 둔다<br>변성 단계를 처리한다<br>결합 단계를 처리한다<br>신장 단계를 처리한다<br>사이클 수를 1 증가시킨다<br>목표 사이클인지 판단한다<br>아니면 다시 변성으로 돌아간다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">변성</div><div class='arrow'>↓</div><div class="process">결합</div><div class='arrow'>↓</div><div class="process">신장</div><div class='arrow'>↓</div><div class="process">사이클+1</div><div class='arrow'>↓</div><div class="diamond">목표?</div><div class='arrow'>↓</div><div class="process">반복</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🧬 95℃ → 55℃ → 72℃ ↺ DNA 증폭</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: PCR이 순환 구조를 갖는 이유와 각 단계 순서를 서술하시오.</div>
+ <textarea id="a18" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(18)">예시 답안 보기</button>
+ <div class="sol" id="s18"><b>예시 답안</b><br>DNA 증폭은 변성, 결합, 신장 단계를 반복해야 양이 늘어난다. 분리 후 프라이머가 붙고 그 다음 합성이 일어나므로 이 순서의 순환 구조가 필요하다.</div>
+</section>
+
+<section class="card part2" id="q19">
+ <div class="meta"><b>문항 19</b><span>지구과학·공학·수학</span></div>
+ <h3>태양광 패널 각도 조정</h3>
+ <p class="story">태양광 패널은 시간대별 태양 고도에 맞춰 각도를 반복 조정한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>시간</th><th>태양 고도</th><th>권장 각도</th></tr><tr><td>09시</td><td>낮음</td><td>크게 세움</td></tr><tr><td>12시</td><td>높음</td><td>낮게 눕힘</td></tr><tr><td>16시</td><td>낮음</td><td>크게 세움</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>현재 시간을 확인한다<br>태양 고도를 계산한다<br>권장 각도를 결정한다<br>패널 각도를 조정한다<br>발전량을 기록한다<br>다음 시간대에 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">시간 확인</div><div class='arrow'>↓</div><div class="process">고도 계산</div><div class='arrow'>↓</div><div class="process">각도 결정</div><div class='arrow'>↓</div><div class="process">조정 처리</div><div class='arrow'>↓</div><div class="process">기록</div><div class='arrow'>↓</div><div class="process">반복</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">☀️ 태양 위치 ↺ 패널 각도 조정 ↺ 발전량 기록</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: 12시에 패널 각도를 낮게 눕히는 이유를 태양 고도와 반복 제어 관점에서 서술하시오.</div>
+ <textarea id="a19" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(19)">예시 답안 보기</button>
+ <div class="sol" id="s19"><b>예시 답안</b><br>12시는 태양 고도가 높아 패널을 낮게 눕히는 것이 빛을 더 잘 받을 수 있다. 시간대가 바뀌면 다시 고도를 계산해 각도를 반복 조정해야 한다.</div>
+</section>
+
+<section class="card part2" id="q20">
+ <div class="meta"><b>문항 20</b><span>의생명공학·수학</span></div>
+ <h3>약물 방출 캡슐 평가</h3>
+ <p class="story">약물 캡슐은 시간별 방출량을 반복 측정하여 안정성을 판단한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>캡슐</th><th>1시간</th><th>4시간</th><th>8시간</th></tr><tr><td>A</td><td>많음</td><td>적음</td><td>없음</td></tr><tr><td>B</td><td>적음</td><td>보통</td><td>보통</td></tr><tr><td>C</td><td>없음</td><td>많음</td><td>적음</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>캡슐을 선택한다<br>시간대별 방출량을 측정한다<br>초기 과다 방출인지 판단한다<br>8시간까지 지속되는지 판단한다<br>안정 방출 여부를 기록한다<br>다음 캡슐로 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">캡슐 선택</div><div class='arrow'>↓</div><div class="process">방출 측정</div><div class='arrow'>↓</div><div class="diamond">초기 과다?</div><div class='arrow'>↓</div><div class="diamond">지속?</div><div class='arrow'>↓</div><div class="process">기록</div><div class='arrow'>↓</div><div class="process">다음 ↺</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">💊 캡슐별 시간 측정 ↺ 안정성 판단</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: B 캡슐이 안정 방출에 적합한 이유를 시간별 반복 측정으로 서술하시오.</div>
+ <textarea id="a20" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(20)">예시 답안 보기</button>
+ <div class="sol" id="s20"><b>예시 답안</b><br>B는 1시간에 적고 4시간과 8시간에 보통으로 방출된다. 초기 과다 방출이 없고 지속성이 있어 안정 방출에 적합하다.</div>
+</section>
+<h2 id='p3'>Part 3. 심화 문제 10개: 융합 모델링과 반복 최적화</h2>
+<section class="card part3" id="q21">
+ <div class="meta"><b>문항 21</b><span>의생명과학·공학·정보</span></div>
+ <h3>인공췌장 제어 순환</h3>
+ <p class="story">인공췌장은 혈당을 지속적으로 측정하고 인슐린 주입 여부를 판단한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>시각</th><th>혈당</th><th>운동</th><th>처리</th></tr><tr><td>08시</td><td>180</td><td>없음</td><td>소량 주입</td></tr><tr><td>10시</td><td>95</td><td>있음</td><td>관찰</td></tr><tr><td>12시</td><td>70</td><td>있음</td><td>주입 중지</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>혈당을 측정한다<br>운동 여부를 확인한다<br>혈당이 높은지 판단한다<br>높으면 인슐린 주입량을 계산한다<br>혈당이 낮고 운동 중인지 판단한다<br>참이면 주입을 중지한다<br>5분 후 다시 혈당 측정으로 돌아간다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">혈당 측정</div><div class='arrow'>↓</div><div class="process">운동 확인</div><div class='arrow'>↓</div><div class="diamond">높음?</div><div class='arrow'>↓</div><div class="process">주입 계산</div><div class='arrow'>↓</div><div class="diamond">낮고 운동?</div><div class='arrow'>↓</div><div class="process">중지</div><div class='arrow'>↓</div><div class="process">5분 후 반복</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">⌚ 센서 ↺ 판단 ↺ 펌프 제어 ↺ 재측정</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: 12시 상황에서 주입 중지가 필요한 이유와 순환 제어의 중요성을 서술하시오.</div>
+ <textarea id="a21" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(21)">예시 답안 보기</button>
+ <div class="sol" id="s21"><b>예시 답안</b><br>12시는 혈당이 70으로 낮고 운동 중이므로 저혈당 위험이 있다. 주입을 중지하고 5분 후 다시 측정해야 안전한 폐루프 제어가 가능하다.</div>
+</section>
+
+<section class="card part3" id="q22">
+ <div class="meta"><b>문항 22</b><span>지구과학·공학·수학</span></div>
+ <h3>도시 열섬 완화 반복 최적화</h3>
+ <p class="story">도시는 구역별 온도를 반복 측정하고 녹지 배치 후 효과를 다시 평가한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>구역</th><th>포장</th><th>녹지</th><th>온도</th></tr><tr><td>A</td><td>높음</td><td>낮음</td><td>높음</td></tr><tr><td>B</td><td>보통</td><td>보통</td><td>보통</td></tr><tr><td>C</td><td>낮음</td><td>높음</td><td>낮음</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>구역별 온도를 측정한다<br>포장 면적과 녹지 비율을 확인한다<br>열섬 위험도를 계산한다<br>위험도가 가장 높은 구역을 선택한다<br>녹지와 그늘을 배치한다<br>다음 날 다시 온도를 측정한다<br>개선될 때까지 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">온도 측정</div><div class='arrow'>↓</div><div class="process">위험도 계산</div><div class='arrow'>↓</div><div class="diamond">최고 위험?</div><div class='arrow'>↓</div><div class="process">녹지 배치</div><div class='arrow'>↓</div><div class="process">재측정 ↺</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🏙️ 측정 → 개선 처리 → 재측정 ↺</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: A 구역을 우선 개선해야 하는 이유와 개선 후 재측정이 필요한 이유를 서술하시오.</div>
+ <textarea id="a22" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(22)">예시 답안 보기</button>
+ <div class="sol" id="s22"><b>예시 답안</b><br>A는 포장이 높고 녹지가 낮으며 온도도 높다. 녹지 배치 후 실제 온도 완화 효과를 확인해야 하므로 다음 날 재측정하는 반복 평가가 필요하다.</div>
+</section>
+
+<section class="card part3" id="q23">
+ <div class="meta"><b>문항 23</b><span>유기화학·무기화학·공학</span></div>
+ <h3>촉매 표면 순환 모델</h3>
+ <p class="story">촉매는 흡착, 반응, 탈착을 반복하며 소모되지 않고 반응을 돕는다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>조건</th><th>흡착</th><th>반응</th><th>탈착</th></tr><tr><td>A</td><td>적정</td><td>빠름</td><td>잘 됨</td></tr><tr><td>B</td><td>너무 강함</td><td>보통</td><td>어려움</td></tr><tr><td>C</td><td>약함</td><td>느림</td><td>잘 됨</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>반응물이 촉매 표면에 흡착한다<br>표면 반응을 처리한다<br>생성물이 탈착하는지 판단한다<br>탈착되면 촉매 자리가 비워진다<br>다음 반응물이 다시 흡착한다<br>이 순환을 반복한다<br>한 단계가 막히면 효율 낮음으로 기록한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">흡착</div><div class='arrow'>↓</div><div class="process">반응 처리</div><div class='arrow'>↓</div><div class="diamond">탈착?</div><div class='arrow'>↓</div><div class="process">자리 비움</div><div class='arrow'>↓</div><div class="process">다음 분자 ↺</div><div class='arrow'>↓</div><div class="process">효율 판단</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">촉매 표면: 흡착 → 반응 → 탈착 ↺</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: B 조건에서 촉매 효율이 낮아질 수 있는 이유를 순환 구조로 서술하시오.</div>
+ <textarea id="a23" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(23)">예시 답안 보기</button>
+ <div class="sol" id="s23"><b>예시 답안</b><br>B는 흡착이 너무 강해 탈착이 어렵다. 생성물이 떨어져 나가지 않으면 촉매 자리가 비워지지 않아 다음 반응물이 흡착하지 못하고 순환이 느려진다.</div>
+</section>
+
+<section class="card part3" id="q24">
+ <div class="meta"><b>문항 24</b><span>생명과학·의생명·정보</span></div>
+ <h3>AI 현미경 이상 세포 반복 판독</h3>
+ <p class="story">AI 현미경은 여러 세포 이미지를 하나씩 처리하고 이상 특징 수를 세어 후보를 표시한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>세포</th><th>모양</th><th>핵 크기</th><th>염색</th></tr><tr><td>A</td><td>규칙</td><td>보통</td><td>보통</td></tr><tr><td>B</td><td>불규칙</td><td>큼</td><td>강함</td></tr><tr><td>C</td><td>규칙</td><td>큼</td><td>약함</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>세포 이미지를 하나 선택한다<br>모양 특징을 추출한다<br>핵 크기를 추출한다<br>염색 강도를 추출한다<br>이상 특징 개수를 센다<br>개수가 2개 이상인지 판단한다<br>참이면 정밀 판독 후보로 표시한다<br>다음 세포로 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">이미지 선택</div><div class='arrow'>↓</div><div class="process">특징 추출</div><div class='arrow'>↓</div><div class="process">개수 세기</div><div class='arrow'>↓</div><div class="diamond">2개 이상?</div><div class='arrow'>↓</div><div class="process">후보 표시</div><div class='arrow'>↓</div><div class="process">다음 ↺</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🔬 세포 이미지 목록 ↺ 특징 추출 ↺ 후보 표시</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: B 세포가 정밀 판독 후보가 되는 이유를 특징 추출과 판단 구조로 서술하시오.</div>
+ <textarea id="a24" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(24)">예시 답안 보기</button>
+ <div class="sol" id="s24"><b>예시 답안</b><br>B는 모양 불규칙, 핵 큼, 염색 강함으로 이상 특징이 3개이다. 2개 이상 조건을 만족하므로 정밀 판독 후보로 표시된다.</div>
+</section>
+
+<section class="card part3" id="q25">
+ <div class="meta"><b>문항 25</b><span>지구과학·수학·실생활</span></div>
+ <h3>기후 난민 이동 압력 모델</h3>
+ <p class="story">기후 위험은 매년 누적될 수 있다. 물 부족, 폭염, 농업 피해를 반복 평가한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>지역</th><th>물 부족</th><th>폭염</th><th>농업 피해</th></tr><tr><td>A</td><td>높음</td><td>높음</td><td>높음</td></tr><tr><td>B</td><td>높음</td><td>낮음</td><td>보통</td></tr><tr><td>C</td><td>낮음</td><td>높음</td><td>낮음</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>지역을 하나 선택한다<br>물 부족 점수를 계산한다<br>폭염 점수를 계산한다<br>농업 피해 점수를 계산한다<br>세 점수를 합산한다<br>이동 압력이 높은지 판단한다<br>다음 해에 다시 평가한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">지역 선택</div><div class='arrow'>↓</div><div class="process">점수 계산</div><div class='arrow'>↓</div><div class="process">합산 처리</div><div class='arrow'>↓</div><div class="diamond">높음?</div><div class='arrow'>↓</div><div class="process">기록</div><div class='arrow'>↓</div><div class="process">다음 해 반복</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🌡️ 위험 점수 ↺ 연도별 누적 평가 → 이동 압력</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: A 지역의 이동 압력이 높고 지속 관찰이 필요한 이유를 서술하시오.</div>
+ <textarea id="a25" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(25)">예시 답안 보기</button>
+ <div class="sol" id="s25"><b>예시 답안</b><br>A는 물 부족, 폭염, 농업 피해가 모두 높아 합산 점수가 크다. 이러한 위험은 해마다 변하므로 다음 해에도 반복 평가해 이동 압력 변화를 관찰해야 한다.</div>
+</section>
+
+<section class="card part3" id="q26">
+ <div class="meta"><b>문항 26</b><span>물리학·공학</span></div>
+ <h3>회생제동 에너지 순환</h3>
+ <p class="story">전기차는 감속할 때 운동 에너지를 전기 에너지로 바꾸어 배터리에 저장한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>상황</th><th>속도 변화</th><th>배터리 여유</th><th>노면</th></tr><tr><td>A</td><td>감속 큼</td><td>있음</td><td>건조</td></tr><tr><td>B</td><td>없음</td><td>있음</td><td>건조</td></tr><tr><td>C</td><td>감속 큼</td><td>없음</td><td>미끄러움</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>속도 변화량을 확인한다<br>배터리 저장 여유를 확인한다<br>노면 상태를 확인한다<br>감속 중이고 저장 여유가 있고 안전한지 판단한다<br>참이면 회생제동을 적용한다<br>에너지 회수량을 기록한다<br>다음 감속 상황에서 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">속도 변화</div><div class='arrow'>↓</div><div class="process">배터리</div><div class='arrow'>↓</div><div class="process">노면</div><div class='arrow'>↓</div><div class="diamond">조건 만족?</div><div class='arrow'>↓</div><div class="process">회생 적용</div><div class='arrow'>↓</div><div class="process">기록</div><div class='arrow'>↓</div><div class="process">반복</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🚗 운동 에너지 → 발전기 → 🔋 배터리 ↺</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: A에서 회생제동을 적용하고 C에서 제한해야 하는 이유를 서술하시오.</div>
+ <textarea id="a26" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(26)">예시 답안 보기</button>
+ <div class="sol" id="s26"><b>예시 답안</b><br>A는 감속이 크고 배터리 여유가 있으며 노면이 건조하여 회생제동 조건을 만족한다. C는 배터리 여유가 없고 노면도 미끄러워 제한해야 한다.</div>
+</section>
+
+<section class="card part3" id="q27">
+ <div class="meta"><b>문항 27</b><span>유기화학·무기화학</span></div>
+ <h3>분자 극성 용해성 반복 예측</h3>
+ <p class="story">여러 용질을 물과 기름에 넣어 용해성을 비교하고 분자 극성 규칙을 추론한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>물질</th><th>극성</th><th>물</th><th>기름</th></tr><tr><td>A</td><td>극성</td><td>잘 녹음</td><td>잘 안 녹음</td></tr><tr><td>B</td><td>무극성</td><td>잘 안 녹음</td><td>잘 녹음</td></tr><tr><td>C</td><td>부분 극성</td><td>조금 녹음</td><td>조금 녹음</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>물질을 하나 선택한다<br>분자 극성을 확인한다<br>물에서 용해성을 기록한다<br>기름에서 용해성을 기록한다<br>비슷한 성질끼리 잘 섞이는지 판단한다<br>다음 물질로 반복한다<br>규칙을 정리한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">물질 선택</div><div class='arrow'>↓</div><div class="process">극성 확인</div><div class='arrow'>↓</div><div class="process">용해 기록</div><div class='arrow'>↓</div><div class="process">규칙 판단</div><div class='arrow'>↓</div><div class="process">다음 ↺</div><div class='arrow'>↓</div><div class="process">정리</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">💧 물 / 🛢️ 기름 ↺ 물질별 용해성 비교</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: A와 B의 용해성 차이를 반복 비교 규칙으로 서술하시오.</div>
+ <textarea id="a27" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(27)">예시 답안 보기</button>
+ <div class="sol" id="s27"><b>예시 답안</b><br>A는 극성이므로 극성 용매인 물에 잘 녹고 기름에는 잘 안 녹는다. B는 무극성이므로 기름에 잘 녹는다. 물질별 반복 비교로 비슷한 성질끼리 잘 섞이는 규칙을 찾을 수 있다.</div>
+</section>
+
+<section class="card part3" id="q28">
+ <div class="meta"><b>문항 28</b><span>물리학·공학·의생명</span></div>
+ <h3>우주 방사선 차폐 선택</h3>
+ <p class="story">우주선 차폐재는 효과가 높아야 하지만 질량과 설치 난이도도 제한된다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>재료</th><th>질량</th><th>차폐 효과</th><th>설치</th></tr><tr><td>A</td><td>낮음</td><td>낮음</td><td>쉬움</td></tr><tr><td>B</td><td>보통</td><td>높음</td><td>보통</td></tr><tr><td>C</td><td>매우 높음</td><td>매우 높음</td><td>어려움</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>재료를 하나 선택한다<br>질량을 평가한다<br>차폐 효과를 평가한다<br>설치 난이도를 평가한다<br>효과가 충분하고 제약이 감당 가능한지 판단한다<br>후보로 저장한다<br>다음 재료로 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">재료 선택</div><div class='arrow'>↓</div><div class="process">질량/효과/설치 평가</div><div class='arrow'>↓</div><div class="diamond">감당 가능?</div><div class='arrow'>↓</div><div class="process">후보 저장</div><div class='arrow'>↓</div><div class="process">다음 ↺</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">☢️ 방사선 → 차폐재 후보 반복 평가 → 👨‍🚀 보호</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: B가 C보다 현실적인 후보일 수 있는 이유를 공학적 제약으로 서술하시오.</div>
+ <textarea id="a28" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(28)">예시 답안 보기</button>
+ <div class="sol" id="s28"><b>예시 답안</b><br>C는 효과가 매우 높지만 질량과 설치 난이도가 너무 크다. B는 효과가 높으면서 제약이 감당 가능하므로 현실적 후보가 될 수 있다.</div>
+</section>
+
+<section class="card part3" id="q29">
+ <div class="meta"><b>문항 29</b><span>지구과학·수학</span></div>
+ <h3>기압 변화 강수 예측 순환</h3>
+ <p class="story">기상 시스템은 기압, 습도, 구름 양을 반복 관찰하여 강수 가능성을 갱신한다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>시간</th><th>기압</th><th>습도</th><th>구름</th></tr><tr><td>09시</td><td>1015</td><td>50%</td><td>적음</td></tr><tr><td>12시</td><td>1008</td><td>70%</td><td>보통</td></tr><tr><td>15시</td><td>1000</td><td>85%</td><td>많음</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>기압을 측정한다<br>습도를 측정한다<br>구름 양을 기록한다<br>기압 하강과 습도 상승이 함께 있는지 판단한다<br>참이면 강수 가능성을 높인다<br>3시간 후 다시 측정한다<br>반복하여 예보를 갱신한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">기압/습도/구름</div><div class='arrow'>↓</div><div class="process">변화 판단</div><div class='arrow'>↓</div><div class="process">가능성 갱신</div><div class='arrow'>↓</div><div class="process">3시간 후 반복</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">📉 기압 + 💧 습도 + ☁️ 구름 ↺ 예보 갱신</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: 15시에 강수 가능성이 높아졌다고 판단하는 과정을 서술하시오.</div>
+ <textarea id="a29" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(29)">예시 답안 보기</button>
+ <div class="sol" id="s29"><b>예시 답안</b><br>시간이 지날수록 기압은 낮아지고 습도와 구름은 증가한다. 반복 관측에서 이 변화가 계속되므로 15시에 강수 가능성을 높여 예보를 갱신해야 한다.</div>
+</section>
+
+<section class="card part3" id="q30">
+ <div class="meta"><b>문항 30</b><span>의생명과학·무기화학</span></div>
+ <h3>나노입자 독성 반복 평가</h3>
+ <p class="story">나노입자는 크기와 농도에 따라 세포 생존율에 다른 영향을 준다.</p>
+ <div class="twocol"><div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>입자</th><th>크기</th><th>농도</th><th>세포 생존율</th></tr><tr><td>A</td><td>큰 편</td><td>낮음</td><td>95%</td></tr><tr><td>B</td><td>작음</td><td>높음</td><td>55%</td></tr><tr><td>C</td><td>작음</td><td>낮음</td><td>85%</td></tr></table></div><div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>입자 종류를 선택한다<br>크기를 확인한다<br>농도를 확인한다<br>세포 생존율을 측정한다<br>작고 농도가 높고 생존율이 낮은지 판단한다<br>참이면 독성 위험 높음으로 표시한다<br>다음 입자로 반복한다<br>끝</div></div></div>
+ <div class="twocol"><div class="box"><h4>🔁 반복·판단·처리·순환 순서도</h4><div class='flow'><div class="process">시작</div><div class='arrow'>↓</div><div class="process">입자 선택</div><div class='arrow'>↓</div><div class="process">크기/농도</div><div class='arrow'>↓</div><div class="process">생존율 측정</div><div class='arrow'>↓</div><div class="diamond">위험 조건?</div><div class='arrow'>↓</div><div class="process">표시</div><div class='arrow'>↓</div><div class="process">다음 ↺</div><div class='arrow'>↓</div><div class="process">끝</div></div></div><div class="box"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🔬 나노입자 후보 ↺ 세포 생존율 평가</div></div></div>
+ <div class="prompt">✍️ 서술형 문제: B 입자의 독성 위험이 높다고 판단하는 이유를 반복 평가 조건으로 서술하시오.</div>
+ <textarea id="a30" placeholder="표, 순서도, 의사코드, 다이어그램을 근거로 서술하세요."></textarea>
+ <button onclick="toggleSol(30)">예시 답안 보기</button>
+ <div class="sol" id="s30"><b>예시 답안</b><br>B는 크기가 작고 농도가 높으며 생존율이 55%로 낮다. 의사코드의 위험 조건을 만족하므로 독성 위험 높음으로 표시된다.</div>
+</section>
+</main></div><footer>예시 답안은 자기 점검 또는 교사용 해설로 활용할 수 있습니다.</footer><script>
+function toggleSol(n){const e=document.getElementById('s'+n);e.style.display=e.style.display==='block'?'none':'block'}
+function saveHTML(){
+ const sid=(document.getElementById('sid').value||'학번').replace(/\s+/g,'');
+ const name=(document.getElementById('name').value||'이름').replace(/\s+/g,'');
+ const stamp=new Date().toISOString().slice(0,19).replace(/[-:T]/g,'');
+ document.querySelectorAll('.sol').forEach(x=>x.style.display='block');
+ const blob=new Blob(['<!DOCTYPE html>\n'+document.documentElement.outerHTML],{type:'text/html;charset=utf-8'});
+ const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+ a.download=`${sid}_${name}_정보창의력_반복판단처리순환_서술형_${stamp}.html`; a.click(); URL.revokeObjectURL(a.href);
+}
+</script></body></html>

@@ -1,0 +1,551 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>과학고등학교 정보 창의력 경진대회 과학융합 서술형 30문항</title><style>
+*{box-sizing:border-box} body{margin:0;font-family:'Malgun Gothic','Apple SD Gothic Neo',Arial,sans-serif;background:linear-gradient(135deg,#edf5ff,#fff8ea);color:#172033}
+header{position:sticky;top:0;background:rgba(255,255,255,.96);border-bottom:1px solid #dce7ff;z-index:5;backdrop-filter:blur(8px)}
+.head{max-width:1400px;margin:auto;padding:18px 24px;display:flex;justify-content:space-between;gap:16px;align-items:center} h1{margin:0;font-size:27px}.sub{margin:6px 0 0;color:#526078;font-weight:700}.pill{background:#172033;color:white;border-radius:999px;padding:11px 16px;font-weight:900}
+.layout{max-width:1400px;margin:22px auto;padding:0 18px;display:grid;grid-template-columns:270px 1fr;gap:18px}
+aside{position:sticky;top:92px;align-self:start;background:white;border:1px solid #dce7ff;border-radius:24px;padding:16px;box-shadow:0 14px 32px rgba(49,87,213,.13)}
+aside input{width:100%;padding:11px;border:1px solid #cbd8ff;border-radius:12px;margin-bottom:8px;font-size:15px}.guide{background:#eef4ff;border-radius:16px;padding:13px;line-height:1.65;margin:10px 0}
+.nav{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.nav a{text-decoration:none;text-align:center;background:#fff;border:1px solid #dce7ff;border-radius:10px;padding:8px 0;font-weight:900;color:#172033}.nav a:hover{background:#172033;color:white}
+.pbtn,.save{display:block;width:100%;border:1px solid #dce7ff;border-radius:14px;padding:12px;margin:6px 0;background:#f8fbff;font-weight:900;text-align:left;text-decoration:none;color:#172033}.pbtn:hover,.save{background:#3157d5;color:white}.save{border:0;text-align:center;cursor:pointer;background:#172033}
+main{background:white;border:1px solid #dce7ff;border-radius:28px;padding:26px;box-shadow:0 14px 34px rgba(49,87,213,.12)}
+.hero{background:linear-gradient(135deg,#172033,#3157d5);color:white;border-radius:24px;padding:30px;margin-bottom:22px}.hero h2{margin:0;font-size:30px}.hero p{font-size:17px;line-height:1.8}
+h2{margin:30px 0 16px;padding:16px 20px;background:#172033;color:white;border-radius:18px;font-size:23px}
+.card{border:1px solid #dce7ff;border-radius:24px;padding:22px;margin:18px 0;background:linear-gradient(#fff,#fbfdff);scroll-margin-top:110px}
+.top{display:flex;gap:8px;align-items:center}.top b{background:#3157d5;color:white;border-radius:999px;padding:8px 13px}.top span{background:#eef4ff;color:#284698;border-radius:999px;padding:8px 13px;font-weight:900}
+h3{font-size:24px;margin:16px 0 10px}.story{font-size:18px;line-height:1.85;background:#fffaf0;border:1px solid #ffe2a8;border-left:8px solid #ffb703;border-radius:16px;padding:16px}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}.box{margin:12px 0;padding:15px;border:1px solid #dce7ff;background:#f8fbff;border-radius:18px;overflow:auto}.box h4{margin:0 0 10px;color:#21376e}
+.tbl{border-collapse:collapse;width:100%;min-width:430px;background:white}.tbl th{background:#172033;color:white}.tbl th,.tbl td{border:1px solid #d7e1ff;padding:9px;text-align:center}
+.pseudo{font-family:'Malgun Gothic',Consolas,sans-serif;background:#101828;color:#d8e7ff;border-left:8px solid #00a896;border-radius:16px;padding:16px;line-height:1.85;font-size:16px}
+.flow{display:flex;flex-direction:column;align-items:center;gap:5px}.node,.dia{background:white;border:2px solid #3157d5;border-radius:12px;padding:9px 14px;min-width:150px;text-align:center;font-weight:900}.dia{background:#fff7e6;border-color:#fb8500;transform:skew(-8deg)}.arr{font-size:22px;color:#3157d5;font-weight:900}
+.diagram{font-size:21px;line-height:1.9;text-align:center;background:white;border:1px dashed #9fb7ff;border-radius:16px;padding:22px;min-height:115px;display:flex;align-items:center;justify-content:center}
+.prompt{font-size:19px;line-height:1.75;font-weight:900;background:#effaf7;border:1px solid #bdeede;border-radius:16px;padding:15px;margin-top:12px}
+textarea{width:100%;min-height:150px;margin-top:12px;border:2px solid #dce7ff;border-radius:16px;padding:14px;font-size:17px;line-height:1.6;font-family:inherit;resize:vertical}textarea:focus{outline:0;border-color:#3157d5;box-shadow:0 0 0 4px rgba(49,87,213,.14)}
+button{border:0;border-radius:13px;background:#00a896;color:white;font-weight:900;padding:11px 15px;margin-top:10px;cursor:pointer}.sol{display:none;background:#fff8e8;border:1px solid #f2d28b;border-radius:16px;padding:14px;line-height:1.8;margin-top:10px}
+footer{text-align:center;padding:28px;color:#53627a}
+@media(max-width:950px){.layout{grid-template-columns:1fr}aside{position:static}.twocol{grid-template-columns:1fr}.nav{grid-template-columns:repeat(10,1fr)}}
+@media print{header,aside,button{display:none!important}.layout{display:block}main{box-shadow:none;border:0}.card{break-inside:avoid}.sol{display:block}textarea{min-height:100px}}
+</style></head><body>
+<header><div class="head"><div><h1>🧠 과학고등학교 정보 창의력 경진대회</h1><p class="sub">실생활 · 수학 · 공학 · 생명과학 · 지구과학 · 물리학 · 의생명과학 · 유기화학 · 무기화학 기반 서술형 평가</p></div><div class="pill">기초 10 · 응용 10 · 심화 10</div></div></header>
+<div class="layout"><aside><input id="sid" placeholder="학번 입력"><input id="name" placeholder="이름 입력"><div class="guide"><b>응시 안내</b><br>표, 그림, 다이어그램, 순서도, 한글 Pseudo Code를 읽고 근거를 들어 서술하세요.</div><a class="pbtn" href="#p1">Part 1 기초</a><a class="pbtn" href="#p2">Part 2 응용</a><a class="pbtn" href="#p3">Part 3 심화</a><div class="nav"><a href='#q1'>1</a><a href='#q2'>2</a><a href='#q3'>3</a><a href='#q4'>4</a><a href='#q5'>5</a><a href='#q6'>6</a><a href='#q7'>7</a><a href='#q8'>8</a><a href='#q9'>9</a><a href='#q10'>10</a><a href='#q11'>11</a><a href='#q12'>12</a><a href='#q13'>13</a><a href='#q14'>14</a><a href='#q15'>15</a><a href='#q16'>16</a><a href='#q17'>17</a><a href='#q18'>18</a><a href='#q19'>19</a><a href='#q20'>20</a><a href='#q21'>21</a><a href='#q22'>22</a><a href='#q23'>23</a><a href='#q24'>24</a><a href='#q25'>25</a><a href='#q26'>26</a><a href='#q27'>27</a><a href='#q28'>28</a><a href='#q29'>29</a><a href='#q30'>30</a></div><button class="save" onclick="saveHTML()">결과 HTML 저장</button></aside>
+<main><div class="hero"><h2>창의력은 자료를 연결하여 설명하는 힘입니다.</h2><p>각 문항은 과학·수학·공학 소재를 정보적 사고로 해석하도록 구성했습니다. 단순 계산보다 표, 순서도, 한글 의사코드, 다이어그램의 근거를 연결하는 서술 능력을 평가합니다.</p></div><h2 id='p1'>Part 1. 기초 문제 10개</h2>
+<section class="card part1" id="q1">
+  <div class="top"><b>문항 1</b><span>실생활·수학</span></div>
+  <h3>버스 도착 알림 최적화</h3>
+  <p class="story">등굣길 버스 정류장에는 여러 노선이 지나간다. 학생은 지각하지 않으려면 도착 예정 시간과 혼잡도를 함께 고려해야 한다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>버스</th><th>도착 예정</th><th>혼잡도</th><th>학교까지 소요</th></tr><tr><td>101번</td><td>3분</td><td>매우 혼잡</td><td>12분</td></tr><tr><td>202번</td><td>7분</td><td>보통</td><td>10분</td></tr><tr><td>303번</td><td>10분</td><td>낮음</td><td>9분</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　각 버스의 도착 예정 시간을 확인한다<br>　혼잡도를 확인한다<br>　학교까지 걸리는 시간을 더한다<br>　총 이동 시간이 짧고 혼잡도가 낮은 버스를 후보로 정한다<br>　후보 버스를 안내한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">도착 시간 확인</div><div class='arr'>↓</div><div class="node">혼잡도 확인</div><div class='arr'>↓</div><div class="node">총시간 계산</div><div class='arr'>↓</div><div class="node">후보 선택</div><div class='arr'>↓</div><div class="node">안내</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🚌 정류장 → ⏱️ 도착예정 + 👥 혼잡도 + 🏫 소요시간 → 추천</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: 세 버스 중 가장 합리적인 선택을 정하고, 도착 시간과 혼잡도 관점에서 근거를 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(1)">예시 답안 보기</button>
+  <div class="sol" id="s1"><b>예시 답안</b><br>101번은 빨리 오지만 매우 혼잡하다. 202번은 7분 뒤 도착하고 혼잡도가 보통이며 총 이동 시간도 17분으로 균형적이다. 따라서 202번이 합리적이다.</div>
+</section>
+<section class="card part1" id="q2">
+  <div class="top"><b>문항 2</b><span>수학·공학</span></div>
+  <h3>삼각형 다리 구조 판단</h3>
+  <p class="story">공학 동아리는 종이 막대로 작은 다리를 만들었다. 같은 막대 수를 써도 구조에 따라 흔들림이 다르다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>구조</th><th>도형</th><th>흔들림</th></tr><tr><td>A</td><td>사각형</td><td>큼</td></tr><tr><td>B</td><td>삼각형 2개</td><td>작음</td></tr><tr><td>C</td><td>긴 사각형</td><td>매우 큼</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　구조의 기본 도형을 확인한다<br>　힘이 가해질 때 모양이 변하는지 확인한다<br>　삼각형이 포함되어 있으면<br>　안정 구조 후보로 표시한다<br>　흔들림을 비교한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">도형 확인</div><div class='arr'>↓</div><div class="node">변형 가능성 판단</div><div class='arr'>↓</div><div class="dia">삼각형 포함?</div><div class='arr'>↓</div><div class="node">안정 후보</div><div class='arr'>↓</div><div class="node">흔들림 비교</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">📐 삼각형 구조 → 힘 분산 → 🌉 다리 안정성</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: B 구조가 A 구조보다 안정적일 수 있는 이유를 수학적 도형 성질과 공학적 관점에서 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(2)">예시 답안 보기</button>
+  <div class="sol" id="s2"><b>예시 답안</b><br>삼각형은 세 변의 길이가 정해지면 모양이 쉽게 변하지 않는다. 따라서 힘을 받았을 때 사각형보다 변형이 작아 다리 구조가 안정적이다.</div>
+</section>
+<section class="card part1" id="q3">
+  <div class="top"><b>문항 3</b><span>실생활·생명과학</span></div>
+  <h3>학교 정원 자동 물주기</h3>
+  <p class="story">스마트 정원은 흙 습도와 최근 강수량을 보고 물을 줄지 결정한다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>구역</th><th>흙 습도</th><th>최근 비</th><th>식물 상태</th></tr><tr><td>A</td><td>낮음</td><td>없음</td><td>시듦</td></tr><tr><td>B</td><td>적정</td><td>있음</td><td>정상</td></tr><tr><td>C</td><td>높음</td><td>있음</td><td>잎 처짐</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　흙 습도를 확인한다<br>　최근 비 정보를 확인한다<br>　식물 상태를 확인한다<br>　만약 습도가 낮고 최근 비가 없으면<br>　물을 준다<br>　습도가 높으면<br>　물을 주지 않는다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">습도 확인</div><div class='arr'>↓</div><div class="node">비 정보 확인</div><div class='arr'>↓</div><div class="node">상태 확인</div><div class='arr'>↓</div><div class="dia">물 필요?</div><div class='arr'>↓</div><div class="node">물 주기/중지</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">💧 습도 센서 + 🌧️ 날씨 기록 + 🌱 식물 상태 → 물주기 판단</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: A와 C 구역에 대해 각각 어떤 조치를 해야 하는지 근거를 들어 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(3)">예시 답안 보기</button>
+  <div class="sol" id="s3"><b>예시 답안</b><br>A는 습도가 낮고 최근 비가 없으며 식물이 시들었으므로 물을 줘야 한다. C는 습도가 높고 비도 있었으므로 물을 더 주면 과습 위험이 있어 중지해야 한다.</div>
+</section>
+<section class="card part1" id="q4">
+  <div class="top"><b>문항 4</b><span>지구과학·공학</span></div>
+  <h3>지진 대피 경로 선택</h3>
+  <p class="story">지진 대피 훈련에서 학생들은 가장 가까운 계단이 아니라 안전하고 덜 혼잡한 경로를 선택해야 한다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>경로</th><th>거리</th><th>혼잡도</th><th>낙하물 위험</th></tr><tr><td>A</td><td>짧음</td><td>높음</td><td>높음</td></tr><tr><td>B</td><td>보통</td><td>낮음</td><td>낮음</td></tr><tr><td>C</td><td>김</td><td>보통</td><td>낮음</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　각 경로의 거리를 확인한다<br>　혼잡도를 확인한다<br>　낙하물 위험을 확인한다<br>　위험도가 낮고 이동 가능한 경로를 선택한다<br>　대피 안내를 표시한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">거리 확인</div><div class='arr'>↓</div><div class="node">혼잡도 확인</div><div class='arr'>↓</div><div class="node">위험 확인</div><div class='arr'>↓</div><div class="dia">안전 경로?</div><div class='arr'>↓</div><div class="node">안내</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🏫 교실 → 복도 → 계단 → 운동장 / ⚠️ 위험도 비교</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: 가장 적절한 대피 경로를 선택하고, 단순 최단 거리보다 안전 기준이 중요한 이유를 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(4)">예시 답안 보기</button>
+  <div class="sol" id="s4"><b>예시 답안</b><br>B는 거리가 보통이지만 혼잡도와 낙하물 위험이 낮다. 지진 대피에서는 빠름뿐 아니라 안전이 중요하므로 A보다 B가 적절하다.</div>
+</section>
+<section class="card part1" id="q5">
+  <div class="top"><b>문항 5</b><span>물리학</span></div>
+  <h3>전구 밝기와 회로</h3>
+  <p class="story">과학실에서 전구 밝기를 비교하며 전류가 흐르는 회로 조건을 관찰했다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>회로</th><th>전지</th><th>스위치</th><th>전구</th></tr><tr><td>A</td><td>있음</td><td>닫힘</td><td>밝음</td></tr><tr><td>B</td><td>있음</td><td>열림</td><td>꺼짐</td></tr><tr><td>C</td><td>없음</td><td>닫힘</td><td>꺼짐</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　전지가 있는지 확인한다<br>　스위치가 닫혔는지 확인한다<br>　만약 전지가 있고 스위치가 닫혀 있으면<br>　전구가 켜진다<br>　그렇지 않으면<br>　전구가 꺼진다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">전지 확인</div><div class='arr'>↓</div><div class="node">스위치 확인</div><div class='arr'>↓</div><div class="dia">조건 만족?</div><div class='arr'>↓</div><div class="node">켜짐/꺼짐</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🔋 전지 → 🔘 스위치 → 💡 전구</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: A 회로에서 전구가 켜지고 B, C에서 꺼지는 이유를 회로 조건으로 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(5)">예시 답안 보기</button>
+  <div class="sol" id="s5"><b>예시 답안</b><br>전구가 켜지려면 전지가 있고 회로가 닫혀야 한다. A는 두 조건을 만족하지만 B는 스위치가 열려 있고 C는 전지가 없어 전구가 꺼진다.</div>
+</section>
+<section class="card part1" id="q6">
+  <div class="top"><b>문항 6</b><span>의생명과학</span></div>
+  <h3>손 씻기 세균 비교</h3>
+  <p class="story">보건 동아리는 손 씻기 방법에 따른 세균 수 차이를 관찰했다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>방법</th><th>세균 점 개수</th></tr><tr><td>씻기 전</td><td>90</td></tr><tr><td>물로만</td><td>48</td></tr><tr><td>비누 사용</td><td>7</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　손 씻기 전 세균 수를 기록한다<br>　방법별 세균 수를 비교한다<br>　가장 세균 수가 적은 방법을 찾는다<br>　그 방법을 권장한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">세균 수 기록</div><div class='arr'>↓</div><div class="node">방법 비교</div><div class='arr'>↓</div><div class="node">최소값 찾기</div><div class='arr'>↓</div><div class="node">권장</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🖐️ 손 → 🧼 씻기 방법 → 🧫 세균 배양</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: 비누 사용을 권장해야 하는 이유를 표의 수치로 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(6)">예시 답안 보기</button>
+  <div class="sol" id="s6"><b>예시 답안</b><br>비누 사용 후 세균 점 개수는 7개로 가장 적다. 씻기 전 90개와 물로만 씻은 48개보다 훨씬 낮아 효과가 가장 크다.</div>
+</section>
+<section class="card part1" id="q7">
+  <div class="top"><b>문항 7</b><span>무기화학·물리학</span></div>
+  <h3>소금물 전도도</h3>
+  <p class="story">용액에 전극을 넣어 전구가 켜지는지 관찰했다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>용액</th><th>용질</th><th>전구</th></tr><tr><td>증류수</td><td>거의 없음</td><td>꺼짐</td></tr><tr><td>소금물</td><td>염화나트륨</td><td>밝음</td></tr><tr><td>설탕물</td><td>설탕</td><td>꺼짐</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　용액에 전극을 넣는다<br>　전구 밝기를 관찰한다<br>　전구가 밝으면<br>　이온이 있는 용액으로 추정한다<br>　전구가 꺼지면<br>　전류가 잘 흐르지 않는다고 기록한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">전극 넣기</div><div class='arr'>↓</div><div class="node">밝기 관찰</div><div class='arr'>↓</div><div class="dia">밝음?</div><div class='arr'>↓</div><div class="node">이온 추정</div><div class='arr'>↓</div><div class="node">기록</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🔌 전극 + 🧂 소금물 → 이온 이동 → 💡 전구</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: 소금물과 설탕물의 전구 밝기가 다른 이유를 이온 관점에서 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(7)">예시 답안 보기</button>
+  <div class="sol" id="s7"><b>예시 답안</b><br>소금물은 물속에서 이온으로 나뉘어 전류를 운반할 수 있다. 설탕물은 이온으로 잘 나뉘지 않으므로 전구가 꺼진다.</div>
+</section>
+<section class="card part1" id="q8">
+  <div class="top"><b>문항 8</b><span>유기화학·물리학</span></div>
+  <h3>향기 분자 확산</h3>
+  <p class="story">교실 앞에서 방향제를 뿌리자 시간이 지나며 뒤쪽에서도 냄새가 느껴졌다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>시간</th><th>앞자리</th><th>중간</th><th>뒷자리</th></tr><tr><td>0분</td><td>강함</td><td>없음</td><td>없음</td></tr><tr><td>3분</td><td>보통</td><td>약함</td><td>없음</td></tr><tr><td>6분</td><td>약함</td><td>보통</td><td>약함</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　시간별 냄새 세기를 기록한다<br>　냄새가 이동하는 방향을 확인한다<br>　앞에서 뒤로 퍼지면<br>　확산으로 판단한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">세기 기록</div><div class='arr'>↓</div><div class="node">방향 확인</div><div class='arr'>↓</div><div class="dia">퍼짐?</div><div class='arr'>↓</div><div class="node">확산 판단</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🌸 향기 분자 그림: 앞자리 ●●● → 중간 ●● → 뒷자리 ●</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: 표를 근거로 향기 분자가 확산되었다고 판단할 수 있는 이유를 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(8)">예시 답안 보기</button>
+  <div class="sol" id="s8"><b>예시 답안</b><br>처음에는 앞자리만 냄새가 강했지만 시간이 지나 중간과 뒷자리에서도 냄새가 나타났다. 이는 분자가 공기 중으로 퍼졌기 때문이다.</div>
+</section>
+<section class="card part1" id="q9">
+  <div class="top"><b>문항 9</b><span>수학·물리학</span></div>
+  <h3>평균 속도 계산</h3>
+  <p class="story">로봇 자동차가 직선 트랙을 이동했다. 이동 거리와 시간이 기록되어 있다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>실험</th><th>거리</th><th>시간</th></tr><tr><td>A</td><td>20m</td><td>10초</td></tr><tr><td>B</td><td>30m</td><td>10초</td></tr><tr><td>C</td><td>30m</td><td>15초</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　거리를 확인한다<br>　시간을 확인한다<br>　거리 나누기 시간으로 평균 속도를 구한다<br>　평균 속도가 가장 큰 실험을 찾는다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">거리 확인</div><div class='arr'>↓</div><div class="node">시간 확인</div><div class='arr'>↓</div><div class="node">평균 속도 계산</div><div class='arr'>↓</div><div class="node">최대 찾기</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🚗 로봇 이동 거리 ÷ 시간 = 평균 속도</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: 평균 속도가 가장 큰 실험을 찾고 계산 과정을 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(9)">예시 답안 보기</button>
+  <div class="sol" id="s9"><b>예시 답안</b><br>A는 2m/s, B는 3m/s, C는 2m/s이다. 따라서 평균 속도는 B가 가장 크다.</div>
+</section>
+<section class="card part1" id="q10">
+  <div class="top"><b>문항 10</b><span>공학·실생활</span></div>
+  <h3>재활용 분류 로봇</h3>
+  <p class="story">분류 로봇은 카메라와 자석 센서로 물체를 구분한다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>물체</th><th>색/모양</th><th>자석 반응</th><th>분류 후보</th></tr><tr><td>캔</td><td>원통</td><td>붙지 않음</td><td>알루미늄</td></tr><tr><td>못</td><td>가늘고 김</td><td>붙음</td><td>철</td></tr><tr><td>병</td><td>투명</td><td>붙지 않음</td><td>유리</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　카메라로 모양을 확인한다<br>　자석 반응을 확인한다<br>　자석에 붙으면 철로 분류한다<br>　붙지 않으면 모양과 투명도를 함께 본다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">모양 확인</div><div class='arr'>↓</div><div class="node">자석 반응</div><div class='arr'>↓</div><div class="dia">붙는가?</div><div class='arr'>↓</div><div class="node">철/추가판단</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">📷 카메라 + 🧲 자석 센서 → 🤖 분류 로봇</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: 자석 센서만으로 모든 물체를 분류하기 어려운 이유를 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(10)">예시 답안 보기</button>
+  <div class="sol" id="s10"><b>예시 답안</b><br>자석에 붙지 않는 물체에는 알루미늄 캔과 유리병처럼 서로 다른 물질이 함께 포함된다. 따라서 모양, 투명도 등 추가 정보가 필요하다.</div>
+</section><h2 id='p2'>Part 2. 응용 문제 10개</h2>
+<section class="card part2" id="q11">
+  <div class="top"><b>문항 11</b><span>생명과학·의생명과학</span></div>
+  <h3>단백질 구조 안정성 판단</h3>
+  <p class="story">단백질은 온도와 pH가 적절할 때 구조를 유지한다. 조건이 벗어나면 기능이 약해질 수 있다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>조건</th><th>온도</th><th>pH</th><th>활성</th></tr><tr><td>A</td><td>37℃</td><td>7</td><td>높음</td></tr><tr><td>B</td><td>70℃</td><td>7</td><td>낮음</td></tr><tr><td>C</td><td>37℃</td><td>3</td><td>낮음</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　온도를 확인한다<br>　pH를 확인한다<br>　활성을 확인한다<br>　온도와 pH가 적정 범위이면<br>　기능 유지로 판단한다<br>　그렇지 않으면<br>　변성 가능성으로 기록한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">온도 확인</div><div class='arr'>↓</div><div class="node">pH 확인</div><div class='arr'>↓</div><div class="dia">적정?</div><div class='arr'>↓</div><div class="node">기능 유지/변성 가능</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🧬 단백질 → 온도·pH → 구조 변화 → 활성</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: B와 C에서 단백질 활성이 낮은 이유를 각각 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(11)">예시 답안 보기</button>
+  <div class="sol" id="s11"><b>예시 답안</b><br>B는 온도가 너무 높아 단백질 구조가 변성될 수 있고, C는 pH가 너무 산성이라 구조와 전하 상태가 바뀔 수 있다.</div>
+</section>
+<section class="card part2" id="q12">
+  <div class="top"><b>문항 12</b><span>지구과학·수학</span></div>
+  <h3>홍수 위험 예측</h3>
+  <p class="story">강수량, 하천 수위, 지반 포화도를 함께 고려하면 홍수 위험을 더 정확히 판단할 수 있다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>지역</th><th>강수량</th><th>하천 수위</th><th>지반 포화도</th></tr><tr><td>A</td><td>높음</td><td>높음</td><td>높음</td></tr><tr><td>B</td><td>높음</td><td>낮음</td><td>낮음</td></tr><tr><td>C</td><td>보통</td><td>높음</td><td>높음</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　강수량을 확인한다<br>　하천 수위를 확인한다<br>　지반 포화도를 확인한다<br>　세 위험 요소의 개수를 센다<br>　위험 요소가 많으면<br>　홍수 위험 높음으로 표시한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">강수량</div><div class='arr'>↓</div><div class="node">수위</div><div class='arr'>↓</div><div class="node">포화도</div><div class='arr'>↓</div><div class="node">위험 개수 세기</div><div class='arr'>↓</div><div class="node">위험 표시</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🌧️ 강수 + 🌊 수위 + 🟫 지반 → 홍수 위험도</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: A 지역이 가장 위험할 수 있는 이유를 세 조건으로 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(12)">예시 답안 보기</button>
+  <div class="sol" id="s12"><b>예시 답안</b><br>A는 강수량, 하천 수위, 지반 포화도가 모두 높다. 물이 더 들어오고 빠져나가기 어려운 조건이 동시에 있어 홍수 위험이 가장 크다.</div>
+</section>
+<section class="card part2" id="q13">
+  <div class="top"><b>문항 13</b><span>공학·수학</span></div>
+  <h3>드론 배터리 경로 계획</h3>
+  <p class="story">구조 드론은 배터리가 제한되어 있어 거리와 구조 필요도를 함께 고려해야 한다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>지점</th><th>거리</th><th>구조 필요도</th><th>바람</th></tr><tr><td>A</td><td>가까움</td><td>낮음</td><td>약함</td></tr><tr><td>B</td><td>보통</td><td>높음</td><td>보통</td></tr><tr><td>C</td><td>멂</td><td>높음</td><td>강함</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　각 지점의 거리를 확인한다<br>　구조 필요도를 확인한다<br>　바람 위험을 확인한다<br>　필요도는 높고 이동 위험이 감당 가능한 지점을 선택한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">거리 확인</div><div class='arr'>↓</div><div class="node">필요도 확인</div><div class='arr'>↓</div><div class="node">바람 확인</div><div class='arr'>↓</div><div class="node">선택</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🚁 드론 → 거리·위험·필요도 점수 → 구조 지점</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: B 지점을 우선 선택할 수 있는 이유를 구조 필요도와 이동 위험으로 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(13)">예시 답안 보기</button>
+  <div class="sol" id="s13"><b>예시 답안</b><br>B는 구조 필요도가 높고 거리는 보통, 바람도 보통이다. C는 필요도는 높지만 멀고 바람이 강하므로 위험이 더 크다.</div>
+</section>
+<section class="card part2" id="q14">
+  <div class="top"><b>문항 14</b><span>유기화학·공학</span></div>
+  <h3>유기 반응 조건 최적화</h3>
+  <p class="story">유기 합성 실험에서 수율과 부산물, 반응 시간을 함께 고려해야 한다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>조건</th><th>수율</th><th>부산물</th><th>시간</th></tr><tr><td>A</td><td>85%</td><td>많음</td><td>30분</td></tr><tr><td>B</td><td>78%</td><td>적음</td><td>25분</td></tr><tr><td>C</td><td>90%</td><td>많음</td><td>80분</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　수율을 확인한다<br>　부산물 양을 확인한다<br>　반응 시간을 확인한다<br>　수율이 충분하고 부산물이 적고 시간이 짧은 조건을 선택한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">수율</div><div class='arr'>↓</div><div class="node">부산물</div><div class='arr'>↓</div><div class="node">시간</div><div class='arr'>↓</div><div class="node">종합 판단</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🧪 반응물 → 조건 조절 → 생성물 + 부산물</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: B 조건이 실제 공정에서 더 적절할 수 있는 이유를 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(14)">예시 답안 보기</button>
+  <div class="sol" id="s14"><b>예시 답안</b><br>B는 수율이 최고는 아니지만 부산물이 적고 시간이 짧다. 실제 공정에서는 수율뿐 아니라 정제 비용과 시간도 중요하므로 B가 적절할 수 있다.</div>
+</section>
+<section class="card part2" id="q15">
+  <div class="top"><b>문항 15</b><span>지구과학·물리학·공학</span></div>
+  <h3>행성 표면 탐사</h3>
+  <p class="story">탐사 로버는 경사, 암석 밀도, 태양광을 보고 이동 경로를 선택한다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>경로</th><th>경사</th><th>암석</th><th>태양광</th></tr><tr><td>A</td><td>낮음</td><td>보통</td><td>충분</td></tr><tr><td>B</td><td>높음</td><td>많음</td><td>충분</td></tr><tr><td>C</td><td>낮음</td><td>적음</td><td>부족</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　경사를 확인한다<br>　암석 밀도를 확인한다<br>　태양광을 확인한다<br>　이동 위험이 낮고 에너지가 충분한 경로를 선택한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">경사</div><div class='arr'>↓</div><div class="node">암석</div><div class='arr'>↓</div><div class="node">태양광</div><div class='arr'>↓</div><div class="node">경로 선택</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🤖 로버 → 경사·암석·태양광 판단 → 이동</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: A 경로가 가장 적절한 이유를 이동 안전성과 에너지 조건으로 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(15)">예시 답안 보기</button>
+  <div class="sol" id="s15"><b>예시 답안</b><br>A는 경사가 낮고 암석이 보통이며 태양광이 충분하다. C는 안전하지만 태양광이 부족하고 B는 위험하므로 A가 균형적이다.</div>
+</section>
+<section class="card part2" id="q16">
+  <div class="top"><b>문항 16</b><span>의생명과학·수학</span></div>
+  <h3>감염 확산 네트워크</h3>
+  <p class="story">교실 내 접촉 관계를 네트워크로 보면 연결이 많은 학생이 전파에 큰 영향을 줄 수 있다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>학생</th><th>접촉 수</th><th>마스크 착용</th><th>증상</th></tr><tr><td>가</td><td>8</td><td>아니오</td><td>있음</td></tr><tr><td>나</td><td>2</td><td>예</td><td>없음</td></tr><tr><td>다</td><td>5</td><td>예</td><td>있음</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　접촉 수를 확인한다<br>　증상 여부를 확인한다<br>　마스크 착용 여부를 확인한다<br>　접촉 수와 증상 위험이 모두 높으면<br>　우선 검사 대상으로 표시한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">접촉 수</div><div class='arr'>↓</div><div class="node">증상</div><div class='arr'>↓</div><div class="node">마스크</div><div class='arr'>↓</div><div class="dia">우선 대상?</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">👤 노드 + 🔗 접촉 간선 → 전파 위험</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: 가 학생을 우선 검사 대상으로 볼 수 있는 이유를 네트워크 관점에서 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(16)">예시 답안 보기</button>
+  <div class="sol" id="s16"><b>예시 답안</b><br>가 학생은 접촉 수가 8로 가장 많고 증상도 있으며 마스크를 착용하지 않았다. 연결이 많은 노드는 전파에 큰 영향을 줄 수 있어 우선 검사 대상이다.</div>
+</section>
+<section class="card part2" id="q17">
+  <div class="top"><b>문항 17</b><span>무기화학</span></div>
+  <h3>중화 반응 온도 변화</h3>
+  <p class="story">산과 염기를 섞으면 중화 반응이 일어나며 온도가 변할 수 있다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>혼합</th><th>pH 변화</th><th>온도 변화</th></tr><tr><td>A</td><td>산성→중성</td><td>+4℃</td></tr><tr><td>B</td><td>중성→중성</td><td>0℃</td></tr><tr><td>C</td><td>염기성→중성</td><td>+3℃</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　혼합 전후 pH를 확인한다<br>　온도 변화를 확인한다<br>　중성에 가까워지고 온도가 증가하면<br>　중화 반응 가능성으로 표시한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">pH 확인</div><div class='arr'>↓</div><div class="node">온도 확인</div><div class='arr'>↓</div><div class="dia">조건 만족?</div><div class='arr'>↓</div><div class="node">중화 가능</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🧴 산 + 🧴 염기 → 🧂 염 + 물 + 열</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: A와 C를 중화 반응 가능성으로 볼 수 있는 이유를 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(17)">예시 답안 보기</button>
+  <div class="sol" id="s17"><b>예시 답안</b><br>A와 C는 pH가 중성에 가까워지고 온도도 상승했다. 산과 염기의 중화 과정에서 열이 발생할 수 있으므로 중화 반응 가능성이 있다.</div>
+</section>
+<section class="card part2" id="q18">
+  <div class="top"><b>문항 18</b><span>물리학·지구과학·수학</span></div>
+  <h3>소행성 충돌 위험 등급</h3>
+  <p class="story">소행성 위험은 크기, 속도, 지구 접근 거리를 종합해 평가한다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>소행성</th><th>크기</th><th>속도</th><th>접근 거리</th></tr><tr><td>A</td><td>작음</td><td>느림</td><td>멂</td></tr><tr><td>B</td><td>큼</td><td>빠름</td><td>가까움</td></tr><tr><td>C</td><td>큼</td><td>느림</td><td>멂</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　크기를 확인한다<br>　속도를 확인한다<br>　접근 거리를 확인한다<br>　크고 빠르고 가까우면<br>　위험 등급 높음으로 표시한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">크기</div><div class='arr'>↓</div><div class="node">속도</div><div class='arr'>↓</div><div class="node">거리</div><div class='arr'>↓</div><div class="dia">위험 조건?</div><div class='arr'>↓</div><div class="node">등급 표시</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">☄️ 소행성 → 크기·속도·거리 → 위험 등급</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: B의 위험 등급이 높을 수 있는 이유를 운동 에너지와 거리 관점에서 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(18)">예시 답안 보기</button>
+  <div class="sol" id="s18"><b>예시 답안</b><br>B는 크고 빠르며 지구와 가깝다. 크기와 속도가 클수록 충돌 시 에너지가 커질 수 있고, 가까울수록 실제 위험성이 높다.</div>
+</section>
+<section class="card part2" id="q19">
+  <div class="top"><b>문항 19</b><span>의생명과학·공학</span></div>
+  <h3>약물 방출 캡슐 설계</h3>
+  <p class="story">약물 캡슐은 목표 시간에 적절한 양을 방출해야 한다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>캡슐</th><th>1시간</th><th>4시간</th><th>8시간</th></tr><tr><td>A</td><td>많음</td><td>적음</td><td>없음</td></tr><tr><td>B</td><td>적음</td><td>보통</td><td>보통</td></tr><tr><td>C</td><td>없음</td><td>많음</td><td>적음</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　시간별 방출량을 확인한다<br>　초기 과다 방출 여부를 확인한다<br>　목표 시간까지 지속되는지 확인한다<br>　안정적 방출 캡슐을 선택한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">방출량 확인</div><div class='arr'>↓</div><div class="dia">초기 과다?</div><div class='arr'>↓</div><div class="dia">지속성?</div><div class='arr'>↓</div><div class="node">선택</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">💊 캡슐 → 시간별 약물 방출 → 치료 효과</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: B 캡슐이 안정적 방출에 적합한 이유를 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(19)">예시 답안 보기</button>
+  <div class="sol" id="s19"><b>예시 답안</b><br>B는 1시간에 적고 4시간과 8시간에 보통으로 방출되어 급격한 초기 과다 방출 없이 지속성이 있다.</div>
+</section>
+<section class="card part2" id="q20">
+  <div class="top"><b>문항 20</b><span>수학·물리학</span></div>
+  <h3>함수 그래프와 냉각</h3>
+  <p class="story">뜨거운 물의 온도는 시간이 지날수록 낮아지지만 감소 속도는 점점 작아질 수 있다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>시간</th><th>온도</th></tr><tr><td>0분</td><td>80℃</td></tr><tr><td>5분</td><td>65℃</td></tr><tr><td>10분</td><td>55℃</td></tr><tr><td>15분</td><td>49℃</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　시간별 온도를 읽는다<br>　구간별 감소량을 계산한다<br>　감소량이 줄어드는지 확인한다<br>　냉각 속도 변화로 해석한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">온도 읽기</div><div class='arr'>↓</div><div class="node">감소량 계산</div><div class='arr'>↓</div><div class="dia">감소량 감소?</div><div class='arr'>↓</div><div class="node">해석</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">♨️ 뜨거운 물 → 시간 → 🌡️ 온도 곡선</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: 온도 감소량이 어떻게 변하는지 계산하고, 냉각 과정의 특징을 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(20)">예시 답안 보기</button>
+  <div class="sol" id="s20"><b>예시 답안</b><br>0~5분은 15℃, 5~10분은 10℃, 10~15분은 6℃ 감소한다. 감소량이 점점 작아져 냉각 속도가 느려지는 경향이 있다.</div>
+</section><h2 id='p3'>Part 3. 심화 문제 10개</h2>
+<section class="card part3" id="q21">
+  <div class="top"><b>문항 21</b><span>의생명과학·공학·정보</span></div>
+  <h3>인공췌장 혈당 제어</h3>
+  <p class="story">인공췌장은 혈당 센서 값을 읽고 인슐린 주입량을 자동 조절한다. 단, 너무 많은 주입은 저혈당 위험을 만든다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>시각</th><th>혈당</th><th>운동 여부</th><th>식사</th></tr><tr><td>08시</td><td>180</td><td>없음</td><td>직후</td></tr><tr><td>10시</td><td>95</td><td>있음</td><td>없음</td></tr><tr><td>12시</td><td>70</td><td>있음</td><td>없음</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　혈당을 측정한다<br>　식사 여부를 확인한다<br>　운동 여부를 확인한다<br>　만약 혈당이 높고 식사 직후이면<br>　소량 인슐린 주입을 고려한다<br>　만약 혈당이 낮고 운동 중이면<br>　주입을 중지하고 경고한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">혈당 측정</div><div class='arr'>↓</div><div class="node">식사 확인</div><div class='arr'>↓</div><div class="node">운동 확인</div><div class='arr'>↓</div><div class="node">조건 분기</div><div class='arr'>↓</div><div class="node">주입/중지</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🩸 혈당 센서 → 제어 알고리즘 → 💉 인슐린 펌프</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: 12시 상황에서 인슐린 주입을 중지해야 하는 이유를 의사코드와 생리 조건으로 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(21)">예시 답안 보기</button>
+  <div class="sol" id="s21"><b>예시 답안</b><br>12시는 혈당이 70으로 낮고 운동 중이다. 운동 중에는 혈당이 더 낮아질 수 있으므로 의사코드에 따라 주입을 중지하고 경고해야 한다.</div>
+</section>
+<section class="card part3" id="q22">
+  <div class="top"><b>문항 22</b><span>지구과학·공학·수학</span></div>
+  <h3>도시 열섬 완화 모델</h3>
+  <p class="story">도시 열섬은 포장 면적, 녹지 비율, 건물 밀도에 영향을 받는다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>구역</th><th>포장 면적</th><th>녹지 비율</th><th>건물 밀도</th></tr><tr><td>A</td><td>높음</td><td>낮음</td><td>높음</td></tr><tr><td>B</td><td>보통</td><td>보통</td><td>보통</td></tr><tr><td>C</td><td>낮음</td><td>높음</td><td>낮음</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　포장 면적 점수를 계산한다<br>　녹지 부족 점수를 계산한다<br>　건물 밀도 점수를 계산한다<br>　세 점수를 더해 열섬 위험도를 구한다<br>　위험도가 가장 높은 구역에 그늘과 녹지를 우선 배치한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">포장 점수</div><div class='arr'>↓</div><div class="node">녹지 부족</div><div class='arr'>↓</div><div class="node">건물 밀도</div><div class='arr'>↓</div><div class="node">합산</div><div class='arr'>↓</div><div class="node">우선 배치</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🏙️ 포장 + 🌳 녹지 + 🏢 밀도 → 🌡️ 열섬 위험도</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: A 구역에 녹지와 그늘을 우선 배치해야 하는 이유를 위험도 합산 관점에서 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(22)">예시 답안 보기</button>
+  <div class="sol" id="s22"><b>예시 답안</b><br>A는 포장 면적과 건물 밀도가 높고 녹지 비율이 낮다. 세 위험 요인이 동시에 커서 열섬 위험도가 가장 높으므로 우선 개선 대상이다.</div>
+</section>
+<section class="card part3" id="q23">
+  <div class="top"><b>문항 23</b><span>생명과학·의생명과학</span></div>
+  <h3>PCR 증폭 사이클 판단</h3>
+  <p class="story">PCR은 온도 단계를 반복하여 DNA를 증폭한다. 단계 순서가 틀리면 증폭 효율이 떨어진다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>단계</th><th>온도</th><th>역할</th></tr><tr><td>변성</td><td>95℃</td><td>DNA 분리</td></tr><tr><td>결합</td><td>55℃</td><td>프라이머 결합</td></tr><tr><td>신장</td><td>72℃</td><td>DNA 합성</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　변성 단계를 수행한다<br>　결합 단계를 수행한다<br>　신장 단계를 수행한다<br>　한 사이클을 완료한다<br>　목표 사이클 수에 도달할 때까지 반복한다<br>　증폭 결과를 기록한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">변성</div><div class='arr'>↓</div><div class="node">결합</div><div class='arr'>↓</div><div class="node">신장</div><div class='arr'>↓</div><div class="dia">목표 반복?</div><div class='arr'>↓</div><div class="node">결과 기록</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🧬 DNA → 95℃ → 55℃ → 72℃ → 증폭</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: PCR 순서가 변성→결합→신장이어야 하는 이유를 각 단계 역할로 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(23)">예시 답안 보기</button>
+  <div class="sol" id="s23"><b>예시 답안</b><br>먼저 DNA 두 가닥을 분리해야 프라이머가 붙을 수 있다. 그 뒤 DNA 합성이 일어나므로 변성, 결합, 신장 순서가 필요하다.</div>
+</section>
+<section class="card part3" id="q24">
+  <div class="top"><b>문항 24</b><span>물리학·공학·수학</span></div>
+  <h3>전기차 회생제동 판단</h3>
+  <p class="story">전기차는 감속할 때 운동 에너지 일부를 전기 에너지로 회수한다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>상황</th><th>속도 변화</th><th>배터리 상태</th><th>노면</th></tr><tr><td>A</td><td>빠르게 감소</td><td>여유 있음</td><td>건조</td></tr><tr><td>B</td><td>감소 없음</td><td>여유 있음</td><td>건조</td></tr><tr><td>C</td><td>빠르게 감소</td><td>가득 참</td><td>미끄러움</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　속도 변화량을 확인한다<br>　배터리 저장 여유를 확인한다<br>　노면 안전성을 확인한다<br>　감속 중이고 저장 여유가 있고 안전하면<br>　회생제동을 크게 적용한다<br>　그렇지 않으면<br>　제동 세기를 제한한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">속도 변화</div><div class='arr'>↓</div><div class="node">배터리 여유</div><div class='arr'>↓</div><div class="node">노면</div><div class='arr'>↓</div><div class="dia">조건 만족?</div><div class='arr'>↓</div><div class="node">회생/제한</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🚗 운동 에너지 → 발전기 → 🔋 배터리</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: A에서 회생제동을 크게 적용할 수 있고 C에서 제한해야 하는 이유를 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(24)">예시 답안 보기</button>
+  <div class="sol" id="s24"><b>예시 답안</b><br>A는 감속 중이고 배터리 여유가 있으며 노면도 건조하다. C는 배터리가 가득 차고 미끄러운 노면이므로 에너지 저장과 안전 문제 때문에 제한해야 한다.</div>
+</section>
+<section class="card part3" id="q25">
+  <div class="top"><b>문항 25</b><span>무기화학·유기화학·공학</span></div>
+  <h3>촉매 표면 반응 모델</h3>
+  <p class="story">촉매 표면에서는 반응물이 흡착되고 반응한 뒤 생성물이 떨어져 나간다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>조건</th><th>흡착</th><th>반응</th><th>탈착</th></tr><tr><td>A</td><td>잘 됨</td><td>잘 됨</td><td>잘 됨</td></tr><tr><td>B</td><td>너무 강함</td><td>보통</td><td>어려움</td></tr><tr><td>C</td><td>약함</td><td>어려움</td><td>잘 됨</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　반응물 흡착 정도를 확인한다<br>　표면 반응 가능성을 확인한다<br>　생성물 탈착 가능성을 확인한다<br>　세 단계가 균형적이면<br>　좋은 촉매 후보로 표시한다<br>　한 단계가 막히면<br>　효율 낮음으로 기록한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">흡착</div><div class='arr'>↓</div><div class="node">반응</div><div class='arr'>↓</div><div class="node">탈착</div><div class='arr'>↓</div><div class="dia">균형?</div><div class='arr'>↓</div><div class="node">후보/효율 낮음</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🧲 촉매 표면 → 흡착 → 반응 → 탈착</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: A가 좋은 촉매 후보이고 B가 문제가 되는 이유를 세 단계로 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(25)">예시 답안 보기</button>
+  <div class="sol" id="s25"><b>예시 답안</b><br>A는 흡착, 반응, 탈착이 모두 잘 된다. B는 흡착이 너무 강해 생성물이 떨어져 나가기 어려우므로 전체 촉매 순환이 느려질 수 있다.</div>
+</section>
+<section class="card part3" id="q26">
+  <div class="top"><b>문항 26</b><span>지구과학·수학·실생활</span></div>
+  <h3>기후 난민 이동 예측</h3>
+  <p class="story">기후 변화로 물 부족, 폭염, 농업 피해가 커지면 인구 이동 압력이 높아질 수 있다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>지역</th><th>물 부족</th><th>폭염</th><th>농업 피해</th></tr><tr><td>A</td><td>높음</td><td>높음</td><td>높음</td></tr><tr><td>B</td><td>높음</td><td>낮음</td><td>보통</td></tr><tr><td>C</td><td>낮음</td><td>높음</td><td>낮음</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　물 부족 점수를 확인한다<br>　폭염 점수를 확인한다<br>　농업 피해 점수를 확인한다<br>　세 점수를 합산한다<br>　합산 점수가 높으면<br>　이동 압력 높음으로 표시한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">물 부족</div><div class='arr'>↓</div><div class="node">폭염</div><div class='arr'>↓</div><div class="node">농업 피해</div><div class='arr'>↓</div><div class="node">합산</div><div class='arr'>↓</div><div class="node">이동 압력</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🌡️ 기후 위험 → 🌾 생계 영향 → 🚶 인구 이동 압력</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: A 지역의 이동 압력이 높다고 판단할 수 있는 이유를 세 요소의 결합으로 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(26)">예시 답안 보기</button>
+  <div class="sol" id="s26"><b>예시 답안</b><br>A는 물 부족, 폭염, 농업 피해가 모두 높다. 생존과 생계에 영향을 주는 요인이 동시에 커서 이동 압력이 높다고 판단할 수 있다.</div>
+</section>
+<section class="card part3" id="q27">
+  <div class="top"><b>문항 27</b><span>공학·물리학·정보</span></div>
+  <h3>교량 센서 이상 탐지</h3>
+  <p class="story">교량에는 진동, 기울기, 균열 센서가 설치되어 있다. 하나의 센서보다 여러 센서를 결합해야 안전하다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>시점</th><th>진동</th><th>기울기</th><th>균열</th></tr><tr><td>1일</td><td>보통</td><td>정상</td><td>없음</td></tr><tr><td>2일</td><td>높음</td><td>약간 변화</td><td>작음</td></tr><tr><td>3일</td><td>높음</td><td>큰 변화</td><td>커짐</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　진동 값을 확인한다<br>　기울기 변화를 확인한다<br>　균열 크기를 확인한다<br>　위험 신호가 둘 이상 증가하면<br>　정밀 점검 알림을 보낸다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">진동</div><div class='arr'>↓</div><div class="node">기울기</div><div class='arr'>↓</div><div class="node">균열</div><div class='arr'>↓</div><div class="dia">둘 이상 증가?</div><div class='arr'>↓</div><div class="node">점검 알림</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🌉 교량 → 📡 센서 3종 → 위험 신호 결합</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: 3일차에 정밀 점검 알림이 필요한 이유를 다중 센서 관점에서 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(27)">예시 답안 보기</button>
+  <div class="sol" id="s27"><b>예시 답안</b><br>3일차에는 진동이 높고 기울기 변화가 크며 균열도 커졌다. 여러 센서의 위험 신호가 동시에 증가하므로 정밀 점검이 필요하다.</div>
+</section>
+<section class="card part3" id="q28">
+  <div class="top"><b>문항 28</b><span>유기화학·무기화학</span></div>
+  <h3>분자 극성과 용해성</h3>
+  <p class="story">분자의 극성과 용매의 성질이 비슷하면 잘 섞이는 경향이 있다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>물질</th><th>분자 성질</th><th>물에 대한 용해</th></tr><tr><td>A</td><td>극성</td><td>잘 녹음</td></tr><tr><td>B</td><td>무극성</td><td>잘 안 녹음</td></tr><tr><td>C</td><td>극성 일부</td><td>조금 녹음</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　분자의 극성을 확인한다<br>　용매의 극성을 확인한다<br>　성질이 비슷한지 비교한다<br>　비슷하면<br>　잘 녹을 가능성으로 표시한다<br>　다르면<br>　잘 안 녹을 가능성으로 표시한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">분자 극성</div><div class='arr'>↓</div><div class="node">용매 극성</div><div class='arr'>↓</div><div class="dia">비슷함?</div><div class='arr'>↓</div><div class="node">잘 녹음/안 녹음</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">💧 물 분자 + 🧪 용질 분자 → 용해성 판단</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: A와 B의 용해성 차이를 극성 관점에서 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(28)">예시 답안 보기</button>
+  <div class="sol" id="s28"><b>예시 답안</b><br>물은 극성 용매이므로 극성 물질 A는 잘 녹을 가능성이 크다. B는 무극성이어서 물과 성질이 달라 잘 녹지 않는다.</div>
+</section>
+<section class="card part3" id="q29">
+  <div class="top"><b>문항 29</b><span>생명과학·정보·의생명</span></div>
+  <h3>인공지능 현미경 분류</h3>
+  <p class="story">AI 현미경은 세포 모양, 핵 크기, 염색 강도를 보고 이상 세포 후보를 표시한다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>세포</th><th>모양</th><th>핵 크기</th><th>염색 강도</th></tr><tr><td>A</td><td>규칙</td><td>보통</td><td>보통</td></tr><tr><td>B</td><td>불규칙</td><td>큼</td><td>강함</td></tr><tr><td>C</td><td>규칙</td><td>큼</td><td>약함</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　세포 모양을 확인한다<br>　핵 크기를 확인한다<br>　염색 강도를 확인한다<br>　이상 특징의 개수를 센다<br>　이상 특징이 많으면<br>　정밀 판독 후보로 표시한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">모양</div><div class='arr'>↓</div><div class="node">핵 크기</div><div class='arr'>↓</div><div class="node">염색 강도</div><div class='arr'>↓</div><div class="node">이상 개수</div><div class='arr'>↓</div><div class="node">판독 후보</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">🔬 세포 이미지 → 특징 추출 → 🤖 후보 표시</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: B 세포를 정밀 판독 후보로 표시해야 하는 이유를 특징 개수로 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(29)">예시 답안 보기</button>
+  <div class="sol" id="s29"><b>예시 답안</b><br>B는 모양이 불규칙하고 핵이 크며 염색 강도도 강하다. 이상 특징이 여러 개 나타나므로 정밀 판독 후보가 된다.</div>
+</section>
+<section class="card part3" id="q30">
+  <div class="top"><b>문항 30</b><span>물리학·공학·의생명</span></div>
+  <h3>우주 방사선 차폐 설계</h3>
+  <p class="story">우주선 내부에서 방사선 차폐는 질량, 차폐 효과, 승무원 위치를 함께 고려해야 한다.</p>
+  <div class="twocol">
+    <div class="box"><h4>📊 표</h4><table class='tbl'><tr><th>재료</th><th>질량</th><th>차폐 효과</th><th>설치 난이도</th></tr><tr><td>A</td><td>낮음</td><td>낮음</td><td>쉬움</td></tr><tr><td>B</td><td>보통</td><td>높음</td><td>보통</td></tr><tr><td>C</td><td>매우 높음</td><td>매우 높음</td><td>어려움</td></tr></table></div>
+    <div class="box"><h4>🧾 한글 Pseudo Code</h4><div class='pseudo'>시작<br>　재료의 질량을 확인한다<br>　차폐 효과를 확인한다<br>　설치 난이도를 확인한다<br>　효과가 높고 질량과 난이도가 감당 가능하면<br>　우선 재료로 선택한다<br>　끝</div></div>
+  </div>
+  <div class="twocol">
+    <div class="box"><h4>🔁 순서도</h4><div class='flow'><div class="node">시작</div><div class='arr'>↓</div><div class="node">질량</div><div class='arr'>↓</div><div class="node">효과</div><div class='arr'>↓</div><div class="node">난이도</div><div class='arr'>↓</div><div class="dia">감당 가능?</div><div class='arr'>↓</div><div class="node">재료 선택</div><div class='arr'>↓</div><div class="node">끝</div></div></div>
+    <div class="box picture"><h4>🖼️ 그림·다이어그램</h4><div class="diagram">☢️ 방사선 → 차폐재 → 👨‍🚀 승무원 보호</div></div>
+  </div>
+  <div class="prompt">✍️ 서술형 문제: B 재료가 C보다 현실적인 선택일 수 있는 이유를 공학적 제약으로 서술하시오.</div>
+  <textarea placeholder="근거를 들어 서술하세요."></textarea>
+  <button onclick="toggleSol(30)">예시 답안 보기</button>
+  <div class="sol" id="s30"><b>예시 답안</b><br>C는 차폐 효과가 매우 높지만 질량이 매우 크고 설치가 어렵다. B는 효과가 높으면서 질량과 난이도가 감당 가능해 현실적 선택이 될 수 있다.</div>
+</section></main></div><footer>예시 답안은 자기 점검 또는 교사용 해설로 활용할 수 있습니다.</footer><script>
+function toggleSol(n){const e=document.getElementById('s'+n);e.style.display=e.style.display==='block'?'none':'block'}
+function saveHTML(){
+ const sid=(document.getElementById('sid').value||'학번').replace(/\s+/g,'');
+ const name=(document.getElementById('name').value||'이름').replace(/\s+/g,'');
+ const stamp=new Date().toISOString().slice(0,19).replace(/[-:T]/g,'');
+ document.querySelectorAll('.sol').forEach(x=>x.style.display='block');
+ const blob=new Blob(['<!DOCTYPE html>\n'+document.documentElement.outerHTML],{type:'text/html;charset=utf-8'});
+ const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+ a.download=`${sid}_${name}_정보창의력_과학융합서술형_${stamp}.html`; a.click(); URL.revokeObjectURL(a.href);
+}
+</script></body></html>

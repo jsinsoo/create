@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang='ko'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>과학고등학교 정보 창의력 융합 진단 평가</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#eef4ff;color:#162033} 
+header{padding:26px 32px;background:linear-gradient(135deg,#123a7a,#4e8cff);color:white;box-shadow:0 6px 20px #0002}
+header h1{margin:0;font-size:28px} header p{margin:8px 0 0;opacity:.95}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:18px;max-width:1320px;margin:20px auto;padding:0 16px}
+aside{position:sticky;top:14px;height:calc(100vh - 28px);overflow:auto;background:white;border-radius:20px;padding:16px;box-shadow:0 8px 24px #1b4b8020}
+aside h2{font-size:18px;margin:0 0 10px} .nav{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.nav a{display:block;text-align:center;text-decoration:none;background:#eef4ff;border:1px solid #d7e4ff;border-radius:10px;padding:7px;color:#153a74;font-weight:800}
+.student{margin-top:16px;padding:12px;border-radius:14px;background:#f7faff;border:1px solid #dce8ff}
+.student input{width:100%;padding:9px;margin:6px 0 10px;border:1px solid #c8d6f2;border-radius:10px;font-size:15px}
+main{min-width:0} h2{margin:26px 0 14px;padding:16px 20px;border-radius:18px;background:#172b4d;color:white;box-shadow:0 8px 20px #0001}
+.qcard{background:white;border-radius:22px;padding:22px;margin:16px 0;box-shadow:0 8px 24px #1b4b801c;border:1px solid #dce8ff}
+.qhead{display:flex;gap:8px;align-items:center} .badge{background:#0b62d6;color:white;padding:7px 12px;border-radius:999px;font-weight:900} .tag{background:#e8f1ff;color:#0b438e;padding:7px 12px;border-radius:999px;font-weight:800}
+h3{font-size:23px;margin:14px 0 8px} .story{font-size:18px;line-height:1.75;background:#f8fbff;border-left:6px solid #4e8cff;padding:14px;border-radius:12px}
+.visual{margin:14px 0;padding:16px;border-radius:18px;background:#fbfdff;border:1px dashed #9bbcff;font-size:18px;overflow:auto}
+table{border-collapse:collapse;width:100%;margin:8px 0;background:white} th,td{border:1px solid #b9c9e8;padding:10px;text-align:center} th{background:#eaf2ff}
+.diagram,.pic{font-size:19px;line-height:1.7;text-align:center;padding:14px;background:#f1f7ff;border-radius:14px;margin-top:10px}
+.pseudo{font-family:'Malgun Gothic',sans-serif;line-height:1.9;background:#121a2e;color:#eaf4ff;border-radius:16px;padding:18px;font-size:18px;white-space:normal;border-left:8px solid #65d6ad}
+.choices{display:grid;gap:10px;margin-top:14px} .opt{display:flex;gap:8px;align-items:flex-start;border:1px solid #d8e4fa;border-radius:14px;padding:12px;font-size:17px;cursor:pointer;background:#fff}
+.opt:hover{background:#f5f9ff} .solve,.grade,.download{border:0;border-radius:12px;padding:11px 15px;font-weight:900;cursor:pointer;margin-top:12px;background:#123a7a;color:white;font-size:15px}
+.download{background:#14804a;width:100%} .grade{background:#d95f02;width:100%}
+.solution{display:none;margin-top:12px;padding:14px;border-radius:14px;background:#fff8e8;border:1px solid #f0d38b;line-height:1.7;font-size:16px}
+.result{margin-top:12px;padding:12px;background:#fff7f0;border-radius:14px;border:1px solid #ffd2ad;font-weight:900}
+@media(max-width:850px){.layout{grid-template-columns:1fr} aside{position:static;height:auto}}
+@media print{aside,.solve,.grade,.download{display:none} .layout{display:block} .qcard{break-inside:avoid;box-shadow:none} body{background:white}}
+</style>
+</head>
+<body>
+<header>
+<h1>과학고등학교 정보 창의력 경진대회 예시 평가</h1>
+<p>Part 1 기초 10문항 · Part 2 응용 10문항 · Part 3 심화 10문항 / 한글 pseudo code 적용</p>
+</header>
+<div class='layout'>
+<aside>
+<h2>문항 이동</h2><div class='nav'><a href='#q1'>1</a><a href='#q2'>2</a><a href='#q3'>3</a><a href='#q4'>4</a><a href='#q5'>5</a><a href='#q6'>6</a><a href='#q7'>7</a><a href='#q8'>8</a><a href='#q9'>9</a><a href='#q10'>10</a><a href='#q11'>11</a><a href='#q12'>12</a><a href='#q13'>13</a><a href='#q14'>14</a><a href='#q15'>15</a><a href='#q16'>16</a><a href='#q17'>17</a><a href='#q18'>18</a><a href='#q19'>19</a><a href='#q20'>20</a><a href='#q21'>21</a><a href='#q22'>22</a><a href='#q23'>23</a><a href='#q24'>24</a><a href='#q25'>25</a><a href='#q26'>26</a><a href='#q27'>27</a><a href='#q28'>28</a><a href='#q29'>29</a><a href='#q30'>30</a></div>
+<div class='student'>
+<label>학번</label><input id='sid' placeholder='예: 1320'>
+<label>이름</label><input id='sname' placeholder='예: 김인수'>
+<button class='grade' onclick='grade()'>채점하기</button>
+<button class='download' onclick='downloadResult()'>결과 HTML 저장</button>
+<div id='result' class='result'>점수: 미채점</div>
+</div>
+</aside>
+<main>
+<h2>Part 1. 기초: 정보 융합 스토리·표·다이어그램·그림</h2>
+<section class='qcard' id='q1'>
+  <div class='qhead'><span class='badge'>문항 1</span><span class='tag'>정보 융합</span></div>
+  <h3>스마트 온실의 하루</h3>
+  <p class='story'>온실 안에는 온도 센서, 습도 센서, 조도 센서가 있다. 식물이 건강하게 자라기 위해서는 온도 22~28℃, 습도 55~75%, 조도 600 이상이 좋다.</p>
+  <div class='visual'>
+<table><tr><th>시간</th><th>온도</th><th>습도</th><th>조도</th></tr><tr><td>09:00</td><td>24</td><td>58</td><td>720</td></tr><tr><td>12:00</td><td>31</td><td>48</td><td>910</td></tr><tr><td>15:00</td><td>27</td><td>82</td><td>500</td></tr></table>
+<div class='diagram'>☀️ → [조도 센서] ─┐<br>🌡️ → [온도 센서] ─┼→ 🤖 온실 제어기 → 💧 물 주기 / 🌬️ 환기<br>💧 → [습도 센서] ─┘</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q1' value='0'> <span>① 09:00에는 환기와 물 주기를 모두 해야 한다</span></label><label class='opt'><input type='radio' name='q1' value='1'> <span>② 12:00에는 환기와 물 주기를 고려해야 한다</span></label><label class='opt'><input type='radio' name='q1' value='2'> <span>③ 15:00에는 조도만 충분하므로 아무 조치가 필요 없다</span></label><label class='opt'><input type='radio' name='q1' value='3'> <span>④ 세 시간 모두 완벽한 생육 조건이다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(1)'>상세 풀이 보기</button>
+  <div class='solution' id='s1'><b>정답: ②</b><br>12:00에는 온도 31℃로 기준보다 높고 습도 48%로 기준보다 낮다. 따라서 환기와 물 주기를 동시에 고려하는 판단이 가장 타당하다.</div>
+</section>
+
+<section class='qcard' id='q2'>
+  <div class='qhead'><span class='badge'>문항 2</span><span class='tag'>표 해석</span></div>
+  <h3>도서관 자리 추천</h3>
+  <p class='story'>학생들이 조용히 공부할 자리를 찾고 있다. 좌석 추천 시스템은 소음이 낮고 콘센트가 있으며, 이동 거리가 짧은 곳을 우선 추천한다.</p>
+  <div class='visual'>
+<table><tr><th>좌석</th><th>소음</th><th>콘센트</th><th>입구와 거리</th></tr><tr><td>A</td><td>낮음</td><td>있음</td><td>멀다</td></tr><tr><td>B</td><td>높음</td><td>있음</td><td>가깝다</td></tr><tr><td>C</td><td>낮음</td><td>없음</td><td>가깝다</td></tr><tr><td>D</td><td>보통</td><td>있음</td><td>가깝다</td></tr></table>
+<div class='pic'>🚪 입구 ─ D ─ C ─ A &nbsp;&nbsp; 🔊 B 주변은 소음 발생</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q2' value='0'> <span>① A</span></label><label class='opt'><input type='radio' name='q2' value='1'> <span>② B</span></label><label class='opt'><input type='radio' name='q2' value='2'> <span>③ C</span></label><label class='opt'><input type='radio' name='q2' value='3'> <span>④ D</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(2)'>상세 풀이 보기</button>
+  <div class='solution' id='s2'><b>정답: ④</b><br>소음은 A가 가장 좋지만 거리가 멀다. D는 소음이 보통이고 콘센트가 있으며 입구와 가깝다. 세 기준을 균형 있게 만족하므로 D가 가장 적절하다.</div>
+</section>
+
+<section class='qcard' id='q3'>
+  <div class='qhead'><span class='badge'>문항 3</span><span class='tag'>시스템 사고</span></div>
+  <h3>급식 줄 분산</h3>
+  <p class='story'>학생 120명이 한 줄로 서면 대기 시간이 길어진다. 선생님은 세 개의 배식대로 줄을 나누려 한다.</p>
+  <div class='visual'>
+<table><tr><th>배식대</th><th>분당 처리 인원</th><th>메뉴</th></tr><tr><td>1번</td><td>6명</td><td>밥+국</td></tr><tr><td>2번</td><td>4명</td><td>반찬</td></tr><tr><td>3번</td><td>5명</td><td>후식</td></tr></table>
+<div class='diagram'>👥👥👥 → [1번] → [2번] → [3번] → 🍱</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q3' value='0'> <span>① 처리 속도가 가장 느린 2번 배식대가 전체 흐름을 막을 수 있다</span></label><label class='opt'><input type='radio' name='q3' value='1'> <span>② 1번이 가장 느리므로 1번만 개선하면 된다</span></label><label class='opt'><input type='radio' name='q3' value='2'> <span>③ 3번은 후식이므로 전체 시간과 관계없다</span></label><label class='opt'><input type='radio' name='q3' value='3'> <span>④ 학생 수와 처리 속도는 대기 시간과 관계없다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(3)'>상세 풀이 보기</button>
+  <div class='solution' id='s3'><b>정답: ①</b><br>연속된 과정에서는 가장 느린 단계가 병목이 된다. 2번 배식대는 분당 4명으로 가장 느리므로 전체 흐름을 제한할 가능성이 크다.</div>
+</section>
+
+<section class='qcard' id='q4'>
+  <div class='qhead'><span class='badge'>문항 4</span><span class='tag'>조건 판단</span></div>
+  <h3>스마트 우산함</h3>
+  <p class='story'>교실 앞 우산함은 비가 올 가능성이 높고 학생이 우산을 놓고 가려 할 때 알림을 준다.</p>
+  <div class='visual'>
+<table><tr><th>상황</th><th>강수확률</th><th>학생 우산 보유</th><th>알림 필요?</th></tr><tr><td>가</td><td>80%</td><td>없음</td><td>?</td></tr><tr><td>나</td><td>20%</td><td>있음</td><td>?</td></tr><tr><td>다</td><td>70%</td><td>있음</td><td>?</td></tr></table>
+<div class='pic'>☁️🌧️ + 🎒 학생 + ☂️ 우산함 → 🔔 알림</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q4' value='0'> <span>① 가만 알림</span></label><label class='opt'><input type='radio' name='q4' value='1'> <span>② 다만 알림</span></label><label class='opt'><input type='radio' name='q4' value='2'> <span>③ 가와 다 모두 알림</span></label><label class='opt'><input type='radio' name='q4' value='3'> <span>④ 나와 다 모두 알림</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(4)'>상세 풀이 보기</button>
+  <div class='solution' id='s4'><b>정답: ③</b><br>강수확률이 높으면 우산이 필요하다. 가는 우산이 없으므로 빌리라는 알림이 필요하고, 다는 우산을 놓고 가면 안 되므로 챙기라는 알림이 필요하다.</div>
+</section>
+
+<section class='qcard' id='q5'>
+  <div class='qhead'><span class='badge'>문항 5</span><span class='tag'>자료 비교</span></div>
+  <h3>학교 에너지 절약</h3>
+  <p class='story'>교실별 전력 사용량을 비교해 에너지 절약 캠페인을 하려 한다.</p>
+  <div class='visual'>
+<table><tr><th>교실</th><th>전등</th><th>냉방</th><th>컴퓨터</th><th>합계</th></tr><tr><td>1반</td><td>10</td><td>35</td><td>15</td><td>60</td></tr><tr><td>2반</td><td>12</td><td>25</td><td>18</td><td>55</td></tr><tr><td>3반</td><td>9</td><td>40</td><td>11</td><td>60</td></tr></table>
+<div class='diagram'>💡 전등 + ❄️ 냉방 + 🖥️ 컴퓨터 = 전체 전력</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q5' value='0'> <span>① 1반은 전등을 줄이는 것이 가장 효과적이다</span></label><label class='opt'><input type='radio' name='q5' value='1'> <span>② 3반은 냉방 사용 개선이 가장 효과적이다</span></label><label class='opt'><input type='radio' name='q5' value='2'> <span>③ 2반은 아무 개선도 필요 없다</span></label><label class='opt'><input type='radio' name='q5' value='3'> <span>④ 모든 반의 전력 구조가 완전히 같다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(5)'>상세 풀이 보기</button>
+  <div class='solution' id='s5'><b>정답: ②</b><br>3반은 냉방 40으로 자기 반 전력 중 가장 큰 비중을 차지한다. 따라서 냉방 사용 개선이 가장 효과적인 절약 전략이다.</div>
+</section>
+
+<section class='qcard' id='q6'>
+  <div class='qhead'><span class='badge'>문항 6</span><span class='tag'>공간 추론</span></div>
+  <h3>분실물 찾기 지도</h3>
+  <p class='story'>분실물 시스템은 마지막 목격 위치와 이동 가능 경로를 바탕으로 물건이 있을 가능성이 큰 곳을 추천한다.</p>
+  <div class='visual'>
+<table><tr><th>장소</th><th>마지막 목격 후 이동 가능성</th><th>청소 여부</th></tr><tr><td>복도</td><td>높음</td><td>완료</td></tr><tr><td>과학실</td><td>높음</td><td>미완료</td></tr><tr><td>도서관</td><td>낮음</td><td>완료</td></tr></table>
+<div class='pic'>교실 → 복도 → 과학실<br>　　　　└→ 도서관</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q6' value='0'> <span>① 복도</span></label><label class='opt'><input type='radio' name='q6' value='1'> <span>② 과학실</span></label><label class='opt'><input type='radio' name='q6' value='2'> <span>③ 도서관</span></label><label class='opt'><input type='radio' name='q6' value='3'> <span>④ 운동장</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(6)'>상세 풀이 보기</button>
+  <div class='solution' id='s6'><b>정답: ②</b><br>이동 가능성이 높고 아직 청소가 끝나지 않은 과학실이 분실물이 남아 있을 가능성이 가장 높다.</div>
+</section>
+
+<section class='qcard' id='q7'>
+  <div class='qhead'><span class='badge'>문항 7</span><span class='tag'>우선순위</span></div>
+  <h3>학급 게시판 알림</h3>
+  <p class='story'>학급 게시판에는 공지, 과제, 긴급 안내가 올라온다. 학생에게 먼저 보여줄 알림을 골라야 한다.</p>
+  <div class='visual'>
+<table><tr><th>글</th><th>종류</th><th>마감</th><th>중요도</th></tr><tr><td>A</td><td>공지</td><td>3일 후</td><td>보통</td></tr><tr><td>B</td><td>과제</td><td>오늘</td><td>높음</td></tr><tr><td>C</td><td>행사</td><td>7일 후</td><td>낮음</td></tr></table>
+<div class='diagram'>📌 게시글 → 중요도 판단 → 마감 판단 → 🔔 우선 알림</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q7' value='0'> <span>① A</span></label><label class='opt'><input type='radio' name='q7' value='1'> <span>② B</span></label><label class='opt'><input type='radio' name='q7' value='2'> <span>③ C</span></label><label class='opt'><input type='radio' name='q7' value='3'> <span>④ 모두 같은 우선순위</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(7)'>상세 풀이 보기</button>
+  <div class='solution' id='s7'><b>정답: ②</b><br>B는 중요도가 높고 마감이 오늘이므로 가장 먼저 보여 주어야 한다.</div>
+</section>
+
+<section class='qcard' id='q8'>
+  <div class='qhead'><span class='badge'>문항 8</span><span class='tag'>센서 융합</span></div>
+  <h3>교내 식물 관리 로봇</h3>
+  <p class='story'>로봇은 화분의 흙 습도와 잎 색을 보고 물 주기 여부를 판단한다.</p>
+  <div class='visual'>
+<table><tr><th>화분</th><th>흙 습도</th><th>잎 색</th></tr><tr><td>A</td><td>낮음</td><td>초록</td></tr><tr><td>B</td><td>높음</td><td>노랑</td></tr><tr><td>C</td><td>낮음</td><td>노랑</td></tr></table>
+<div class='pic'>🌱 + 💧센서 + 👁️색 인식 → 🤖 판단</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q8' value='0'> <span>① A만 물 주기</span></label><label class='opt'><input type='radio' name='q8' value='1'> <span>② B만 물 주기</span></label><label class='opt'><input type='radio' name='q8' value='2'> <span>③ C가 가장 우선 관리 대상</span></label><label class='opt'><input type='radio' name='q8' value='3'> <span>④ 모두 정상</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(8)'>상세 풀이 보기</button>
+  <div class='solution' id='s8'><b>정답: ③</b><br>C는 흙 습도가 낮고 잎 색도 노랑이므로 물 부족과 건강 이상 가능성이 동시에 나타난다. 우선 관리 대상이다.</div>
+</section>
+
+<section class='qcard' id='q9'>
+  <div class='qhead'><span class='badge'>문항 9</span><span class='tag'>공정성</span></div>
+  <h3>체육대회 팀 배정</h3>
+  <p class='story'>팀을 공정하게 나누기 위해 달리기, 점프, 협력 점수를 함께 본다.</p>
+  <div class='visual'>
+<table><tr><th>학생</th><th>달리기</th><th>점프</th><th>협력</th></tr><tr><td>민준</td><td>9</td><td>5</td><td>6</td></tr><tr><td>서연</td><td>5</td><td>9</td><td>6</td></tr><tr><td>지후</td><td>6</td><td>5</td><td>9</td></tr></table>
+<div class='diagram'>🏃 달리기 + 🦘 점프 + 🤝 협력 → ⚖️ 균형 팀</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q9' value='0'> <span>① 한 능력만 보고 팀을 나눈다</span></label><label class='opt'><input type='radio' name='q9' value='1'> <span>② 세 능력을 함께 보아 강점이 섞이게 한다</span></label><label class='opt'><input type='radio' name='q9' value='2'> <span>③ 협력 점수는 경기와 무관하므로 제외한다</span></label><label class='opt'><input type='radio' name='q9' value='3'> <span>④ 점수가 가장 높은 학생만 한 팀에 모은다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(9)'>상세 풀이 보기</button>
+  <div class='solution' id='s9'><b>정답: ②</b><br>공정한 팀 배정은 여러 능력의 균형을 고려해야 한다. 한 능력만 보면 특정 팀이 불리해질 수 있다.</div>
+</section>
+
+<section class='qcard' id='q10'>
+  <div class='qhead'><span class='badge'>문항 10</span><span class='tag'>분류 규칙</span></div>
+  <h3>쓰레기 분리배출 안내판</h3>
+  <p class='story'>스마트 안내판은 물건의 재질과 오염 여부를 보고 배출 방법을 알려 준다.</p>
+  <div class='visual'>
+<table><tr><th>물건</th><th>재질</th><th>오염</th></tr><tr><td>우유팩</td><td>종이</td><td>있음</td></tr><tr><td>생수병</td><td>플라스틱</td><td>없음</td></tr><tr><td>컵라면 용기</td><td>플라스틱</td><td>있음</td></tr></table>
+<div class='pic'>♻️ 분류 기준: 재질 확인 → 오염 확인 → 배출함 선택</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q10' value='0'> <span>① 생수병은 플라스틱 재활용 가능성이 높다</span></label><label class='opt'><input type='radio' name='q10' value='1'> <span>② 오염된 컵라면 용기는 항상 종이류다</span></label><label class='opt'><input type='radio' name='q10' value='2'> <span>③ 우유팩은 플라스틱이다</span></label><label class='opt'><input type='radio' name='q10' value='3'> <span>④ 오염 여부는 분류와 무관하다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(10)'>상세 풀이 보기</button>
+  <div class='solution' id='s10'><b>정답: ①</b><br>생수병은 플라스틱이고 오염이 없으므로 플라스틱 재활용 가능성이 가장 높다.</div>
+</section>
+<h2>Part 2. 응용: 수학·과학·정보 융합 스토리</h2>
+<section class='qcard' id='q11'>
+  <div class='qhead'><span class='badge'>문항 11</span><span class='tag'>수학·과학·정보</span></div>
+  <h3>별 관측 데이터</h3>
+  <p class='story'>천문 동아리는 별의 밝기 변화를 기록해 변광성 후보를 찾고 있다.</p>
+  <div class='visual'>
+<table><tr><th>관측 시각</th><th>밝기 점수</th></tr><tr><td>1일</td><td>8</td></tr><tr><td>2일</td><td>5</td></tr><tr><td>3일</td><td>8</td></tr><tr><td>4일</td><td>5</td></tr></table>
+<div class='diagram'>⭐ 밝음 → 어두움 → 밝음 → 어두움</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q11' value='0'> <span>① 밝기가 일정하다</span></label><label class='opt'><input type='radio' name='q11' value='1'> <span>② 밝기가 주기적으로 변한다</span></label><label class='opt'><input type='radio' name='q11' value='2'> <span>③ 관측값이 모두 증가한다</span></label><label class='opt'><input type='radio' name='q11' value='3'> <span>④ 관측값이 모두 감소한다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(11)'>상세 풀이 보기</button>
+  <div class='solution' id='s11'><b>정답: ②</b><br>8, 5, 8, 5처럼 같은 패턴이 반복되므로 주기적 변화로 볼 수 있다.</div>
+</section>
+
+<section class='qcard' id='q12'>
+  <div class='qhead'><span class='badge'>문항 12</span><span class='tag'>환경 데이터</span></div>
+  <h3>미세먼지와 운동장</h3>
+  <p class='story'>체육 수업 장소를 정하기 위해 미세먼지와 풍속을 함께 본다.</p>
+  <div class='visual'>
+<table><tr><th>날</th><th>미세먼지</th><th>풍속</th></tr><tr><td>월</td><td>나쁨</td><td>약함</td></tr><tr><td>화</td><td>보통</td><td>보통</td></tr><tr><td>수</td><td>좋음</td><td>강함</td></tr></table>
+<div class='pic'>🏃 운동장 수업 = 공기 질 + 안전한 바람 조건</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q12' value='0'> <span>① 월요일</span></label><label class='opt'><input type='radio' name='q12' value='1'> <span>② 화요일</span></label><label class='opt'><input type='radio' name='q12' value='2'> <span>③ 수요일</span></label><label class='opt'><input type='radio' name='q12' value='3'> <span>④ 미세먼지만 보면 항상 수요일</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(12)'>상세 풀이 보기</button>
+  <div class='solution' id='s12'><b>정답: ②</b><br>수요일은 공기 질은 좋지만 풍속이 강해 안전 문제가 있을 수 있다. 화요일은 두 조건이 모두 무난하다.</div>
+</section>
+
+<section class='qcard' id='q13'>
+  <div class='qhead'><span class='badge'>문항 13</span><span class='tag'>실험 설계</span></div>
+  <h3>물 로켓 실험</h3>
+  <p class='story'>물 로켓의 물 양과 날아간 거리를 기록했다.</p>
+  <div class='visual'>
+<table><tr><th>물 양</th><th>거리</th></tr><tr><td>적음</td><td>12m</td></tr><tr><td>중간</td><td>20m</td></tr><tr><td>많음</td><td>15m</td></tr></table>
+<div class='diagram'>🚀 물 양 → 압력 변화 → 날아간 거리</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q13' value='0'> <span>① 물이 많을수록 항상 멀리 간다</span></label><label class='opt'><input type='radio' name='q13' value='1'> <span>② 중간 물 양이 가장 멀리 갔다</span></label><label class='opt'><input type='radio' name='q13' value='2'> <span>③ 물 양은 거리와 전혀 관계없다</span></label><label class='opt'><input type='radio' name='q13' value='3'> <span>④ 적은 물 양이 가장 좋다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(13)'>상세 풀이 보기</button>
+  <div class='solution' id='s13'><b>정답: ②</b><br>표에서 중간 물 양의 거리가 20m로 가장 크다. 지나치게 많거나 적으면 효율이 낮을 수 있다.</div>
+</section>
+
+<section class='qcard' id='q14'>
+  <div class='qhead'><span class='badge'>문항 14</span><span class='tag'>증가 패턴</span></div>
+  <h3>세균 배양 관찰</h3>
+  <p class='story'>과학실에서 시간에 따른 세균 수를 관찰했다.</p>
+  <div class='visual'>
+<table><tr><th>시간</th><th>세균 수</th></tr><tr><td>0시간</td><td>10</td></tr><tr><td>1시간</td><td>20</td></tr><tr><td>2시간</td><td>40</td></tr><tr><td>3시간</td><td>80</td></tr></table>
+<div class='pic'>🦠 → 🦠🦠 → 🦠🦠🦠🦠</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q14' value='0'> <span>① 매시간 10씩 증가</span></label><label class='opt'><input type='radio' name='q14' value='1'> <span>② 매시간 2배가 되는 패턴</span></label><label class='opt'><input type='radio' name='q14' value='2'> <span>③ 감소하는 패턴</span></label><label class='opt'><input type='radio' name='q14' value='3'> <span>④ 불규칙 패턴</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(14)'>상세 풀이 보기</button>
+  <div class='solution' id='s14'><b>정답: ②</b><br>10, 20, 40, 80으로 매시간 두 배가 된다. 이는 배가 성장 패턴이다.</div>
+</section>
+
+<section class='qcard' id='q15'>
+  <div class='qhead'><span class='badge'>문항 15</span><span class='tag'>최적화</span></div>
+  <h3>태양광 충전소</h3>
+  <p class='story'>학교 태양광 충전소는 발전량과 사용량을 비교해 남는 전력을 저장한다.</p>
+  <div class='visual'>
+<table><tr><th>시간</th><th>발전량</th><th>사용량</th></tr><tr><td>오전</td><td>30</td><td>20</td></tr><tr><td>점심</td><td>50</td><td>35</td></tr><tr><td>저녁</td><td>10</td><td>25</td></tr></table>
+<div class='diagram'>☀️ 발전 → 🔋 저장 → 🏫 사용</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q15' value='0'> <span>① 오전과 점심에 저장하고 저녁에 사용한다</span></label><label class='opt'><input type='radio' name='q15' value='1'> <span>② 저녁에 가장 많이 저장한다</span></label><label class='opt'><input type='radio' name='q15' value='2'> <span>③ 발전량과 사용량은 비교할 필요가 없다</span></label><label class='opt'><input type='radio' name='q15' value='3'> <span>④ 항상 외부 전력만 사용한다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(15)'>상세 풀이 보기</button>
+  <div class='solution' id='s15'><b>정답: ①</b><br>오전과 점심은 발전량이 사용량보다 크므로 저장이 가능하다. 저녁은 부족하므로 저장 전력을 사용하는 것이 적절하다.</div>
+</section>
+
+<section class='qcard' id='q16'>
+  <div class='qhead'><span class='badge'>문항 16</span><span class='tag'>물리 데이터</span></div>
+  <h3>소리의 세기</h3>
+  <p class='story'>복도 소음 센서가 위치별 소리 세기를 측정했다.</p>
+  <div class='visual'>
+<table><tr><th>위치</th><th>소리 세기</th><th>거리</th></tr><tr><td>A</td><td>80</td><td>가까움</td></tr><tr><td>B</td><td>60</td><td>보통</td></tr><tr><td>C</td><td>40</td><td>멂</td></tr></table>
+<div class='pic'>🔊 소리원 ─ A ─ B ─ C</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q16' value='0'> <span>① 소리원에서 멀어질수록 소리 세기가 작아진다</span></label><label class='opt'><input type='radio' name='q16' value='1'> <span>② 소리 세기는 거리와 반대로 증가한다</span></label><label class='opt'><input type='radio' name='q16' value='2'> <span>③ C가 가장 시끄럽다</span></label><label class='opt'><input type='radio' name='q16' value='3'> <span>④ 세 위치의 소리 세기는 같다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(16)'>상세 풀이 보기</button>
+  <div class='solution' id='s16'><b>정답: ①</b><br>가까운 A가 80, 먼 C가 40이므로 멀어질수록 소리 세기가 작아지는 경향이 보인다.</div>
+</section>
+
+<section class='qcard' id='q17'>
+  <div class='qhead'><span class='badge'>문항 17</span><span class='tag'>상관 관계</span></div>
+  <h3>기온과 아이스크림</h3>
+  <p class='story'>매점은 기온과 아이스크림 판매량을 비교했다.</p>
+  <div class='visual'>
+<table><tr><th>기온</th><th>판매량</th></tr><tr><td>20℃</td><td>30개</td></tr><tr><td>25℃</td><td>55개</td></tr><tr><td>30℃</td><td>90개</td></tr></table>
+<div class='diagram'>🌡️ 상승 → 🍦 판매량 증가?</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q17' value='0'> <span>① 기온이 높을수록 판매량이 증가하는 경향</span></label><label class='opt'><input type='radio' name='q17' value='1'> <span>② 기온이 높을수록 판매량이 감소</span></label><label class='opt'><input type='radio' name='q17' value='2'> <span>③ 판매량은 항상 30개</span></label><label class='opt'><input type='radio' name='q17' value='3'> <span>④ 기온과 판매량은 완전히 무관</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(17)'>상세 풀이 보기</button>
+  <div class='solution' id='s17'><b>정답: ①</b><br>표에서 기온이 20→25→30℃로 오를 때 판매량도 30→55→90개로 증가한다.</div>
+</section>
+
+<section class='qcard' id='q18'>
+  <div class='qhead'><span class='badge'>문항 18</span><span class='tag'>에너지 변환</span></div>
+  <h3>자전거 발전기</h3>
+  <p class='story'>자전거 페달을 돌려 전구를 켜는 실험이다.</p>
+  <div class='visual'>
+<table><tr><th>페달 속도</th><th>전구 밝기</th></tr><tr><td>느림</td><td>약함</td></tr><tr><td>보통</td><td>중간</td></tr><tr><td>빠름</td><td>강함</td></tr></table>
+<div class='pic'>🚴 운동 에너지 → ⚙️ 발전기 → 💡 빛 에너지</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q18' value='0'> <span>① 페달 속도가 빠를수록 전구가 밝아진다</span></label><label class='opt'><input type='radio' name='q18' value='1'> <span>② 페달 속도와 밝기는 반대 관계</span></label><label class='opt'><input type='radio' name='q18' value='2'> <span>③ 느릴수록 가장 밝다</span></label><label class='opt'><input type='radio' name='q18' value='3'> <span>④ 전구 밝기는 측정할 수 없다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(18)'>상세 풀이 보기</button>
+  <div class='solution' id='s18'><b>정답: ①</b><br>페달 속도가 빨라질수록 전구 밝기가 약함→중간→강함으로 커진다.</div>
+</section>
+
+<section class='qcard' id='q19'>
+  <div class='qhead'><span class='badge'>문항 19</span><span class='tag'>변화율</span></div>
+  <h3>냉각 실험</h3>
+  <p class='story'>뜨거운 물의 온도가 시간에 따라 식는 과정을 기록했다.</p>
+  <div class='visual'>
+<table><tr><th>시간</th><th>온도</th></tr><tr><td>0분</td><td>80℃</td></tr><tr><td>5분</td><td>65℃</td></tr><tr><td>10분</td><td>55℃</td></tr><tr><td>15분</td><td>48℃</td></tr></table>
+<div class='diagram'>♨️ 뜨거운 물 → 시간 경과 → 🌡️ 온도 감소</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q19' value='0'> <span>① 처음 5분 동안 가장 크게 감소했다</span></label><label class='opt'><input type='radio' name='q19' value='1'> <span>② 마지막 5분 동안 가장 크게 증가했다</span></label><label class='opt'><input type='radio' name='q19' value='2'> <span>③ 온도는 일정하다</span></label><label class='opt'><input type='radio' name='q19' value='3'> <span>④ 10분 이후 온도가 올라간다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(19)'>상세 풀이 보기</button>
+  <div class='solution' id='s19'><b>정답: ①</b><br>0~5분은 15℃ 감소, 5~10분은 10℃ 감소, 10~15분은 7℃ 감소이다. 처음 5분 감소폭이 가장 크다.</div>
+</section>
+
+<section class='qcard' id='q20'>
+  <div class='qhead'><span class='badge'>문항 20</span><span class='tag'>경로 판단</span></div>
+  <h3>로봇 탐사선</h3>
+  <p class='story'>탐사 로봇은 에너지가 제한되어 있어 가장 안전하면서 짧은 길을 골라야 한다.</p>
+  <div class='visual'>
+<table><tr><th>경로</th><th>거리</th><th>위험도</th></tr><tr><td>A</td><td>짧음</td><td>높음</td></tr><tr><td>B</td><td>보통</td><td>낮음</td></tr><tr><td>C</td><td>김</td><td>낮음</td></tr></table>
+<div class='pic'>🤖 출발 → A/B/C 경로 → 🪨 목표 지점</div>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q20' value='0'> <span>① A</span></label><label class='opt'><input type='radio' name='q20' value='1'> <span>② B</span></label><label class='opt'><input type='radio' name='q20' value='2'> <span>③ C</span></label><label class='opt'><input type='radio' name='q20' value='3'> <span>④ 위험도는 고려하지 않는다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(20)'>상세 풀이 보기</button>
+  <div class='solution' id='s20'><b>정답: ②</b><br>A는 짧지만 위험도가 높고 C는 안전하지만 길다. B는 거리와 위험도의 균형이 가장 좋다.</div>
+</section>
+<h2>Part 3. 심화: 한글 pseudo code 기반 추상 창의력 평가</h2>
+<section class='qcard' id='q21'>
+  <div class='qhead'><span class='badge'>문항 21</span><span class='tag'>한글 절차 사고</span></div>
+  <h3>추상 마을의 신호등</h3>
+  <p class='story'>마을의 세 신호등은 보행자 수와 차량 수를 보고 초록불 시간을 조절한다.</p>
+  <div class='visual'>
+<div class='pseudo'>처음<br>　보행자 수를 확인한다<br>　차량 수를 확인한다<br>　만약 보행자 수가 차량 수보다 많으면<br>　　보행자 초록불 시간을 늘린다<br>　그렇지 않고 차량 수가 매우 많으면<br>　　차량 초록불 시간을 늘린다<br>　그 밖의 경우에는<br>　　기본 시간을 유지한다<br>끝</div>
+<table><tr><th>상황</th><th>보행자</th><th>차량</th></tr><tr><td>가</td><td>40</td><td>20</td></tr><tr><td>나</td><td>15</td><td>60</td></tr></table>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q21' value='0'> <span>① 가: 차량 초록불 증가, 나: 기본 유지</span></label><label class='opt'><input type='radio' name='q21' value='1'> <span>② 가: 보행자 초록불 증가, 나: 차량 초록불 증가</span></label><label class='opt'><input type='radio' name='q21' value='2'> <span>③ 가와 나 모두 기본 유지</span></label><label class='opt'><input type='radio' name='q21' value='3'> <span>④ 가와 나 모두 보행자 초록불 증가</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(21)'>상세 풀이 보기</button>
+  <div class='solution' id='s21'><b>정답: ②</b><br>가에서는 보행자가 차량보다 많으므로 보행자 초록불을 늘린다. 나에서는 차량이 매우 많으므로 차량 초록불을 늘린다.</div>
+</section>
+
+<section class='qcard' id='q22'>
+  <div class='qhead'><span class='badge'>문항 22</span><span class='tag'>추상 시스템</span></div>
+  <h3>행성 기지의 산소 분배</h3>
+  <p class='story'>행성 기지는 연구실, 숙소, 온실에 산소를 나누어 보낸다.</p>
+  <div class='visual'>
+<div class='pseudo'>처음<br>　각 구역의 산소 필요량을 조사한다<br>　생명 유지 구역을 먼저 표시한다<br>　산소가 충분하면 모든 구역에 보낸다<br>　산소가 부족하면 생명 유지 구역에 먼저 보낸다<br>　남는 산소가 있으면 온실에 보낸다<br>끝</div>
+<table><tr><th>구역</th><th>필요량</th><th>생명 유지</th></tr><tr><td>연구실</td><td>30</td><td>아니오</td></tr><tr><td>숙소</td><td>50</td><td>예</td></tr><tr><td>온실</td><td>40</td><td>아니오</td></tr></table>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q22' value='0'> <span>① 부족할 때 숙소가 우선이다</span></label><label class='opt'><input type='radio' name='q22' value='1'> <span>② 부족할 때 온실이 항상 우선이다</span></label><label class='opt'><input type='radio' name='q22' value='2'> <span>③ 연구실만 산소를 받는다</span></label><label class='opt'><input type='radio' name='q22' value='3'> <span>④ 생명 유지 표시는 의미가 없다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(22)'>상세 풀이 보기</button>
+  <div class='solution' id='s22'><b>정답: ①</b><br>한글 절차에서 산소가 부족하면 생명 유지 구역을 우선한다고 했다. 숙소가 생명 유지 구역이므로 우선 배정된다.</div>
+</section>
+
+<section class='qcard' id='q23'>
+  <div class='qhead'><span class='badge'>문항 23</span><span class='tag'>자료 분류</span></div>
+  <h3>꿈의 도서 검색기</h3>
+  <p class='story'>검색기는 책 제목, 주제, 난이도를 보고 학생에게 책을 추천한다.</p>
+  <div class='visual'>
+<div class='pseudo'>처음<br>　학생이 원하는 주제를 받는다<br>　학생의 현재 난이도를 받는다<br>　책 목록에서 주제가 같은 책을 고른다<br>　고른 책 중 난이도 차이가 가장 작은 책을 찾는다<br>　그 책을 추천한다<br>끝</div>
+<table><tr><th>책</th><th>주제</th><th>난이도</th></tr><tr><td>A</td><td>우주</td><td>3</td></tr><tr><td>B</td><td>우주</td><td>5</td></tr><tr><td>C</td><td>생명</td><td>4</td></tr></table>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q23' value='0'> <span>① 우주 주제, 현재 난이도 4이면 A와 B가 모두 후보이다</span></label><label class='opt'><input type='radio' name='q23' value='1'> <span>② 생명 주제를 원하면 A가 추천된다</span></label><label class='opt'><input type='radio' name='q23' value='2'> <span>③ 난이도는 전혀 고려하지 않는다</span></label><label class='opt'><input type='radio' name='q23' value='3'> <span>④ 주제가 다른 책을 먼저 고른다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(23)'>상세 풀이 보기</button>
+  <div class='solution' id='s23'><b>정답: ①</b><br>주제가 우주인 책은 A와 B이다. 현재 난이도 4와의 차이는 둘 다 1이므로 둘 다 후보가 될 수 있다.</div>
+</section>
+
+<section class='qcard' id='q24'>
+  <div class='qhead'><span class='badge'>문항 24</span><span class='tag'>자원 최적화</span></div>
+  <h3>미래 도시의 물 순환</h3>
+  <p class='story'>빗물 저장고는 비 예보와 현재 저장량을 보고 물 사용량을 조절한다.</p>
+  <div class='visual'>
+<div class='pseudo'>처음<br>　현재 저장량을 확인한다<br>　내일 비 예보를 확인한다<br>　만약 저장량이 낮고 비 예보가 없으면<br>　　절약 모드로 바꾼다<br>　만약 저장량이 높거나 비 예보가 있으면<br>　　일반 모드를 유지한다<br>끝</div>
+<table><tr><th>상황</th><th>저장량</th><th>비 예보</th></tr><tr><td>A</td><td>낮음</td><td>없음</td></tr><tr><td>B</td><td>낮음</td><td>있음</td></tr></table>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q24' value='0'> <span>① A는 절약 모드, B는 일반 모드</span></label><label class='opt'><input type='radio' name='q24' value='1'> <span>② A와 B 모두 절약 모드</span></label><label class='opt'><input type='radio' name='q24' value='2'> <span>③ A와 B 모두 일반 모드</span></label><label class='opt'><input type='radio' name='q24' value='3'> <span>④ 비 예보는 판단 기준이 아니다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(24)'>상세 풀이 보기</button>
+  <div class='solution' id='s24'><b>정답: ①</b><br>A는 저장량이 낮고 비 예보가 없으므로 절약 모드다. B는 비 예보가 있으므로 일반 모드 유지가 가능하다.</div>
+</section>
+
+<section class='qcard' id='q25'>
+  <div class='qhead'><span class='badge'>문항 25</span><span class='tag'>규칙 기반 판단</span></div>
+  <h3>인공지능 심사위원</h3>
+  <p class='story'>창의력 대회 심사위원은 독창성, 실현 가능성, 설명력을 함께 평가한다.</p>
+  <div class='visual'>
+<div class='pseudo'>처음<br>　독창성 점수를 확인한다<br>　실현 가능성 점수를 확인한다<br>　설명력 점수를 확인한다<br>　세 점수가 모두 기준 이상이면 최우수 후보로 표시한다<br>　두 점수만 기준 이상이면 보완 후보로 표시한다<br>　그 밖의 경우에는 재도전 후보로 표시한다<br>끝</div>
+<table><tr><th>작품</th><th>독창성</th><th>실현 가능성</th><th>설명력</th></tr><tr><td>가</td><td>높음</td><td>높음</td><td>높음</td></tr><tr><td>나</td><td>높음</td><td>낮음</td><td>높음</td></tr></table>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q25' value='0'> <span>① 가는 최우수 후보, 나는 보완 후보</span></label><label class='opt'><input type='radio' name='q25' value='1'> <span>② 가는 보완 후보, 나는 재도전 후보</span></label><label class='opt'><input type='radio' name='q25' value='2'> <span>③ 둘 다 최우수 후보</span></label><label class='opt'><input type='radio' name='q25' value='3'> <span>④ 설명력만 보면 된다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(25)'>상세 풀이 보기</button>
+  <div class='solution' id='s25'><b>정답: ①</b><br>가는 세 기준이 모두 높으므로 최우수 후보이다. 나는 두 기준만 높으므로 보완 후보이다.</div>
+</section>
+
+<section class='qcard' id='q26'>
+  <div class='qhead'><span class='badge'>문항 26</span><span class='tag'>동적 관계</span></div>
+  <h3>추상 생태계 균형</h3>
+  <p class='story'>섬의 풀, 토끼, 여우 수가 서로 영향을 준다.</p>
+  <div class='visual'>
+<div class='pseudo'>처음<br>　풀의 양을 확인한다<br>　토끼 수를 확인한다<br>　여우 수를 확인한다<br>　풀이 많고 여우가 적으면 토끼 수가 늘 가능성이 크다<br>　토끼가 많고 여우가 많으면 토끼 수가 줄 가능성이 크다<br>　결과를 생태 기록장에 적는다<br>끝</div>
+<table><tr><th>상황</th><th>풀</th><th>토끼</th><th>여우</th></tr><tr><td>A</td><td>많음</td><td>보통</td><td>적음</td></tr><tr><td>B</td><td>보통</td><td>많음</td><td>많음</td></tr></table>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q26' value='0'> <span>① A는 토끼 증가 가능, B는 토끼 감소 가능</span></label><label class='opt'><input type='radio' name='q26' value='1'> <span>② A와 B 모두 토끼 증가</span></label><label class='opt'><input type='radio' name='q26' value='2'> <span>③ A와 B 모두 토끼 감소</span></label><label class='opt'><input type='radio' name='q26' value='3'> <span>④ 여우 수는 토끼와 관련 없다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(26)'>상세 풀이 보기</button>
+  <div class='solution' id='s26'><b>정답: ①</b><br>A는 풀이 많고 여우가 적어 토끼 증가 가능성이 크다. B는 토끼와 여우가 모두 많아 포식으로 토끼 감소 가능성이 크다.</div>
+</section>
+
+<section class='qcard' id='q27'>
+  <div class='qhead'><span class='badge'>문항 27</span><span class='tag'>패턴 인식</span></div>
+  <h3>암호 문양 해석</h3>
+  <p class='story'>고대 문양은 색과 모양의 반복으로 메시지를 나타낸다.</p>
+  <div class='visual'>
+<div class='pseudo'>처음<br>　문양을 왼쪽에서 오른쪽으로 읽는다<br>　같은 색이 이어지면 하나의 묶음으로 센다<br>　묶음의 개수를 기록한다<br>　가장 많이 반복된 묶음을 핵심 신호로 정한다<br>끝</div>
+<table><tr><th>문양열</th><td>🔴🔴🔵🔵🔵🟢🔴🔴</td></tr></table>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q27' value='0'> <span>① 빨강 묶음은 1개이다</span></label><label class='opt'><input type='radio' name='q27' value='1'> <span>② 파랑 묶음이 가장 길다</span></label><label class='opt'><input type='radio' name='q27' value='2'> <span>③ 초록 묶음은 없다</span></label><label class='opt'><input type='radio' name='q27' value='3'> <span>④ 모든 묶음 길이가 같다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(27)'>상세 풀이 보기</button>
+  <div class='solution' id='s27'><b>정답: ②</b><br>문양은 빨강 2개, 파랑 3개, 초록 1개, 빨강 2개로 묶인다. 가장 긴 묶음은 파랑 3개이다.</div>
+</section>
+
+<section class='qcard' id='q28'>
+  <div class='qhead'><span class='badge'>문항 28</span><span class='tag'>조건 결합</span></div>
+  <h3>우주선 경보 단계</h3>
+  <p class='story'>우주선은 온도, 압력, 방사선 수치를 보고 경보 단계를 정한다.</p>
+  <div class='visual'>
+<div class='pseudo'>처음<br>　온도 상태를 확인한다<br>　압력 상태를 확인한다<br>　방사선 상태를 확인한다<br>　위험 상태가 세 개이면 빨간 경보를 낸다<br>　위험 상태가 두 개이면 주황 경보를 낸다<br>　위험 상태가 하나이면 노란 경보를 낸다<br>　위험 상태가 없으면 정상으로 기록한다<br>끝</div>
+<table><tr><th>상황</th><th>온도</th><th>압력</th><th>방사선</th></tr><tr><td>A</td><td>위험</td><td>정상</td><td>위험</td></tr><tr><td>B</td><td>정상</td><td>정상</td><td>정상</td></tr></table>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q28' value='0'> <span>① A는 주황 경보, B는 정상</span></label><label class='opt'><input type='radio' name='q28' value='1'> <span>② A는 빨간 경보, B는 노란 경보</span></label><label class='opt'><input type='radio' name='q28' value='2'> <span>③ A와 B 모두 정상</span></label><label class='opt'><input type='radio' name='q28' value='3'> <span>④ 위험 수를 세지 않는다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(28)'>상세 풀이 보기</button>
+  <div class='solution' id='s28'><b>정답: ①</b><br>A는 위험 상태가 두 개이므로 주황 경보이다. B는 위험 상태가 없으므로 정상이다.</div>
+</section>
+
+<section class='qcard' id='q29'>
+  <div class='qhead'><span class='badge'>문항 29</span><span class='tag'>절차 추론</span></div>
+  <h3>추상 미로의 규칙</h3>
+  <p class='story'>로봇은 벽, 빛, 에너지 정보를 보고 미로를 탈출한다.</p>
+  <div class='visual'>
+<div class='pseudo'>처음<br>　앞에 벽이 있는지 확인한다<br>　만약 앞에 벽이 없으면 앞으로 간다<br>　앞에 벽이 있으면 빛이 더 밝은 쪽을 찾는다<br>　빛이 더 밝은 쪽으로 돈다<br>　에너지가 부족하면 가장 가까운 충전소로 간다<br>끝</div>
+<table><tr><th>상황</th><th>앞 벽</th><th>왼쪽 빛</th><th>오른쪽 빛</th><th>에너지</th></tr><tr><td>A</td><td>있음</td><td>밝음</td><td>어두움</td><td>충분</td></tr></table>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q29' value='0'> <span>① A에서는 왼쪽으로 돈다</span></label><label class='opt'><input type='radio' name='q29' value='1'> <span>② A에서는 오른쪽으로 돈다</span></label><label class='opt'><input type='radio' name='q29' value='2'> <span>③ A에서는 바로 충전소로 간다</span></label><label class='opt'><input type='radio' name='q29' value='3'> <span>④ A에서는 멈춘다</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(29)'>상세 풀이 보기</button>
+  <div class='solution' id='s29'><b>정답: ①</b><br>앞에 벽이 있으므로 빛이 더 밝은 쪽을 찾아야 한다. 왼쪽이 더 밝고 에너지는 충분하므로 왼쪽으로 도는 것이 맞다.</div>
+</section>
+
+<section class='qcard' id='q30'>
+  <div class='qhead'><span class='badge'>문항 30</span><span class='tag'>추상 분류</span></div>
+  <h3>지식의 숲 분류기</h3>
+  <p class='story'>학습 자료를 개념, 예시, 문제, 풀이로 분류해 지식의 숲을 만든다.</p>
+  <div class='visual'>
+<div class='pseudo'>처음<br>　자료의 첫 문장을 읽는다<br>　정의를 설명하면 개념 가지에 넣는다<br>　실제 상황을 보여 주면 예시 가지에 넣는다<br>　학생에게 답을 요구하면 문제 가지에 넣는다<br>　해결 과정을 설명하면 풀이 가지에 넣는다<br>끝</div>
+<table><tr><th>자료</th><th>내용</th></tr><tr><td>A</td><td>알고리즘은 문제 해결 절차이다.</td></tr><tr><td>B</td><td>다음 상황에서 가장 적절한 선택은?</td></tr></table>
+</div>
+  <div class='choices'><label class='opt'><input type='radio' name='q30' value='0'> <span>① A는 개념, B는 문제</span></label><label class='opt'><input type='radio' name='q30' value='1'> <span>② A는 문제, B는 풀이</span></label><label class='opt'><input type='radio' name='q30' value='2'> <span>③ A와 B 모두 예시</span></label><label class='opt'><input type='radio' name='q30' value='3'> <span>④ A와 B 모두 풀이</span></label></div>
+  <button type='button' class='solve' onclick='toggleSol(30)'>상세 풀이 보기</button>
+  <div class='solution' id='s30'><b>정답: ①</b><br>A는 정의를 설명하므로 개념 가지에 해당한다. B는 답을 요구하는 질문이므로 문제 가지에 해당한다.</div>
+</section>
+
+</main>
+</div>
+<script>
+const answers = [1, 3, 0, 2, 1, 1, 1, 2, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0];
+let lastScore = null;
+function toggleSol(n){
+ const el=document.getElementById('s'+n); el.style.display=el.style.display==='block'?'none':'block';
+}
+function grade(){
+ let score=0; let lines=[];
+ for(let i=1;i<=30;i++){
+  const checked=document.querySelector('input[name="q'+i+'"]:checked');
+  const val=checked?Number(checked.value):-1;
+  const ok=val===answers[i-1]; if(ok) score++;
+  lines.push(i+'번: '+(ok?'정답':'오답'));
+ }
+ lastScore=score;
+ document.getElementById('result').innerHTML='점수: '+score+' / 30<br>'+lines.join('<br>');
+ return score;
+}
+function pad(n){return String(n).padStart(2,'0')}
+function downloadResult(){
+ const score = lastScore===null ? grade() : lastScore;
+ const sid=(document.getElementById('sid').value||'학번').trim();
+ const name=(document.getElementById('sname').value||'이름').trim();
+ const d=new Date();
+ const stamp=d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'_'+pad(d.getHours())+pad(d.getMinutes())+pad(d.getSeconds());
+ const filename=sid+'_'+name+'_창의력_'+score+'점_'+stamp+'.html';
+ const blob=new Blob([document.documentElement.outerHTML],{type:'text/html;charset=utf-8'});
+ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename; a.click(); URL.revokeObjectURL(a.href);
+}
+</script>
+</body></html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>과학고등학교 정보 창의력 경진대회 - 융합 창의력 진단 평가</title>
+<style>
+  :root{
+    --bg:#f3f7ff; --ink:#172033; --card:#ffffff; --primary:#3157d5; --primary2:#6b8cff;
+    --accent:#00a896; --warn:#ffb703; --bad:#e63946; --good:#2a9d8f; --line:#dfe7ff;
+    --soft:#eef4ff; --purple:#7b2cbf; --orange:#fb8500;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Malgun Gothic','Apple SD Gothic Neo',Arial,sans-serif;background:linear-gradient(135deg,#edf4ff,#fff7e9);color:var(--ink);}
+  header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px);}
+  .head{max-width:1280px;margin:auto;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .title h1{margin:0;font-size:25px;letter-spacing:-1px}.title p{margin:6px 0 0;color:#526078;font-weight:700}.badge{padding:10px 14px;border-radius:999px;background:#172033;color:white;font-weight:900;white-space:nowrap}
+  main{max-width:1280px;margin:22px auto;padding:0 18px 70px;display:grid;grid-template-columns:260px 1fr;gap:18px;}
+  nav{position:sticky;top:92px;align-self:start;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;box-shadow:0 10px 30px rgba(41,72,150,.10)}
+  nav .info{background:var(--soft);border-radius:16px;padding:12px;margin-bottom:12px;font-size:14px;line-height:1.55}
+  .student{display:grid;gap:8px;margin-bottom:12px}.student input{width:100%;padding:10px;border:1px solid #c8d4f8;border-radius:12px;font-size:15px}
+  .part-btn{width:100%;border:0;border-radius:14px;padding:12px;margin:5px 0;text-align:left;font-weight:900;cursor:pointer;background:#f7f9ff;color:#24304a;border:1px solid #e4eaff}
+  .part-btn:hover,.part-btn.active{background:linear-gradient(135deg,var(--primary),var(--primary2));color:white}
+  .qgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}.qbtn{border:1px solid #dbe4ff;background:white;border-radius:10px;padding:8px 0;font-weight:900;cursor:pointer}.qbtn:hover,.qbtn.active{background:#172033;color:white}.qbtn.done{border-color:var(--good);box-shadow:inset 0 -3px 0 var(--good)}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:26px;box-shadow:0 12px 32px rgba(41,72,150,.12)}
+  .hero{background:linear-gradient(135deg,#172033,#3157d5);color:white;border-radius:24px;padding:28px;margin-bottom:18px;overflow:hidden;position:relative}.hero:after{content:'✨';font-size:120px;position:absolute;right:20px;top:2px;opacity:.18}.hero h2{margin:0;font-size:30px}.hero p{font-size:17px;line-height:1.75;max-width:850px}
+  .part-title{display:flex;align-items:center;gap:10px;margin:10px 0 18px}.part-title span{font-size:32px}.part-title h2{margin:0;font-size:26px}.part-desc{background:#f8fbff;border-left:8px solid var(--primary);padding:16px 18px;border-radius:16px;line-height:1.75;margin-bottom:20px}
+  .question{display:none}.question.active{display:block}.qcard{border:1px solid var(--line);border-radius:24px;padding:22px;background:linear-gradient(180deg,#fff,#fbfdff);margin-bottom:18px}.qhead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.qnum{display:inline-flex;align-items:center;gap:8px;background:#172033;color:white;border-radius:999px;padding:8px 13px;font-weight:900}.level{font-weight:900;color:var(--primary);background:#eef4ff;padding:8px 12px;border-radius:999px}.story{font-size:18px;line-height:1.85;margin:18px 0;background:#fffaf0;border:1px solid #ffe3a3;border-radius:18px;padding:16px}.prompt{font-size:18px;font-weight:900;line-height:1.65;margin:16px 0}.choices{display:grid;gap:10px;margin:15px 0}.choice{display:flex;gap:10px;align-items:flex-start;border:1px solid #dae4ff;background:#fff;border-radius:15px;padding:12px;cursor:default}.choice:hover{background:#f5f8ff}.choice input{margin-top:4px;transform:scale(1.15)}
+  .essay-box{margin:18px 0;padding:16px;border-radius:18px;background:#fff;border:2px solid #c8d4f8}.essay-box h4{margin:0 0 10px;color:#172033}.essay-box textarea{width:100%;min-height:150px;border:1px solid #bac7ef;border-radius:14px;padding:14px;font-size:17px;line-height:1.7;font-family:'Malgun Gothic','Apple SD Gothic Neo',Arial,sans-serif;resize:vertical;background:#fbfdff}.rubric{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.rubric span{background:#eef4ff;border:1px solid #dce6ff;border-radius:999px;padding:8px 10px;text-align:center;font-weight:800;font-size:14px}@media(max-width:700px){.rubric{grid-template-columns:1fr}}
+  .visual{margin:16px 0;padding:16px;border:1px solid #dce6ff;background:#f8fbff;border-radius:18px;overflow:auto}.visual h4{margin:0 0 10px;color:#23376b}.diagram{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.node{border:2px solid #83a2ff;background:white;border-radius:16px;padding:12px 16px;font-weight:900;min-width:90px;text-align:center}.arrow{font-size:28px;color:var(--primary);font-weight:900}.pill{display:inline-block;margin:4px;padding:8px 11px;border-radius:999px;background:#eaf2ff;font-weight:800}.sky{height:160px;border-radius:16px;background:linear-gradient(#bde0fe,#fff);position:relative;overflow:hidden}.sun{position:absolute;width:58px;height:58px;border-radius:50%;background:#ffd166;right:40px;top:28px;box-shadow:0 0 0 12px rgba(255,209,102,.3)}.mount{position:absolute;bottom:0;width:0;height:0;border-left:110px solid transparent;border-right:110px solid transparent;border-bottom:90px solid #8ecae6;left:45px}.river{position:absolute;bottom:0;right:0;width:260px;height:55px;background:#4cc9f0;border-radius:90% 0 0 0}.robot{font-size:54px}.gridpic{display:grid;grid-template-columns:repeat(5,42px);gap:5px}.cell{height:42px;border-radius:8px;background:#e9efff;border:1px solid #cbd8ff;display:flex;align-items:center;justify-content:center;font-weight:900}.cell.block{background:#273043;color:white}.cell.start{background:#80ed99}.cell.end{background:#ffb703}.cell.water{background:#90e0ef}.cell.heat{background:#ffadad}.pseudo{font-family:Consolas,monospace;background:#101828;color:#d8e7ff;border-radius:16px;padding:16px;line-height:1.7;white-space:pre-wrap}.data-table{border-collapse:collapse;width:100%;min-width:520px;background:white}.data-table th{background:#172033;color:white}.data-table th,.data-table td{border:1px solid #d7e1ff;padding:10px;text-align:center}.data-table tr:nth-child(even) td{background:#f8fbff}.explain{display:none;margin-top:15px;border-radius:18px;background:#f0fff9;border:1px solid #b9f3df;padding:16px;line-height:1.75}.explain.show{display:block}.explain b{color:#006b5c}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.btn{border:0;border-radius:14px;padding:12px 16px;font-weight:900;cursor:pointer}.btn.primary{background:var(--primary);color:white}.btn.good{background:var(--good);color:white}.btn.dark{background:#172033;color:white}.btn.light{background:#eef4ff;color:#172033}.result{margin-top:20px;border:2px solid #172033;border-radius:20px;padding:18px;background:#fff}.hidden{display:none}.scorebig{font-size:34px;font-weight:1000;color:var(--primary)}
+  @media print{header,nav,.actions,.btn{display:none!important}main{display:block}.panel{box-shadow:none;border:0}.question{display:block!important;break-inside:avoid}.explain{display:block!important}.hero{color:#111;background:white;border:2px solid #111}.qcard{break-inside:avoid}}
+  @media(max-width:900px){main{grid-template-columns:1fr}nav{position:relative;top:0}.qgrid{grid-template-columns:repeat(10,1fr)}}
+</style>
+</head>
+<body>
+<header><div class="head"><div class="title"><h1>🧠 과학고등학교 정보 창의력 경진대회</h1><p>스토리 · 그림 · 표 · 다이어그램 기반 융합 창의력 진단 평가</p></div><div class="badge">총 30문항 · 서술형 평가</div></div></header>
+<main>
+<nav>
+  <div class="student"><input id="sid" placeholder="학번 입력"><input id="sname" placeholder="이름 입력"></div>
+  <div class="info"><b>응시 안내</b><br>코드 작성 없이 스토리, 그림, 표, 다이어그램을 읽고 근거를 들어 서술형으로 답하세요.</div>
+  <button class="part-btn active" onclick="showPart(1)">Part 1 정보 융합 스토리</button>
+  <button class="part-btn" onclick="showPart(2)">Part 2 수학·과학·정보 융합</button>
+  <button class="part-btn" onclick="showPart(3)">Part 3 Pseudo Code 심화</button>
+  <div class="qgrid" id="qgrid"></div>
+  <div class="actions"><button class="btn good" onclick="gradeAll()">작성 확인</button><button class="btn dark" onclick="downloadResult()">결과 HTML 저장</button></div>
+</nav>
+<section class="panel">
+  <div class="hero"><h2>창의력은 ‘새로운 답’이 아니라 ‘근거 있는 연결’입니다.</h2><p>이 평가는 정보 개념을 수학, 과학, 생활 문제와 연결하여 문제를 해석하고, 제한 조건 속에서 가장 합리적인 전략을 선택하는 능력을 확인합니다.</p></div>
+  <div id="content"></div>
+  <div id="result" class="result hidden"></div>
+</section>
+</main>
+<script>
+const questions = [
+// Part 1
+{p:1, t:'스마트 급식 동선', level:'기초', ans:2, visual:'diagram',
+story:'과학고 급식실은 점심시간에 학생들이 한꺼번에 몰려 긴 줄이 생긴다. 학생회는 대기 시간을 줄이기 위해 식판, 반찬, 국, 좌석 이동 흐름을 관찰했다.',
+q:'아래 동선을 보고 정보 융합 관점에서 가장 먼저 개선해야 할 지점은?',
+fig:['입구','식판','반찬 A','반찬 B','국','좌석'],
+choices:['좌석 색깔을 더 화려하게 바꾼다.','입구에 포스터를 더 많이 붙인다.','모든 학생이 반드시 지나가는 국 배식 지점의 병목을 줄인다.','반찬 이름을 영어로 바꾼다.','식판 무게를 무겁게 한다.'],
+exp:'모든 학생이 반드시 통과하는 지점은 전체 흐름의 병목이 되기 쉽습니다. 정보 시스템의 흐름 분석에서는 처리량을 제한하는 핵심 노드를 먼저 개선하는 것이 효과적입니다.'},
+{p:1,t:'분실물 센서 카드',level:'기초',ans:3,visual:'table',
+story:'학교 도서관은 분실물을 줄이기 위해 물품 카드에 색, 위치, 시간 정보를 기록한다. 다음 표는 최근 4건의 분실 기록이다.',
+q:'분실 가능성이 가장 높은 조건을 추론한 것으로 적절한 것은?',
+table:[['물품','시간','장소','상태'],['이어폰','점심','열람실','회수'],['텀블러','점심','자습실','미회수'],['필통','방과후','자습실','미회수'],['책','아침','열람실','회수']],
+choices:['열람실 물품은 모두 미회수된다.','아침 시간 물품이 가장 위험하다.','이어폰은 항상 잃어버린다.','자습실에서 발견된 물품은 미회수 가능성이 높아 보인다.','책은 반드시 회수되지 않는다.'],
+exp:'표에서 자습실 사례 2건은 모두 미회수입니다. 표본은 작지만, 주어진 자료 안에서는 자습실 위치가 미회수와 관련되어 보인다고 추론할 수 있습니다.'},
+{p:1,t:'교실 공기 신호등',level:'기초',ans:1,visual:'sky',
+story:'교실에는 CO₂ 농도를 색으로 알려주는 공기 신호등이 있다. 초록은 양호, 노랑은 주의, 빨강은 환기 필요를 뜻한다.',
+q:'빨간불이 켜졌을 때 가장 정보적인 행동은?',
+choices:['창문을 열고 10분 뒤 색이 변하는지 다시 확인한다.','빨간불을 종이로 가린다.','신호등 전원을 끈다.','학생 수를 기록하지 않는다.','색깔 이름만 외운다.'],
+exp:'정보 기반 문제 해결은 관찰 → 조치 → 재측정의 순환입니다. 환기 후 다시 확인하면 조치의 효과를 데이터로 판단할 수 있습니다.'},
+{p:1,t:'도서 추천 지도',level:'기초',ans:0,visual:'table',
+story:'도서부는 친구들이 좋아하는 책을 추천하기 위해 관심사와 최근 대출 기록을 함께 보았다.',
+q:'개인정보를 보호하면서 추천 시스템을 만드는 방법으로 가장 적절한 것은?',
+table:[['학생','관심사','최근 대출'],['A','우주','천문학 만화'],['B','로봇','AI 입문'],['C','생명','유전자 이야기']],
+choices:['이름 대신 익명 ID를 사용하고 관심사 패턴만 활용한다.','학생 이름과 전화번호를 게시판에 붙인다.','모든 대출 기록을 외부 사이트에 공개한다.','추천과 무관한 주소까지 수집한다.','비밀번호를 추천 기준으로 사용한다.'],
+exp:'추천에는 관심사와 대출 패턴만 있으면 충분합니다. 이름, 연락처 같은 직접 식별 정보는 익명화하거나 수집하지 않는 것이 바람직합니다.'},
+{p:1,t:'학교 축제 쓰레기 지도',level:'기초',ans:4,visual:'grid',
+story:'축제 후 운동장 곳곳에 쓰레기가 남았다. 환경 동아리는 위치별 쓰레기 양을 표시해 청소 순서를 정하려고 한다.',
+q:'가장 효율적인 청소 전략은?',
+choices:['가장 먼 곳부터 무작위로 청소한다.','쓰레기가 없는 곳만 반복해서 확인한다.','모든 구역을 같은 시간 동안만 청소한다.','지도 없이 감으로 움직인다.','쓰레기 밀도가 높은 구역부터 우선 청소한다.'],
+exp:'제한된 시간에는 영향이 큰 영역부터 처리해야 합니다. 데이터 기반 우선순위 설정은 자원 배분을 효율화합니다.'},
+{p:1,t:'미로형 전시관 안내',level:'기초',ans:2,visual:'gridpath',
+story:'과학 전시관에는 여러 체험 부스가 있다. 방문객이 같은 길을 반복하지 않고 출구까지 가도록 안내판을 만들려고 한다.',
+q:'안내판 설계에서 가장 중요한 정보는?',
+choices:['벽의 색깔 이름만 표시한다.','가장 비싼 부스만 표시한다.','현재 위치, 갈 수 있는 방향, 막힌 길 정보를 함께 표시한다.','출구 위치를 숨긴다.','모든 화살표를 같은 방향으로 그린다.'],
+exp:'길찾기에는 현재 상태, 가능한 선택, 제한 조건, 목표 위치가 필요합니다. 이는 그래프 탐색의 기본 요소와 같습니다.'},
+{p:1,t:'알림 피로도 줄이기',level:'기초',ans:3,visual:'table',
+story:'학교 앱에서 너무 많은 알림이 와서 학생들이 중요한 알림을 놓친다.',
+q:'알림 시스템을 개선하는 가장 적절한 기준은?',
+table:[['알림 종류','긴급도','빈도'],['재난','매우 높음','낮음'],['급식','낮음','매일'],['수행평가','높음','중간'],['동아리 홍보','낮음','높음']],
+choices:['모든 알림을 같은 소리로 보낸다.','홍보 알림을 가장 크게 보낸다.','긴급도를 무시하고 시간순으로만 보낸다.','긴급도와 빈도를 함께 고려해 우선순위를 정한다.','알림을 모두 삭제한다.'],
+exp:'정보 설계에서는 중요도와 빈도를 함께 고려해야 합니다. 긴급한 정보는 즉시, 낮은 긴급도 정보는 묶어서 제공할 수 있습니다.'},
+{p:1,t:'학교 정원 자동 물주기',level:'기초',ans:1,visual:'sky',
+story:'정원에 자동 물주기 장치를 만들려고 한다. 단, 물 낭비를 줄여야 한다.',
+q:'물주기 판단에 가장 필요한 정보 조합은?',
+choices:['화분 색과 교실 번호','토양 습도, 최근 비, 기온','학생 생일과 급식 메뉴','꽃 이름의 글자 수','학교 종소리 길이'],
+exp:'자동 의사결정에는 목표와 직접 관련된 센서 정보가 필요합니다. 토양 습도, 비, 기온은 물 필요량과 관련이 큽니다.'},
+{p:1,t:'분류 카드 게임',level:'기초',ans:0,visual:'diagram',
+story:'정보 선생님은 생물, 기계, 날씨, 데이터 카드를 학생들에게 나누어 주고 공통 특징으로 묶게 했다.',
+q:'창의적 분류 활동에서 가장 좋은 기준은?',
+fig:['관찰','공통점','분류','설명'],
+choices:['왜 그렇게 묶었는지 설명 가능한 기준','가장 예쁜 카드만 모으는 기준','친구 이름순 기준','아무 기준 없는 무작위','카드 크기만 보는 기준'],
+exp:'분류는 기준이 명확하고 설명 가능해야 합니다. 창의적 분류도 근거가 있어야 다른 사람이 이해하고 검증할 수 있습니다.'},
+{p:1,t:'체육대회 점수판',level:'기초',ans:4,visual:'table',
+story:'체육대회 점수판에 달리기, 줄다리기, 응원 점수가 섞여 있다.',
+q:'공정한 종합 순위를 만들기 위해 가장 먼저 해야 할 일은?',
+table:[['반','달리기','줄다리기','응원'],['1반',90,70,100],['2반',80,95,70],['3반',85,80,85]],
+choices:['응원 점수만 본다.','가장 큰 숫자 하나만 본다.','반 이름을 바꾼다.','점수를 모두 숨긴다.','각 항목의 반영 비율과 계산 규칙을 정한다.'],
+exp:'공정한 평가에는 기준과 가중치가 필요합니다. 계산 규칙을 먼저 정해야 결과 해석이 일관됩니다.'},
+// Part 2
+{p:2,t:'태양광 벤치 설계',level:'응용',ans:2,visual:'table',story:'학교 정원에 태양광 충전 벤치를 설치하려고 한다. 위치별 햇빛 시간과 이용 학생 수가 다르다.',q:'가장 균형 잡힌 설치 위치는?',table:[['위치','햇빛 시간','이용 학생','그늘 위험'],['A',8,20,'낮음'],['B',3,80,'높음'],['C',6,65,'낮음'],['D',9,10,'낮음']],choices:['A: 햇빛만 충분하면 된다.','B: 학생 수만 많으면 된다.','C: 햇빛, 이용량, 위험을 함께 고려하면 가장 균형적이다.','D: 이용 학생이 적을수록 좋다.','아무 곳이나 설치한다.'],exp:'수학적으로 여러 변수를 비교하고, 과학적으로 에너지 생산 조건을 보며, 정보적으로 의사결정 기준을 통합해야 합니다. C는 세 조건이 균형적입니다.'},
+{p:2,t:'감염 확산 자리 배치',level:'응용',ans:1,visual:'grid',story:'과학 탐구 수업에서 비말 확산 모형을 관찰했다. 학생 간 거리를 늘리면 연결이 줄어든다.',q:'감염 위험을 낮추는 자리 배치 원리로 가장 적절한 것은?',choices:['친한 친구끼리 모두 붙여 앉힌다.','접촉 연결 수가 많은 중심 자리를 분산한다.','모든 학생을 한 줄로 밀착시킨다.','환기 정보를 무시한다.','자리 배치는 확산과 무관하다.'],exp:'확산은 네트워크의 연결 수와 관련됩니다. 중심 노드의 연결을 줄이면 전체 전파 가능성을 낮출 수 있습니다.'},
+{p:2,t:'물로켓 발사 데이터',level:'응용',ans:3,visual:'table',story:'물로켓 대회에서 물의 양과 비행 거리를 기록했다. 물이 많을수록 항상 멀리 가는 것은 아니었다.',q:'가장 과학적인 결론은?',table:[['물의 양','거리'],['100mL','18m'],['200mL','31m'],['300mL','42m'],['400mL','37m'],['500mL','25m']],choices:['물이 많을수록 무조건 멀리 간다.','물이 적을수록 무조건 멀리 간다.','거리와 물의 양은 전혀 관계없다.','최적 범위가 있으며 300mL 부근이 좋아 보인다.','측정값은 모두 버려야 한다.'],exp:'데이터는 증가 후 감소 패턴을 보입니다. 따라서 단순한 비례가 아니라 최적 조건을 찾아야 하는 문제입니다.'},
+{p:2,t:'별 관측 스케줄',level:'응용',ans:0,visual:'table',story:'천문 동아리는 별 관측 날짜를 정하려고 한다. 구름, 달 밝기, 미세먼지를 함께 고려해야 한다.',q:'관측에 가장 좋은 날은?',table:[['날','구름','달 밝기','미세먼지'],['월','적음','밝음','보통'],['화','적음','어두움','좋음'],['수','많음','어두움','좋음'],['목','적음','밝음','나쁨']],choices:['화요일','월요일','수요일','목요일','구름 많은 날'],exp:'천체 관측은 구름이 적고, 달빛이 어둡고, 미세먼지가 좋은 날이 유리합니다. 표에서는 화요일이 가장 적절합니다.'},
+{p:2,t:'생태 연못 균형',level:'응용',ans:4,visual:'diagram',story:'학교 생태 연못에는 물풀, 곤충, 작은 물고기, 새가 있다. 어느 한 요소가 급격히 줄면 전체 균형이 흔들릴 수 있다.',q:'정보 모델로 생태계를 표현할 때 가장 알맞은 방법은?',fig:['물풀','곤충','물고기','새'],choices:['각 생물을 서로 무관한 점으로만 본다.','가장 큰 생물만 기록한다.','색깔만 기록한다.','생물 이름을 알파벳순으로만 정렬한다.','먹이 관계와 영향 방향을 연결 그래프로 표현한다.'],exp:'생태계는 요소 간 상호작용이 중요합니다. 그래프는 노드와 연결로 관계를 표현하므로 생태계 모델링에 적합합니다.'},
+{p:2,t:'소리 방음 실험',level:'응용',ans:2,visual:'table',story:'동아리실 방음재 후보를 비교했다. 두께가 두꺼울수록 방음은 좋지만 비용도 증가한다.',q:'예산이 제한된 상황에서 가장 합리적인 선택은?',table:[['재료','소음 감소','비용'],['A','10dB','1만원'],['B','18dB','2만원'],['C','20dB','5만원'],['D','21dB','9만원']],choices:['무조건 D를 고른다.','무조건 가장 싼 A를 고른다.','효과 대비 비용이 좋은 B를 우선 검토한다.','소음 감소를 보지 않는다.','비용을 기록하지 않는다.'],exp:'B는 A보다 효과가 크게 증가하면서 비용은 적당합니다. C, D는 추가 효과에 비해 비용 증가가 큽니다. 효율성을 보는 응용 문제입니다.'},
+{p:2,t:'수열 속 기후 신호',level:'응용',ans:1,visual:'table',story:'기상 관측반은 매일 최고기온을 기록했다. 단순히 하루 수치보다 변화 추세가 중요하다고 판단했다.',q:'폭염 가능성을 조기에 파악하는 정보 처리 방법은?',table:[['날','1','2','3','4','5'],['최고기온',28,29,31,33,35]],choices:['첫날 기온만 본다.','며칠 동안의 증가 추세와 임계값 접근을 함께 본다.','가장 낮은 값만 본다.','날짜를 지운다.','기온 단위를 없앤다.'],exp:'위험 예측은 현재값뿐 아니라 변화율과 임계값을 함께 봐야 합니다. 28→35로 상승하는 추세는 경고 신호입니다.'},
+{p:2,t:'로봇 청소 구역 분할',level:'응용',ans:3,visual:'gridpath',story:'로봇 청소기가 과학실 바닥을 청소한다. 실험대가 장애물이고, 먼지가 많은 구역이 있다.',q:'청소 효율을 높이는 전략은?',choices:['장애물을 무시하고 직진한다.','출발점만 계속 청소한다.','먼지가 적은 곳만 청소한다.','장애물을 피하면서 먼지 밀도가 높은 구역을 우선 방문한다.','배터리 잔량을 보지 않는다.'],exp:'경로 계획은 장애물, 목표 우선순위, 자원 제한을 함께 고려해야 합니다. 이는 정보·수학·공학적 사고가 결합된 문제입니다.'},
+{p:2,t:'영양소 균형 도시락',level:'응용',ans:0,visual:'table',story:'급식 연구반은 탄수화물, 단백질, 채소 균형을 고려해 도시락을 설계한다.',q:'균형 잡힌 선택으로 가장 적절한 것은?',table:[['도시락','탄수화물','단백질','채소'],['A','중간','중간','중간'],['B','높음','낮음','낮음'],['C','낮음','높음','낮음'],['D','높음','높음','없음']],choices:['A','B','C','D','채소가 없는 선택'],exp:'균형 문제에서는 한 항목의 극단적 최대보다 전체 항목의 조화가 중요합니다. A가 가장 균형적입니다.'},
+{p:2,t:'지진 대피 안내판',level:'응용',ans:4,visual:'diagram',story:'학교 건물의 대피 안내판을 개선하려고 한다. 빠른 대피뿐 아니라 혼잡 분산도 중요하다.',q:'가장 좋은 안내 시스템은?',fig:['교실','복도','계단1','계단2','운동장'],choices:['모든 학생을 계단 1로만 보낸다.','안내판을 복잡한 글로만 만든다.','운동장 위치를 빼고 표시한다.','혼잡도를 무시한다.','현재 위치별로 가까운 출구와 대체 경로를 함께 표시한다.'],exp:'대피 문제는 최단 경로뿐 아니라 병목과 대체 경로가 중요합니다. 위치별 맞춤 안내가 혼잡을 줄일 수 있습니다.'},
+// Part 3
+{p:3,t:'추상 도시의 빛 경로',level:'심화',ans:2,visual:'pseudo',story:'어떤 도시는 빛 에너지가 여러 거울 노드를 지나 중앙 탑으로 모인다. 각 노드는 에너지를 일부 잃고 다음 노드로 보낸다.',q:'pseudo code의 핵심 아이디어로 가장 적절한 것은?',pseudo:'START\n  energy ← 처음 빛의 세기\n  FOR each mirror on path\n      energy ← energy - loss(mirror)\n      IF energy < minimum THEN\n          mark path as 실패\n          STOP\n  mark path as 성공\nEND',choices:['빛의 색깔 이름만 바꾼다.','모든 거울을 무조건 성공으로 표시한다.','경로를 따라 상태를 갱신하고 기준보다 작아지면 중단한다.','처음 에너지를 사용하지 않는다.','손실을 기록하지 않는다.'],exp:'pseudo code는 반복적으로 에너지를 갱신하고, 임계값 미만이면 실패로 판단합니다. 이는 시뮬레이션과 조건 판단의 추상 구조입니다.'},
+{p:3,t:'빙하 섬의 균형',level:'심화',ans:1,visual:'pseudo',story:'빙하 섬은 낮에는 녹고 밤에는 다시 언다. 과학자는 섬의 크기가 위험 수준 아래로 내려가는 날을 찾으려 한다.',q:'가장 알맞은 추상화는?',pseudo:'day ← 0\nsize ← initial_size\nWHILE size > danger_line\n    day ← day + 1\n    size ← size - melting(day) + freezing(day)\nREPORT day',choices:['날짜를 세지 않는다.','크기를 매일 갱신하며 위험 기준을 처음 넘는 시점을 찾는다.','빙하 색만 비교한다.','항상 안전하다고 가정한다.','녹는 양과 어는 양을 모두 무시한다.'],exp:'위험 시점 예측은 상태 변수를 시간에 따라 갱신하고 기준과 비교하는 반복 구조로 표현할 수 있습니다.'},
+{p:3,t:'침묵하는 행성의 신호',level:'심화',ans:4,visual:'tablepseudo',story:'탐사선은 세 행성에서 약한 신호를 받았다. 잡음이 많아 한 번의 측정만으로는 판단하기 어렵다.',q:'pseudo code의 목적은?',table:[['행성','신호1','신호2','신호3'],['A',3,4,3],['B',8,1,9],['C',5,5,5]],pseudo:'FOR each planet\n    average ← mean(signals)\n    variation ← spread(signals)\n    IF average is high AND variation is low\n        choose planet',choices:['가장 큰 값 하나만 고른다.','가장 작은 값 하나만 고른다.','행성 이름 길이를 비교한다.','측정을 모두 삭제한다.','평균과 안정성을 함께 고려해 신뢰할 신호를 고른다.'],exp:'잡음이 있는 데이터에서는 평균뿐 아니라 변동성도 중요합니다. C처럼 안정적인 신호가 더 신뢰될 수 있습니다.'},
+{p:3,t:'무한 도서관의 분류 규칙',level:'심화',ans:0,visual:'pseudo',story:'무한 도서관에는 책이 계속 들어온다. 사서는 책을 주제, 난이도, 연결 개념으로 분류한다.',q:'이 절차의 창의적 핵심은?',pseudo:'FOR each new book\n    tags ← extract(topic, level, linked_concept)\n    shelf ← find best matching shelf(tags)\n    IF no shelf is suitable\n        create new shelf\n    place book',choices:['기존 분류에 맞지 않으면 새 범주를 만들 수 있다.','모든 책을 한 곳에 쌓는다.','책 제목을 보지 않는다.','난이도를 항상 같게 둔다.','연결 개념을 제거한다.'],exp:'창의적 분류는 기존 기준을 적용하되, 설명 가능한 새 범주를 생성할 수 있어야 합니다. 이는 지식 조직화 능력입니다.'},
+{p:3,t:'씨앗 드론의 탐색',level:'심화',ans:3,visual:'gridpathpseudo',story:'씨앗 드론은 사막화 지역을 지나며 물 가능성이 높은 칸에 씨앗을 뿌린다. 단, 배터리는 제한되어 있다.',q:'가장 적절한 의사결정 원리는?',pseudo:'WHILE battery remains\n    observe nearby cells\n    score ← water_chance - danger_cost - distance_cost\n    move to cell with best score\n    IF score is enough THEN plant seed',choices:['위험 비용을 무시한다.','가장 먼 칸으로만 간다.','배터리를 고려하지 않는다.','가능성, 위험, 거리 비용을 통합해 선택한다.','모든 칸에 무조건 씨앗을 뿌린다.'],exp:'복합 의사결정에서는 이익과 비용을 하나의 점수로 추상화할 수 있습니다. 제한된 배터리 안에서 가장 가치 있는 선택을 해야 합니다.'},
+{p:3,t:'소리의 미로',level:'심화',ans:1,visual:'pseudo',story:'동굴 속 로봇은 빛이 없어 초음파 반사로 길을 찾는다. 반사가 너무 강하면 벽, 약하면 열린 공간일 수 있다.',q:'pseudo code가 표현하는 사고는?',pseudo:'send sound\nreceive echo\nIF echo is strong THEN mark wall\nELSE mark open path\nupdate map\nchoose safest unknown path',choices:['반사를 무시하고 직진한다.','센서 입력을 해석해 지도를 갱신하고 다음 탐색을 정한다.','벽을 열린 길로 표시한다.','지도를 만들지 않는다.','항상 처음 위치로 돌아간다.'],exp:'센서 기반 탐색은 관측값을 상태 정보로 변환하고 지도를 갱신한 뒤 다음 행동을 결정하는 과정입니다.'},
+{p:3,t:'시간 정원의 성장 규칙',level:'심화',ans:4,visual:'tablepseudo',story:'시간 정원에서는 식물이 온도, 빛, 물의 균형이 맞을 때만 성장한다.',q:'다음 pseudo code에서 성장하지 않는 이유를 가장 잘 설명한 것은?',table:[['조건','현재값','적정 범위'],['온도',24,'20~26'],['빛',3,'5~8'],['물',6,'4~7']],pseudo:'IF temperature OK AND light OK AND water OK\n    grow\nELSE\n    wait',choices:['온도가 범위 밖이다.','물이 범위 밖이다.','모든 조건이 충분하다.','조건은 하나만 맞으면 된다.','빛이 적정 범위보다 부족하여 전체 AND 조건이 실패한다.'],exp:'AND 조건은 모든 조건이 참이어야 합니다. 온도와 물은 적절하지만 빛이 부족하므로 성장하지 않습니다.'},
+{p:3,t:'별자리 암호 지도',level:'심화',ans:2,visual:'diagram',story:'별자리 지도에서 별은 점, 별 사이의 선은 이동 가능 통로를 뜻한다. 탐험가는 가장 적은 위험으로 보물 별에 가야 한다.',q:'이 문제를 추상화하는 가장 좋은 표현은?',fig:['별 A','별 B','별 C','보물'],choices:['별의 색만 나열한다.','별 이름을 시로 쓴다.','별을 노드, 통로를 간선, 위험을 가중치로 보는 그래프 문제','모든 통로의 위험을 같다고 가정한다.','출발점을 숨긴다.'],exp:'최소 위험 경로는 가중치 그래프 문제로 추상화할 수 있습니다. 노드, 간선, 가중치가 핵심 요소입니다.'},
+{p:3,t:'미세먼지 방패 도시',level:'심화',ans:0,visual:'tablepseudo',story:'미래 도시는 미세먼지 농도, 바람 방향, 인구 밀도를 보고 공기 정화막을 펼친다.',q:'정화막 우선 설치 지역을 고르는 기준으로 가장 타당한 것은?',table:[['구역','먼지','바람 유입','인구'],['A','높음','강함','많음'],['B','높음','약함','적음'],['C','낮음','강함','많음']],pseudo:'risk ← dust_score + wind_inflow_score + population_score\nchoose area with highest risk',choices:['먼지, 바람 유입, 인구를 통합한 위험도가 높은 곳','인구가 없는 곳','먼지가 낮은 곳','바람 정보를 삭제한 곳','이름이 빠른 구역'],exp:'환경 문제에서는 오염 정도, 확산 가능성, 영향을 받는 사람 수를 함께 고려해야 합니다. A의 통합 위험이 가장 큽니다.'},
+{p:3,t:'양자 상자의 선택 규칙',level:'심화',ans:3,visual:'pseudo',story:'상자 안의 입자는 관찰 전에는 여러 가능성을 가진다. 연구자는 가능한 결과를 확률 분포로 보고 가장 안정적인 실험 조건을 고르려 한다.',q:'이 pseudo code가 강조하는 추상적 사고는?',pseudo:'FOR each condition\n    outcomes ← possible results\n    uncertainty ← measure spread(outcomes)\n    success ← expected value(outcomes)\nchoose condition with high success and low uncertainty',choices:['가능한 결과를 하나만 있다고 가정한다.','불확실성을 무시한다.','성공 기대값만 보고 변동성은 버린다.','기대 성과와 불확실성을 함께 비교한다.','무작위로 조건을 고른다.'],exp:'심화 창의력 문제에서는 결과 하나가 아니라 가능성의 분포를 봅니다. 기대값이 높고 불확실성이 낮은 조건이 안정적인 선택입니다.'}
+];
+let currentPart=1,currentQ=0,answers=Array(questions.length).fill('');
+function visualHTML(x){
+ if(x.visual==='diagram') return `<div class="visual"><h4>📌 관계 다이어그램</h4><div class="diagram">${x.fig.map((v,i)=>`<div class="node">${v}</div>${i<x.fig.length-1?'<div class="arrow">→</div>':''}`).join('')}</div></div>`;
+ if(x.visual==='table') return `<div class="visual"><h4>📊 관찰 표</h4><table class="data-table">${x.table.map((r,i)=>`<tr>${r.map(c=>i?`<td>${c}</td>`:`<th>${c}</th>`).join('')}</tr>`).join('')}</table></div>`;
+ if(x.visual==='sky') return `<div class="visual"><h4>🖼️ 상황 그림</h4><div class="sky"><div class="sun"></div><div class="mount"></div><div class="river"></div></div></div>`;
+ if(x.visual==='grid') return `<div class="visual"><h4>🧩 구역 그림</h4><div class="gridpic">${Array.from({length:25},(_,i)=>`<div class="cell ${[6,7,12,18].includes(i)?'heat':''}">${[6,7,12,18].includes(i)?'★':''}</div>`).join('')}</div><p><span class="pill">★ 밀집 구역</span><span class="pill">빈칸 일반 구역</span></p></div>`;
+ if(x.visual==='gridpath') return `<div class="visual"><h4>🧭 경로 그림</h4><div class="gridpic">${Array.from({length:25},(_,i)=>`<div class="cell ${i===0?'start':i===24?'end':[6,11,12,17].includes(i)?'block':''}">${i===0?'S':i===24?'G':[6,11,12,17].includes(i)?'■':''}</div>`).join('')}</div><p><span class="pill">S 출발</span><span class="pill">G 목표</span><span class="pill">■ 장애물</span></p></div>`;
+ if(x.visual==='pseudo') return `<div class="visual"><h4>🧾 Pseudo Code</h4><div class="pseudo">${x.pseudo}</div></div>`;
+ if(x.visual==='tablepseudo') return `<div class="visual"><h4>📊 표 + Pseudo Code</h4><table class="data-table">${x.table.map((r,i)=>`<tr>${r.map(c=>i?`<td>${c}</td>`:`<th>${c}</th>`).join('')}</tr>`).join('')}</table><br><div class="pseudo">${x.pseudo}</div></div>`;
+ if(x.visual==='gridpathpseudo') return `<div class="visual"><h4>🧭 지도 + Pseudo Code</h4><div class="gridpic">${Array.from({length:25},(_,i)=>`<div class="cell ${i===0?'start':i===24?'end':[7,8,13].includes(i)?'water':[11,12,16].includes(i)?'block':''}">${i===0?'D':i===24?'목':[7,8,13].includes(i)?'물':[11,12,16].includes(i)?'위':''}</div>`).join('')}</div><br><div class="pseudo">${x.pseudo}</div></div>`;
+ return '';
+}
+function render(){
+ const partNames={1:'Part 1 정보 융합 스토리, 표, 다이어그램, 그림 창의력 진단 평가',2:'Part 2 수학·과학·정보 융합 스토리 창의력 진단 평가',3:'Part 3 Pseudo Code 기반 추상적 융합 심화 진단 평가'};
+ const icons={1:'🌱',2:'🚀',3:'🌀'};
+ const desc={1:'생활 속 정보 문제를 스토리, 표, 그림, 다이어그램으로 해석합니다. 핵심은 자료에서 의미 있는 기준을 찾고 정보 흐름을 설명하는 것입니다.',2:'수학적 비교, 과학적 조건, 정보적 의사결정을 함께 사용합니다. 하나의 정답보다 근거 있는 선택 능력을 평가합니다.',3:'실제 코드는 사용하지 않고 pseudo code로 사고 절차를 표현합니다. 추상화, 조건, 반복, 상태 갱신, 모델링 능력을 진단합니다.'};
+ const qs=questions.map((q,i)=>({...q,idx:i})).filter(q=>q.p===currentPart);
+ document.getElementById('content').innerHTML=`<div class="part-title"><span>${icons[currentPart]}</span><h2>${partNames[currentPart]}</h2></div><div class="part-desc">${desc[currentPart]}</div>`+qs.map((x,k)=>`<article class="question ${k===currentQ?'active':''}" id="q${x.idx}"><div class="qcard"><div class="qhead"><div class="qnum">문항 ${x.idx+1}. ${x.t}</div><div class="level">${x.level}</div></div><div class="story">${x.story}</div>${visualHTML(x)}<div class="prompt">${x.q}<br><span style="font-size:16px;color:#526078">※ 아래 판단 자료를 참고하여 자신의 결론과 근거를 서술하시오.</span></div><div class="choices"><h4 style="margin:0 0 4px">🧩 판단 자료</h4>${x.choices.map((c,j)=>`<div class="choice"><span><b>${j+1}.</b> ${c}</span></div>`).join('')}</div><div class="essay-box"><h4>✍️ 서술형 답안 작성</h4><textarea id="essay${x.idx}" oninput="setEssay(${x.idx},this.value)" placeholder="선택한 판단, 표·그림·다이어그램에서 찾은 근거, 최종 결론을 3~5문장으로 서술하세요.">${answers[x.idx]||''}</textarea><div class="rubric"><span>① 결론 명확성</span><span>② 자료 근거 활용</span><span>③ 논리적 설명</span></div></div><div class="actions"><button class="btn light" onclick="toggleExp(${x.idx})">예시 답안·상세 풀이 보기</button><button class="btn primary" onclick="nextQ()">다음 문항</button></div><div class="explain" id="exp${x.idx}"><b>예시 답안 방향: ${x.ans+1}번 판단</b><br>${x.exp}<br><br><b>서술 예시:</b> 위 자료에서 ${x.ans+1}번 판단이 가장 타당하다. 표, 그림 또는 pseudo code가 보여 주는 핵심 조건을 근거로 볼 때 다른 판단보다 문제 상황을 더 잘 설명한다. 따라서 결론은 ${x.choices[x.ans]}이다.</div></div></article>`).join('');
+ renderGrid();
+}
+function renderGrid(){
+ const qs=questions.map((q,i)=>({...q,idx:i})).filter(q=>q.p===currentPart);
+ document.getElementById('qgrid').innerHTML=qs.map((q,k)=>`<button class="qbtn ${k===currentQ?'active':''} ${answers[q.idx]&&answers[q.idx].trim().length>0?'done':''}" onclick="goQ(${k})">${q.idx+1}</button>`).join('');
+ document.querySelectorAll('.part-btn').forEach((b,i)=>b.classList.toggle('active',i+1===currentPart));
+}
+function showPart(p){currentPart=p;currentQ=0;render();window.scrollTo({top:0,behavior:'smooth'});}
+function goQ(k){currentQ=k;render();}
+function nextQ(){const count=questions.filter(q=>q.p===currentPart).length;if(currentQ<count-1)currentQ++;else if(currentPart<3){currentPart++;currentQ=0;}render();}
+function setEssay(i,v){answers[i]=v;renderGrid();}
+function toggleExp(i){document.getElementById('exp'+i).classList.toggle('show');}
+function gradeAll(){
+ questions.forEach((q,i)=>{ document.getElementById('exp'+i)?.classList.add('show'); });
+ const completed=answers.filter(v=>v&&v.trim().length>0).length;
+ const sid=document.getElementById('sid').value||'학번미입력'; const name=document.getElementById('sname').value||'이름미입력'; const now=new Date().toLocaleString('ko-KR');
+ const partScore=[1,2,3].map(p=>questions.map((q,i)=>({q,i})).filter(o=>o.q.p===p).reduce((a,o)=>a+((answers[o.i]&&answers[o.i].trim().length>0)?1:0),0));
+ const answerList=questions.map((q,i)=>`<li><b>${i+1}. ${q.t}</b><br>${(answers[i]||'미작성').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</li>`).join('');
+ document.getElementById('result').classList.remove('hidden');
+ document.getElementById('result').innerHTML=`<h2>📌 서술형 작성 결과</h2><p><b>응시자:</b> ${sid} ${name}</p><p><b>응시 시각:</b> ${now}</p><div class="scorebig">작성 ${completed} / ${questions.length}문항</div><p>Part 1: ${partScore[0]}/10 · Part 2: ${partScore[1]}/10 · Part 3: ${partScore[2]}/10</p><p>교사 평가는 각 문항의 <b>결론 명확성 · 자료 근거 활용 · 논리적 설명</b> 기준으로 채점할 수 있습니다.</p><h3>학생 작성 답안</h3><ol style="line-height:1.8">${answerList}</ol>`;
+ window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+function downloadResult(){
+ gradeAll();
+ const sid=(document.getElementById('sid').value||'학번').replace(/\s+/g,'');
+ const name=(document.getElementById('sname').value||'이름').replace(/\s+/g,'');
+ const stamp=new Date().toISOString().slice(0,19).replace(/[-:T]/g,'');
+ const blob=new Blob(['<!DOCTYPE html>\n'+document.documentElement.outerHTML],{type:'text/html;charset=utf-8'});
+ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`${sid}_${name}_창의력_점수_${stamp}.html`; a.click(); URL.revokeObjectURL(a.href);
+}
+render();
+</script>
+</body>
+</html>
