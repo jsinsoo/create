@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>과학고 창의력 경진대회 최고급 융합 단답형</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Malgun Gothic','Apple SD Gothic Neo',Arial,sans-serif;background:linear-gradient(135deg,#f8fafc,#fff7ed);color:#111827}
+header{padding:34px 40px;background:linear-gradient(135deg,#020617,#312e81,#7c2d12);color:white}
+header h1{margin:0 0 12px;font-size:32px}
+header p{margin:5px 0;line-height:1.65}
+.info{margin:22px 34px;padding:18px;background:white;border-radius:24px;box-shadow:0 10px 30px #0001;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{font-weight:900}
+input{width:100%;padding:13px;margin-top:7px;border:2px solid #ddd6fe;border-radius:14px;font-size:16px}
+.layout{display:grid;grid-template-columns:285px 1fr;gap:18px;padding:0 34px 38px}
+nav{position:sticky;top:12px;align-self:start;max-height:88vh;overflow:auto;background:white;border-radius:24px;padding:15px;box-shadow:0 10px 30px #0001}
+nav a{display:block;margin:7px 0;padding:10px;border-radius:14px;text-decoration:none;color:#111827;background:#f8fafc;line-height:1.35}
+nav a:hover{background:#ede9fe}
+.part{margin:22px 0 14px;padding:19px 22px;border-radius:22px;background:linear-gradient(135deg,#ede9fe,#ffedd5);border:1px solid #ddd6fe;font-size:24px;font-weight:900}
+.card{background:white;border:1px solid #e5e7eb;border-radius:26px;margin:18px 0;padding:24px;box-shadow:0 10px 30px #0001}
+.head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.head h2{margin:0 0 10px;font-size:22px;color:#0f172a}
+.head span{background:#fef3c7;color:#92400e;border-radius:999px;padding:8px 12px;font-weight:900;white-space:nowrap}
+.tag{display:inline-block;background:#f5f3ff;border:1px solid #ddd6fe;color:#5b21b6;border-radius:999px;padding:8px 13px;font-weight:900;margin-bottom:12px}
+.story{white-space:pre-line;line-height:1.9;font-size:17px;background:#f8fafc;border-left:8px solid #7c3aed;border-radius:18px;padding:18px}
+pre{white-space:pre-wrap;line-height:1.6;background:#fff7ed;border:1px dashed #fdba74;border-radius:17px;padding:15px;font-family:'Malgun Gothic',Consolas,monospace;color:#7c2d12}
+.answer{display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin-top:13px}
+.answer label{width:235px}
+button{border:0;border-radius:13px;background:#7c3aed;color:white;font-weight:900;padding:12px 16px;cursor:pointer;font-size:15px}
+button.dark{background:#374151}
+button.green{background:#047857}
+.solution{display:none;margin-top:14px;background:#ecfdf5;border:1px solid #86efac;border-radius:17px;padding:16px;line-height:1.8}
+#bar{position:sticky;bottom:0;background:#111827;color:white;border-radius:24px;margin-top:24px;padding:18px;box-shadow:0 -8px 24px #0003}
+#score{color:#fde68a;font-size:19px}
+.footer{padding:18px 34px 42px;color:#64748b}
+@media print{
+nav,#bar,button{display:none!important}
+.layout{display:block;padding:0 14mm}
+.card{break-inside:avoid;box-shadow:none}
+.solution{display:block!important}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>🧠 과학고 창의력 경진대회 최고급 융합 예시 문제</h1>
+<p>10개 분야 × 3문항 = 총 30문항 · 숫자 단답형 · 5줄 이상 스토리형 · 철학·인문학·추상적 사고 융합</p>
+<p>소수, 약수와 배수, 최대공약수, 최소공배수, 일차방정식, 이차방정식, 연립방정식, 등차수열, 등비수열, 피보나치, 프랙탈, 암호학, 인공지능, 기계학습, 회귀, 분류, 알고리즘, 한글 pseudo code 포함</p>
+</header>
+<section class="info">
+<label>학번<input id="studentId" type="text" placeholder="학번 입력"></label>
+<label>이름<input id="studentName" type="text" placeholder="이름 입력"></label>
+</section>
+<div class="layout">
+<nav><b>📌 문항 바로가기</b><a href="#q01"><b>01</b> 수학<br><small>플라톤의 동굴과 소수 암호</small></a><a href="#q02"><b>02</b> 수학<br><small>정의로운 분배와 최대공약수</small></a><a href="#q03"><b>03</b> 수학<br><small>끝없이 반복되는 프랙탈 사원</small></a><a href="#q04"><b>04</b> 물리학<br><small>아리스토텔레스의 목적론과 낙하 모델</small></a><a href="#q05"><b>05</b> 물리학<br><small>칸트의 시간 감각과 진자 동시성</small></a><a href="#q06"><b>06</b> 물리학<br><small>관찰자의 판단과 회귀식</small></a><a href="#q07"><b>07</b> 지구과학<br><small>대지의 기억과 지진파 추론</small></a><a href="#q08"><b>08</b> 지구과학<br><small>기후 윤리와 경고 임계값</small></a><a href="#q09"><b>09</b> 지구과학<br><small>지층 반복과 최소공배수의 시간</small></a><a href="#q10"><b>10</b> 생명과학<br><small>생명의 나선과 피보나치 판단</small></a><a href="#q11"><b>11</b> 생명과학<br><small>생태계 균형과 최대공약수</small></a><a href="#q12"><b>12</b> 생명과학<br><small>세포 운명과 등비 증식</small></a><a href="#q13"><b>13</b> 유기화학<br><small>분자의 정체성과 선형 회귀</small></a><a href="#q14"><b>14</b> 유기화학<br><small>향기의 조화와 연립방정식</small></a><a href="#q15"><b>15</b> 유기화학<br><small>반응의 리듬과 최소공배수</small></a><a href="#q16"><b>16</b> 무기화학<br><small>결정 격자와 질서의 철학</small></a><a href="#q17"><b>17</b> 무기화학<br><small>산화수의 균형 방정식</small></a><a href="#q18"><b>18</b> 무기화학<br><small>촉매 표면의 프랙탈 선택</small></a><a href="#q19"><b>19</b> 천문학<br><small>우주의 리듬과 행성 정렬</small></a><a href="#q20"><b>20</b> 천문학<br><small>밤하늘 밝기와 회귀 예측</small></a><a href="#q21"><b>21</b> 천문학<br><small>혜성의 가장 가까운 순간</small></a><a href="#q22"><b>22</b> 의생명학<br><small>진단의 윤리와 분류 임계값</small></a><a href="#q23"><b>23</b> 의생명학<br><small>약물 농도의 존재론적 감소</small></a><a href="#q24"><b>24</b> 의생명학<br><small>검체 보관의 공정성과 최대공약수</small></a><a href="#q25"><b>25</b> 공학<br><small>로봇 윤리와 한글 pseudo code</small></a><a href="#q26"><b>26</b> 공학<br><small>센서 보정과 연립 판단</small></a><a href="#q27"><b>27</b> 공학<br><small>AI 품질 판정의 임계값</small></a><a href="#q28"><b>28</b> 실생활<br><small>민주적 투표와 소수 규칙</small></a><a href="#q29"><b>29</b> 실생활<br><small>통학 리듬과 최소공배수</small></a><a href="#q30"><b>30</b> 실생활<br><small>학습 추천 알고리즘과 자기이해</small></a></nav>
+<main><section class="part">✦ 수학 분야</section>
+<article class="card" id="q01">
+<div class="head"><h2>1. 플라톤의 동굴과 소수 암호</h2><span>수학</span></div>
+<div class="tag">🧩 융합 요소: 소수·암호학·분류·철학적 추상</div>
+<div class="story">철학 토론 동아리는 플라톤의 동굴 비유를 ‘참된 수를 찾는 암호’로 바꾸었다.
+벽에 비친 후보 수는 84, 85, 87, 89, 91이며, 그림자처럼 보이는 수는 대부분 합성수이다.
+진짜 출구를 여는 수는 약수가 1과 자기 자신뿐인 소수여야 한다.
+또한 그 수는 후보 중 가장 큰 수가 아니라, 합성수 사이에 숨어 있는 하나의 독립된 수이다.
+이 조건을 만족하는 출구 암호는 무엇인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 소수·암호학·분류·철학적 추상
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans1" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(1)">채점</button>
+<button class="dark" onclick="toggleSol(1)">상세 풀이</button>
+<b id="res1"></b>
+</div>
+<div class="solution" id="sol1"><b>정답: 89</b><br>84는 짝수, 85=5×17, 87=3×29, 91=7×13으로 합성수이다. 89는 2,3,5,7로 나누어떨어지지 않으므로 소수이다. 정답은 89.</div>
+</article>
+
+<article class="card" id="q02">
+<div class="head"><h2>2. 정의로운 분배와 최대공약수</h2><span>수학</span></div>
+<div class="tag">🧩 융합 요소: 최대공약수·약수와 배수·윤리·알고리즘</div>
+<div class="story">인문학 세미나에서는 ‘정의로운 분배’가 단순한 평등이 아니라 남김없는 구조일 수 있다고 토론했다.
+세미나 자료 카드 72장과 토론 질문 카드 90장을 여러 모둠에 똑같이 나누어 주려 한다.
+각 모둠은 자료 카드 수가 같고 질문 카드 수도 같아야 하며, 남는 카드는 없어야 한다.
+가장 많은 모둠을 만들면 개인의 몫은 작아지지만 참여 기회는 가장 넓어진다.
+이때 만들 수 있는 모둠의 최대 개수는 몇 개인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 최대공약수·약수와 배수·윤리·알고리즘
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans2" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(2)">채점</button>
+<button class="dark" onclick="toggleSol(2)">상세 풀이</button>
+<b id="res2"></b>
+</div>
+<div class="solution" id="sol2"><b>정답: 18</b><br>72와 90의 최대공약수를 구한다. 90-72=18, 72는 18로 나누어떨어지고 90도 18로 나누어떨어진다. 최대공약수는 18이다.</div>
+</article>
+
+<article class="card" id="q03">
+<div class="head"><h2>3. 끝없이 반복되는 프랙탈 사원</h2><span>수학</span></div>
+<div class="tag">🧩 융합 요소: 프랙탈·등비수열·무한성·추상 사고</div>
+<div class="story">고대 사원의 문양을 연구하던 학생은 하나의 삼각형 안에 세 개의 작은 삼각형이 반복되는 그림을 발견했다.
+이 문양은 인간이 유한한 손으로 무한을 상상하려 했던 흔적처럼 보였다.
+0단계에는 중심 문양이 1개이고, 단계가 한 번 진행될 때마다 모든 문양은 3개로 갈라진다.
+전시용 복원에서는 무한히 반복하지 않고 5단계까지만 제작하기로 했다.
+5단계에서 보이는 작은 문양은 모두 몇 개인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 프랙탈·등비수열·무한성·추상 사고
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans3" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(3)">채점</button>
+<button class="dark" onclick="toggleSol(3)">상세 풀이</button>
+<b id="res3"></b>
+</div>
+<div class="solution" id="sol3"><b>정답: 243</b><br>0단계 1개에서 1단계 3개, 2단계 9개, 3단계 27개, 4단계 81개, 5단계 243개이다.</div>
+</article>
+<section class="part">✦ 물리학 분야</section>
+<article class="card" id="q04">
+<div class="head"><h2>4. 아리스토텔레스의 목적론과 낙하 모델</h2><span>물리학</span></div>
+<div class="tag">🧩 융합 요소: 이차방정식·물리 모델·철학</div>
+<div class="story">물리철학 수업에서 학생들은 ‘물체는 목적지를 향해 간다’는 고대적 설명과 현대적 수식 모델을 비교했다.
+가상의 낙하 실험에서 높이는 h=125-5t²로 단순화된다.
+여기서 h는 높이, t는 시간이며, 바닥에 닿는 순간은 h=0으로 표현된다.
+학생들은 목적론적 언어를 버리고 수식의 구조만으로 도착 시간을 찾아야 한다.
+물체가 바닥에 닿는 시간 t는 몇 초인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 이차방정식·물리 모델·철학
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans4" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(4)">채점</button>
+<button class="dark" onclick="toggleSol(4)">상세 풀이</button>
+<b id="res4"></b>
+</div>
+<div class="solution" id="sol4"><b>정답: 5</b><br>125-5t²=0이므로 5t²=125, t²=25이다. 시간은 양수이므로 t=5초이다.</div>
+</article>
+
+<article class="card" id="q05">
+<div class="head"><h2>5. 칸트의 시간 감각과 진자 동시성</h2><span>물리학</span></div>
+<div class="tag">🧩 융합 요소: 최소공배수·주기·추상적 시간</div>
+<div class="story">철학자는 시간이 인간 인식의 형식이라고 말했지만, 실험실의 진자는 각자의 주기로 움직인다.
+A 진자는 18초마다 처음 위치로 돌아오고, B 진자는 24초마다 처음 위치로 돌아온다.
+두 진자가 동시에 처음 위치에 올 때 학생들은 ‘공유된 시간의 사건’이라고 이름 붙였다.
+이 사건은 두 주기의 최소공배수로 계산할 수 있다.
+처음 이후 두 진자가 다시 동시에 처음 위치에 오는 시간은 몇 초 후인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 최소공배수·주기·추상적 시간
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans5" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(5)">채점</button>
+<button class="dark" onclick="toggleSol(5)">상세 풀이</button>
+<b id="res5"></b>
+</div>
+<div class="solution" id="sol5"><b>정답: 72</b><br>18=2×3², 24=2³×3이므로 최소공배수는 2³×3²=72이다.</div>
+</article>
+
+<article class="card" id="q06">
+<div class="head"><h2>6. 관찰자의 판단과 회귀식</h2><span>물리학</span></div>
+<div class="tag">🧩 융합 요소: 회귀·일차방정식·기계학습·인식론</div>
+<div class="story">물리 데이터반은 관찰자의 직관 대신 센서 데이터로 힘을 예측하는 회귀 모델을 만들었다.
+모델은 F=6x+8이며, x는 변형 정도를 나타내는 단계이다.
+학생들은 이 식이 현실 그 자체가 아니라 현실을 해석하는 하나의 틀임을 토론했다.
+실험에서 x=5인 조건이 주어졌고, 모델은 힘 값을 하나의 숫자로 예측해야 한다.
+이 회귀 모델이 예측하는 힘 F는 얼마인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 회귀·일차방정식·기계학습·인식론
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans6" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(6)">채점</button>
+<button class="dark" onclick="toggleSol(6)">상세 풀이</button>
+<b id="res6"></b>
+</div>
+<div class="solution" id="sol6"><b>정답: 38</b><br>F=6×5+8=30+8=38이다.</div>
+</article>
+<section class="part">✦ 지구과학 분야</section>
+<article class="card" id="q07">
+<div class="head"><h2>7. 대지의 기억과 지진파 추론</h2><span>지구과학</span></div>
+<div class="tag">🧩 융합 요소: 연립방정식·지구과학·추론</div>
+<div class="story">지구과학반은 지층을 ‘대지의 기억’으로 비유하며 지진파 기록을 해석했다.
+P파 속도는 초당 8km, S파 속도는 초당 4km라고 단순화했다.
+S파는 P파보다 6초 늦게 도착했다.
+거리 d에 대해 d/4-d/8=6이라는 관계를 세울 수 있다.
+진원까지의 거리는 몇 km인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 연립방정식·지구과학·추론
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans7" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(7)">채점</button>
+<button class="dark" onclick="toggleSol(7)">상세 풀이</button>
+<b id="res7"></b>
+</div>
+<div class="solution" id="sol7"><b>정답: 48</b><br>d/4-d/8=d/8이다. d/8=6이므로 d=48km이다.</div>
+</article>
+
+<article class="card" id="q08">
+<div class="head"><h2>8. 기후 윤리와 경고 임계값</h2><span>지구과학</span></div>
+<div class="tag">🧩 융합 요소: 등차수열·분류·기후 윤리</div>
+<div class="story">기후 윤리 토론에서 학생들은 ‘위험은 언제 숫자가 아니라 책임이 되는가’를 질문했다.
+어떤 지역의 열위험 지수는 첫날 14이고 매일 4씩 증가한다고 예측되었다.
+AI 분류기는 지수가 45 이상이면 ‘개입 필요’로 분류한다.
+학생들은 단순한 예측을 넘어, 최초 개입 시점을 숫자로 찾아야 한다.
+처음으로 개입 필요가 되는 날은 몇 일째인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 등차수열·분류·기후 윤리
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans8" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(8)">채점</button>
+<button class="dark" onclick="toggleSol(8)">상세 풀이</button>
+<b id="res8"></b>
+</div>
+<div class="solution" id="sol8"><b>정답: 9</b><br>n일째 지수는 14+4(n-1)이다. 14+4(n-1)≥45이면 4(n-1)≥31, n-1≥7.75이므로 처음은 9일째이다.</div>
+</article>
+
+<article class="card" id="q09">
+<div class="head"><h2>9. 지층 반복과 최소공배수의 시간</h2><span>지구과학</span></div>
+<div class="tag">🧩 융합 요소: 최소공배수·주기·지질학</div>
+<div class="story">지질학자는 서로 다른 퇴적 주기가 겹치는 순간을 과거 환경 변화의 중요한 단서로 본다.
+한 퇴적 신호는 24년마다 반복되고, 다른 화산재 신호는 40년마다 반복된다고 가정한다.
+두 신호가 동시에 나타나는 시점은 지층 해석에서 특별한 기준층이 된다.
+학생들은 두 반복 주기가 처음으로 다시 겹치는 시간을 계산하려 한다.
+두 신호는 몇 년 후 다시 동시에 나타나는가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 최소공배수·주기·지질학
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans9" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(9)">채점</button>
+<button class="dark" onclick="toggleSol(9)">상세 풀이</button>
+<b id="res9"></b>
+</div>
+<div class="solution" id="sol9"><b>정답: 120</b><br>24=2³×3, 40=2³×5이므로 최소공배수는 2³×3×5=120이다.</div>
+</article>
+<section class="part">✦ 생명과학 분야</section>
+<article class="card" id="q10">
+<div class="head"><h2>10. 생명의 나선과 피보나치 판단</h2><span>생명과학</span></div>
+<div class="tag">🧩 융합 요소: 피보나치·패턴 인식·생명철학</div>
+<div class="story">생명과학반은 잎 배열에서 반복되는 수학적 질서를 보며 ‘생명은 질서를 만드는가, 질서를 발견하게 하는가’를 토론했다.
+가상의 식물에서 잎 묶음 수는 1, 1, 2, 3, 5처럼 앞의 두 값을 더해 증가한다.
+AI 패턴 인식기는 이 자료를 피보나치형으로 분류했다.
+학생들은 열한 번째 관찰값을 계산하여 분류기의 판단을 검증해야 한다.
+열한 번째 잎 묶음 수는 몇 개인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 피보나치·패턴 인식·생명철학
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans10" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(10)">채점</button>
+<button class="dark" onclick="toggleSol(10)">상세 풀이</button>
+<b id="res10"></b>
+</div>
+<div class="solution" id="sol10"><b>정답: 89</b><br>피보나치 수열은 1,1,2,3,5,8,13,21,34,55,89이다. 열한 번째 값은 89이다.</div>
+</article>
+
+<article class="card" id="q11">
+<div class="head"><h2>11. 생태계 균형과 최대공약수</h2><span>생명과학</span></div>
+<div class="tag">🧩 융합 요소: 최대공약수·분류·생태 윤리</div>
+<div class="story">생태학 프로젝트에서 학생들은 다양성이 균형 있게 보존되는 표본 상자를 설계했다.
+곤충 표본 84개와 식물 표본 105개를 여러 상자에 똑같이 나누려 한다.
+각 상자에는 곤충 수와 식물 수가 각각 같아야 하며 남는 표본은 없어야 한다.
+상자 수가 최대가 되면 조사 지점도 가장 세밀하게 나눌 수 있다.
+만들 수 있는 상자의 최대 개수는 몇 개인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 최대공약수·분류·생태 윤리
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans11" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(11)">채점</button>
+<button class="dark" onclick="toggleSol(11)">상세 풀이</button>
+<b id="res11"></b>
+</div>
+<div class="solution" id="sol11"><b>정답: 21</b><br>84와 105의 최대공약수는 21이다. 따라서 최대 21개 상자로 나눌 수 있다.</div>
+</article>
+
+<article class="card" id="q12">
+<div class="head"><h2>12. 세포 운명과 등비 증식</h2><span>생명과학</span></div>
+<div class="tag">🧩 융합 요소: 등비수열·분류·기계학습</div>
+<div class="story">의생명 AI반은 세포가 분화하기 전 증식하는 과정을 단순 모델로 만들었다.
+처음 세포는 8개이고, 한 주기마다 전체 수가 2배가 된다.
+분류기는 세포 수가 500 이상이면 ‘고밀도 군집’으로 판단한다.
+학생들은 6주기 후 세포 수를 계산하여 분류 결과를 해석해야 한다.
+6주기 후 세포 수는 몇 개인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 등비수열·분류·기계학습
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans12" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(12)">채점</button>
+<button class="dark" onclick="toggleSol(12)">상세 풀이</button>
+<b id="res12"></b>
+</div>
+<div class="solution" id="sol12"><b>정답: 512</b><br>8×2^6=8×64=512이다.</div>
+</article>
+<section class="part">✦ 유기화학 분야</section>
+<article class="card" id="q13">
+<div class="head"><h2>13. 분자의 정체성과 선형 회귀</h2><span>유기화학</span></div>
+<div class="tag">🧩 융합 요소: 회귀·일차방정식·유기화학·정체성</div>
+<div class="story">유기화학 세미나에서는 분자가 이름을 얻는 방식과 인간의 정체성 형성을 비교했다.
+탄소 수 x에 따른 수소 수 y를 y=2x+2라는 회귀식으로 단순화했다.
+이 식은 분자의 복잡한 실제 구조를 모두 담지는 않지만, 직선형 알케인 모형을 설명한다.
+학생들은 탄소 수가 12일 때 예측되는 수소 수를 구해야 한다.
+회귀식이 예측하는 수소 수 y는 몇 개인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 회귀·일차방정식·유기화학·정체성
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans13" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(13)">채점</button>
+<button class="dark" onclick="toggleSol(13)">상세 풀이</button>
+<b id="res13"></b>
+</div>
+<div class="solution" id="sol13"><b>정답: 26</b><br>y=2×12+2=26이다.</div>
+</article>
+
+<article class="card" id="q14">
+<div class="head"><h2>14. 향기의 조화와 연립방정식</h2><span>유기화학</span></div>
+<div class="tag">🧩 융합 요소: 연립방정식·분자 조합·미학</div>
+<div class="story">향료 설계반은 ‘좋은 향은 균형인가 대비인가’를 주제로 분자 조각을 조합했다.
+A 조각과 B 조각의 질량 합은 22이다.
+A 조각은 B 조각보다 4만큼 무겁다.
+학생들은 A+B=22, A=B+4라는 관계를 세워 조합의 중심 조각을 찾는다.
+A 조각 하나의 질량은 얼마인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 연립방정식·분자 조합·미학
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans14" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(14)">채점</button>
+<button class="dark" onclick="toggleSol(14)">상세 풀이</button>
+<b id="res14"></b>
+</div>
+<div class="solution" id="sol14"><b>정답: 13</b><br> A=B+4를 A+B=22에 대입하면 2B+4=22, 2B=18, B=9, A=13이다.</div>
+</article>
+
+<article class="card" id="q15">
+<div class="head"><h2>15. 반응의 리듬과 최소공배수</h2><span>유기화학</span></div>
+<div class="tag">🧩 융합 요소: 최소공배수·반응 주기·알고리즘</div>
+<div class="story">실험자는 화학 반응을 음악의 리듬처럼 생각하며 두 장치의 기록 주기를 비교했다.
+색 변화 센서는 12분마다 기록하고, 냄새 변화 센서는 21분마다 기록한다.
+두 기록이 동시에 남는 순간은 반응 해석에서 중요한 ‘화음’처럼 취급된다.
+학생들은 이 두 주기가 처음으로 다시 만나는 시각을 찾아야 한다.
+두 장치가 다시 동시에 기록하는 시간은 몇 분 후인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 최소공배수·반응 주기·알고리즘
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans15" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(15)">채점</button>
+<button class="dark" onclick="toggleSol(15)">상세 풀이</button>
+<b id="res15"></b>
+</div>
+<div class="solution" id="sol15"><b>정답: 84</b><br>12=2²×3, 21=3×7이므로 최소공배수는 2²×3×7=84이다.</div>
+</article>
+<section class="part">✦ 무기화학 분야</section>
+<article class="card" id="q16">
+<div class="head"><h2>16. 결정 격자와 질서의 철학</h2><span>무기화학</span></div>
+<div class="tag">🧩 융합 요소: 최대공약수·격자·질서</div>
+<div class="story">무기화학반은 결정 격자를 보며 ‘질서는 자연의 속성인가, 인간의 해석인가’를 토론했다.
+가로 70개, 세로 98개의 이온이 직사각형 격자에 놓여 있다.
+가장 큰 정사각형 반복 단위로 나누면 격자의 질서가 가장 간단하게 설명된다.
+정사각형 한 변의 이온 수는 70과 98의 최대공약수이다.
+반복 단위 한 변에는 이온이 몇 개 들어가는가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 최대공약수·격자·질서
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans16" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(16)">채점</button>
+<button class="dark" onclick="toggleSol(16)">상세 풀이</button>
+<b id="res16"></b>
+</div>
+<div class="solution" id="sol16"><b>정답: 14</b><br>70과 98의 최대공약수는 14이다.</div>
+</article>
+
+<article class="card" id="q17">
+<div class="head"><h2>17. 산화수의 균형 방정식</h2><span>무기화학</span></div>
+<div class="tag">🧩 융합 요소: 이차방정식·전하 균형·추상 모델</div>
+<div class="story">무기화학 퍼즐에서 안정한 전하 상태는 하나의 이차방정식으로 표현되었다.
+금속 이온의 산화수를 x라고 할 때 안정 조건은 x²-12x+36=0이다.
+학생들은 이 식이 전하 균형을 상징적으로 압축한 모델임을 이해해야 한다.
+완전제곱식 구조를 찾으면 가능한 산화수가 하나로 결정된다.
+이 금속 이온의 산화수 x는 얼마인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 이차방정식·전하 균형·추상 모델
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans17" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(17)">채점</button>
+<button class="dark" onclick="toggleSol(17)">상세 풀이</button>
+<b id="res17"></b>
+</div>
+<div class="solution" id="sol17"><b>정답: 6</b><br>x²-12x+36=(x-6)²이다. 따라서 x=6이다.</div>
+</article>
+
+<article class="card" id="q18">
+<div class="head"><h2>18. 촉매 표면의 프랙탈 선택</h2><span>무기화학</span></div>
+<div class="tag">🧩 융합 요소: 프랙탈·등비수열·분류</div>
+<div class="story">촉매 표면 연구팀은 활성점이 계층적으로 갈라지는 추상 모형을 만들었다.
+처음 활성점은 1개이고, 한 단계마다 각 활성점은 3개로 분화한다.
+AI 분류기는 활성점 수가 700 이상이면 ‘초고활성 표면’으로 판단한다.
+학생들은 6단계 후 활성점 수를 계산해 분류 결과를 확인해야 한다.
+6단계 후 활성점은 모두 몇 개인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 프랙탈·등비수열·분류
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans18" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(18)">채점</button>
+<button class="dark" onclick="toggleSol(18)">상세 풀이</button>
+<b id="res18"></b>
+</div>
+<div class="solution" id="sol18"><b>정답: 729</b><br>1×3^6=729이다.</div>
+</article>
+<section class="part">✦ 천문학 분야</section>
+<article class="card" id="q19">
+<div class="head"><h2>19. 우주의 리듬과 행성 정렬</h2><span>천문학</span></div>
+<div class="tag">🧩 융합 요소: 최소공배수·천문학·우주철학</div>
+<div class="story">천문학 토론반은 우주의 질서를 ‘반복되는 리듬’으로 해석했다.
+한 행성 모형은 30일마다 기준선에 돌아오고, 다른 행성 모형은 45일마다 기준선에 돌아온다.
+두 행성이 동시에 기준선에 놓이는 순간은 관측자가 의미를 부여한 특별한 사건이다.
+학생들은 두 공전 주기의 최소공배수를 구해 다음 정렬 시점을 찾는다.
+처음 이후 두 행성은 몇 일 후 다시 동시에 정렬되는가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 최소공배수·천문학·우주철학
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans19" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(19)">채점</button>
+<button class="dark" onclick="toggleSol(19)">상세 풀이</button>
+<b id="res19"></b>
+</div>
+<div class="solution" id="sol19"><b>정답: 90</b><br>30=2×3×5, 45=3²×5이므로 최소공배수는 2×3²×5=90이다.</div>
+</article>
+
+<article class="card" id="q20">
+<div class="head"><h2>20. 밤하늘 밝기와 회귀 예측</h2><span>천문학</span></div>
+<div class="tag">🧩 융합 요소: 회귀·기계학습·관측</div>
+<div class="story">천문 관측반은 별빛 밝기를 인간의 감상이 아니라 데이터 모델로 예측하려 했다.
+단순 회귀 모델은 y=7x+11로 주어졌다.
+x는 노출 단계이고, y는 예측 밝기 점수이다.
+학생들은 모델이 현실을 완벽히 복제하지는 않지만 판단의 기준이 됨을 토론했다.
+x=9일 때 예측 밝기 y는 몇 점인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 회귀·기계학습·관측
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans20" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(20)">채점</button>
+<button class="dark" onclick="toggleSol(20)">상세 풀이</button>
+<b id="res20"></b>
+</div>
+<div class="solution" id="sol20"><b>정답: 74</b><br>y=7×9+11=63+11=74이다.</div>
+</article>
+
+<article class="card" id="q21">
+<div class="head"><h2>21. 혜성의 가장 가까운 순간</h2><span>천문학</span></div>
+<div class="tag">🧩 융합 요소: 이차함수·최솟값·추상 사고</div>
+<div class="story">천문 시뮬레이션에서 혜성의 거리 점수는 d=(t-8)²+19로 나타난다.
+이 식은 실제 우주의 복잡함을 하나의 추상적 곡선으로 압축한 것이다.
+거리 점수가 가장 작아지는 순간은 제곱항이 0이 되는 때이다.
+학생들은 계산보다 식의 형태를 해석하는 사고를 사용해야 한다.
+혜성이 기준 위치에 가장 가까워지는 시간 t는 몇 시간인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 이차함수·최솟값·추상 사고
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans21" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(21)">채점</button>
+<button class="dark" onclick="toggleSol(21)">상세 풀이</button>
+<b id="res21"></b>
+</div>
+<div class="solution" id="sol21"><b>정답: 8</b><br>d=(t-8)²+19에서 제곱항은 t=8일 때 0이다. 따라서 t=8이다.</div>
+</article>
+<section class="part">✦ 의생명학 분야</section>
+<article class="card" id="q22">
+<div class="head"><h2>22. 진단의 윤리와 분류 임계값</h2><span>의생명학</span></div>
+<div class="tag">🧩 융합 요소: 분류·일차부등식·의료윤리</div>
+<div class="story">의생명학 토론반은 AI 진단이 사람의 삶에 영향을 준다는 점에서 윤리적 책임을 논의했다.
+위험 점수는 S=8x+3으로 계산되고, S가 99 이상이면 정밀검사 권고로 분류된다.
+x는 바이오마커 농도 단계이며 자연수로만 기록된다.
+학생들은 처음으로 정밀검사 권고가 되는 최소 x를 찾아야 한다.
+최소 x는 얼마인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 분류·일차부등식·의료윤리
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans22" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(22)">채점</button>
+<button class="dark" onclick="toggleSol(22)">상세 풀이</button>
+<b id="res22"></b>
+</div>
+<div class="solution" id="sol22"><b>정답: 12</b><br>8x+3≥99이면 8x≥96, x≥12이다. 최소 자연수는 12이다.</div>
+</article>
+
+<article class="card" id="q23">
+<div class="head"><h2>23. 약물 농도의 존재론적 감소</h2><span>의생명학</span></div>
+<div class="tag">🧩 융합 요소: 등비수열·회귀·의생명학</div>
+<div class="story">의생명학 수업에서 학생들은 ‘몸 안의 약은 언제 사라졌다고 말할 수 있는가’를 토론했다.
+처음 약물 농도는 100이고, 한 시간마다 절반으로 감소한다고 단순화했다.
+모델은 실제 몸의 복잡성을 완전히 담지 못하지만 추상적 예측에는 유용하다.
+학생들은 5시간 뒤 농도를 계산해 감소 패턴을 이해해야 한다.
+5시간 뒤 농도는 얼마인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 등비수열·회귀·의생명학
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans23" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(23)">채점</button>
+<button class="dark" onclick="toggleSol(23)">상세 풀이</button>
+<b id="res23"></b>
+</div>
+<div class="solution" id="sol23"><b>정답: 3.125</b><br>100→50→25→12.5→6.25→3.125이다.</div>
+</article>
+
+<article class="card" id="q24">
+<div class="head"><h2>24. 검체 보관의 공정성과 최대공약수</h2><span>의생명학</span></div>
+<div class="tag">🧩 융합 요소: 최대공약수·알고리즘·의생명 관리</div>
+<div class="story">의생명 실험실은 서로 다른 검체를 공정하게 여러 냉장 상자에 나누려 한다.
+혈액 검체는 120개, 조직 검체는 150개이다.
+각 상자에는 혈액 검체 수도 같고 조직 검체 수도 같아야 하며 남는 검체가 없어야 한다.
+가장 많은 상자로 나누면 추적 관리가 가장 세밀해진다.
+만들 수 있는 냉장 상자의 최대 개수는 몇 개인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 최대공약수·알고리즘·의생명 관리
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans24" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(24)">채점</button>
+<button class="dark" onclick="toggleSol(24)">상세 풀이</button>
+<b id="res24"></b>
+</div>
+<div class="solution" id="sol24"><b>정답: 30</b><br>120과 150의 최대공약수는 30이다.</div>
+</article>
+<section class="part">✦ 공학 분야</section>
+<article class="card" id="q25">
+<div class="head"><h2>25. 로봇 윤리와 한글 pseudo code</h2><span>공학</span></div>
+<div class="tag">🧩 융합 요소: pseudo code·등차수열·알고리즘 윤리</div>
+<div class="story">공학 윤리 수업에서 학생들은 로봇이 명령을 따르는 것과 책임을 지는 것이 같은지 토론했다.
+로봇에게 주어진 한글 pseudo code는 ‘처음 3칸 이동, 다음 이동마다 3칸씩 더 이동, 모두 6번 반복’이다.
+따라서 이동 거리는 3, 6, 9, 12, 15, 18칸이 된다.
+학생들은 명령문의 의미를 등차수열의 합으로 해석해야 한다.
+로봇이 이동한 전체 거리는 몇 칸인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: pseudo code·등차수열·알고리즘 윤리
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans25" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(25)">채점</button>
+<button class="dark" onclick="toggleSol(25)">상세 풀이</button>
+<b id="res25"></b>
+</div>
+<div class="solution" id="sol25"><b>정답: 63</b><br>3+6+9+12+15+18=63이다.</div>
+</article>
+
+<article class="card" id="q26">
+<div class="head"><h2>26. 센서 보정과 연립 판단</h2><span>공학</span></div>
+<div class="tag">🧩 융합 요소: 연립방정식·회귀 보정·공학철학</div>
+<div class="story">공학 설계반은 측정이 현실의 복사본이 아니라 보정된 해석이라는 점을 배웠다.
+두 센서 A와 B의 보정값 합은 31이다.
+A의 보정값은 B보다 3 크다.
+학생들은 A+B=31, A=B+3이라는 연립방정식을 세워 기준 센서를 정한다.
+A 센서의 보정값은 얼마인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 연립방정식·회귀 보정·공학철학
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans26" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(26)">채점</button>
+<button class="dark" onclick="toggleSol(26)">상세 풀이</button>
+<b id="res26"></b>
+</div>
+<div class="solution" id="sol26"><b>정답: 17</b><br>A=B+3, A+B=31이므로 2B+3=31, 2B=28, B=14, A=17이다.</div>
+</article>
+
+<article class="card" id="q27">
+<div class="head"><h2>27. AI 품질 판정의 임계값</h2><span>공학</span></div>
+<div class="tag">🧩 융합 요소: 인공지능·분류·일차부등식</div>
+<div class="story">스마트 공장에서는 제품을 사람이 아니라 AI 분류기가 먼저 평가한다.
+품질 점수는 Q=9x+4로 계산되며, Q가 139 이상이면 ‘최상급’으로 분류된다.
+x는 표면 정밀도 단계이고 자연수로 측정된다.
+학생들은 AI 판단 기준이 어떤 최소 조건을 요구하는지 계산해야 한다.
+최상급으로 처음 분류되는 최소 x는 얼마인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 인공지능·분류·일차부등식
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans27" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(27)">채점</button>
+<button class="dark" onclick="toggleSol(27)">상세 풀이</button>
+<b id="res27"></b>
+</div>
+<div class="solution" id="sol27"><b>정답: 15</b><br>9x+4≥139이면 9x≥135, x≥15이다.</div>
+</article>
+<section class="part">✦ 실생활 분야</section>
+<article class="card" id="q28">
+<div class="head"><h2>28. 민주적 투표와 소수 규칙</h2><span>실생활</span></div>
+<div class="tag">🧩 융합 요소: 소수·암호학·시민 인문학</div>
+<div class="story">학생회는 투표함 비밀번호를 ‘다수결 속에서도 사라지지 않는 하나의 소수’라는 주제로 정했다.
+비밀번호는 50보다 크고 60보다 작은 자연수이다.
+그 수는 소수이며, 각 자리 숫자의 합도 8이어야 한다.
+후보 중 조건을 만족하는 수만 투표함을 열 수 있다.
+비밀번호는 무엇인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 소수·암호학·시민 인문학
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans28" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(28)">채점</button>
+<button class="dark" onclick="toggleSol(28)">상세 풀이</button>
+<b id="res28"></b>
+</div>
+<div class="solution" id="sol28"><b>정답: 53</b><br>50~60 사이 소수는 53, 59이다. 자리 합은 53이 8, 59가 14이다. 따라서 53이다.</div>
+</article>
+
+<article class="card" id="q29">
+<div class="head"><h2>29. 통학 리듬과 최소공배수</h2><span>실생활</span></div>
+<div class="tag">🧩 융합 요소: 최소공배수·실생활 알고리즘</div>
+<div class="story">아침 통학길에서 버스와 셔틀은 서로 다른 리듬으로 학교 앞에 도착한다.
+버스는 18분마다 오고, 셔틀은 24분마다 온다.
+두 교통수단이 동시에 도착하는 순간은 학생들에게 선택지가 가장 많은 시간이다.
+학생들은 두 도착 주기의 최소공배수를 구해 다음 동시 도착 시각을 찾는다.
+처음 이후 다시 동시에 도착하는 시간은 몇 분 후인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 최소공배수·실생활 알고리즘
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans29" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(29)">채점</button>
+<button class="dark" onclick="toggleSol(29)">상세 풀이</button>
+<b id="res29"></b>
+</div>
+<div class="solution" id="sol29"><b>정답: 72</b><br>18과 24의 최소공배수는 72이다.</div>
+</article>
+
+<article class="card" id="q30">
+<div class="head"><h2>30. 학습 추천 알고리즘과 자기이해</h2><span>실생활</span></div>
+<div class="tag">🧩 융합 요소: 기계학습·회귀·인문학</div>
+<div class="story">학습 앱은 학생의 문제 풀이 경험을 숫자로 바꾸어 다음 난이도를 추천한다.
+추천 점수는 y=6x+25라는 회귀 모델로 계산된다.
+x는 오늘 해결한 고급 문제 수이고, 한 학생은 11문제를 해결했다.
+학생들은 이 점수가 자신을 완전히 설명하지는 못하지만 학습 전략의 단서가 됨을 토론했다.
+앱이 예측하는 추천 점수 y는 몇 점인가?</div>
+<pre>한글 추상 사고 절차
+① 이야기 속 철학·인문학적 비유를 수학적 조건으로 번역한다.
+② 핵심 개념: 기계학습·회귀·인문학
+③ 조건을 식, 수열, 약수·배수, 분류 기준, 회귀식 중 하나로 바꾼다.
+④ 계산 결과가 다시 원래 이야기의 의미와 맞는지 검산한다.</pre>
+<div class="answer">
+<label>숫자 답안 <input type="text" id="ans30" placeholder="숫자만 입력"></label>
+<button onclick="checkOne(30)">채점</button>
+<button class="dark" onclick="toggleSol(30)">상세 풀이</button>
+<b id="res30"></b>
+</div>
+<div class="solution" id="sol30"><b>정답: 91</b><br>y=6×11+25=66+25=91이다.</div>
+</article>
+
+<div id="bar">
+<button onclick="gradeAll()">전체 채점</button>
+<button class="green" onclick="downloadTxt()">학번_이름_창의력_점수_응시시각.txt 저장</button>
+<span style="margin-left:14px">점수: <b id="score">미채점</b></span>
+</div>
+</main>
+</div>
+<div class="footer">※ 답안은 숫자만 입력합니다. 소수 답안은 3.125처럼 입력합니다.</div>
+<script>
+const ANSWERS={"1": "89", "2": "18", "3": "243", "4": "5", "5": "72", "6": "38", "7": "48", "8": "9", "9": "120", "10": "89", "11": "21", "12": "512", "13": "26", "14": "13", "15": "84", "16": "14", "17": "6", "18": "729", "19": "90", "20": "74", "21": "8", "22": "12", "23": "3.125", "24": "30", "25": "63", "26": "17", "27": "15", "28": "53", "29": "72", "30": "91"};
+const SOLUTIONS={"1": "84는 짝수, 85=5×17, 87=3×29, 91=7×13으로 합성수이다. 89는 2,3,5,7로 나누어떨어지지 않으므로 소수이다. 정답은 89.", "2": "72와 90의 최대공약수를 구한다. 90-72=18, 72는 18로 나누어떨어지고 90도 18로 나누어떨어진다. 최대공약수는 18이다.", "3": "0단계 1개에서 1단계 3개, 2단계 9개, 3단계 27개, 4단계 81개, 5단계 243개이다.", "4": "125-5t²=0이므로 5t²=125, t²=25이다. 시간은 양수이므로 t=5초이다.", "5": "18=2×3², 24=2³×3이므로 최소공배수는 2³×3²=72이다.", "6": "F=6×5+8=30+8=38이다.", "7": "d/4-d/8=d/8이다. d/8=6이므로 d=48km이다.", "8": "n일째 지수는 14+4(n-1)이다. 14+4(n-1)≥45이면 4(n-1)≥31, n-1≥7.75이므로 처음은 9일째이다.", "9": "24=2³×3, 40=2³×5이므로 최소공배수는 2³×3×5=120이다.", "10": "피보나치 수열은 1,1,2,3,5,8,13,21,34,55,89이다. 열한 번째 값은 89이다.", "11": "84와 105의 최대공약수는 21이다. 따라서 최대 21개 상자로 나눌 수 있다.", "12": "8×2^6=8×64=512이다.", "13": "y=2×12+2=26이다.", "14": " A=B+4를 A+B=22에 대입하면 2B+4=22, 2B=18, B=9, A=13이다.", "15": "12=2²×3, 21=3×7이므로 최소공배수는 2²×3×7=84이다.", "16": "70과 98의 최대공약수는 14이다.", "17": "x²-12x+36=(x-6)²이다. 따라서 x=6이다.", "18": "1×3^6=729이다.", "19": "30=2×3×5, 45=3²×5이므로 최소공배수는 2×3²×5=90이다.", "20": "y=7×9+11=63+11=74이다.", "21": "d=(t-8)²+19에서 제곱항은 t=8일 때 0이다. 따라서 t=8이다.", "22": "8x+3≥99이면 8x≥96, x≥12이다. 최소 자연수는 12이다.", "23": "100→50→25→12.5→6.25→3.125이다.", "24": "120과 150의 최대공약수는 30이다.", "25": "3+6+9+12+15+18=63이다.", "26": "A=B+3, A+B=31이므로 2B+3=31, 2B=28, B=14, A=17이다.", "27": "9x+4≥139이면 9x≥135, x≥15이다.", "28": "50~60 사이 소수는 53, 59이다. 자리 합은 53이 8, 59가 14이다. 따라서 53이다.", "29": "18과 24의 최소공배수는 72이다.", "30": "y=6×11+25=66+25=91이다."};
+const TITLES={"1": "플라톤의 동굴과 소수 암호", "2": "정의로운 분배와 최대공약수", "3": "끝없이 반복되는 프랙탈 사원", "4": "아리스토텔레스의 목적론과 낙하 모델", "5": "칸트의 시간 감각과 진자 동시성", "6": "관찰자의 판단과 회귀식", "7": "대지의 기억과 지진파 추론", "8": "기후 윤리와 경고 임계값", "9": "지층 반복과 최소공배수의 시간", "10": "생명의 나선과 피보나치 판단", "11": "생태계 균형과 최대공약수", "12": "세포 운명과 등비 증식", "13": "분자의 정체성과 선형 회귀", "14": "향기의 조화와 연립방정식", "15": "반응의 리듬과 최소공배수", "16": "결정 격자와 질서의 철학", "17": "산화수의 균형 방정식", "18": "촉매 표면의 프랙탈 선택", "19": "우주의 리듬과 행성 정렬", "20": "밤하늘 밝기와 회귀 예측", "21": "혜성의 가장 가까운 순간", "22": "진단의 윤리와 분류 임계값", "23": "약물 농도의 존재론적 감소", "24": "검체 보관의 공정성과 최대공약수", "25": "로봇 윤리와 한글 pseudo code", "26": "센서 보정과 연립 판단", "27": "AI 품질 판정의 임계값", "28": "민주적 투표와 소수 규칙", "29": "통학 리듬과 최소공배수", "30": "학습 추천 알고리즘과 자기이해"};
+const PARTS={"1": "수학", "2": "수학", "3": "수학", "4": "물리학", "5": "물리학", "6": "물리학", "7": "지구과학", "8": "지구과학", "9": "지구과학", "10": "생명과학", "11": "생명과학", "12": "생명과학", "13": "유기화학", "14": "유기화학", "15": "유기화학", "16": "무기화학", "17": "무기화학", "18": "무기화학", "19": "천문학", "20": "천문학", "21": "천문학", "22": "의생명학", "23": "의생명학", "24": "의생명학", "25": "공학", "26": "공학", "27": "공학", "28": "실생활", "29": "실생활", "30": "실생활"};
+const TAGS={"1": "소수·암호학·분류·철학적 추상", "2": "최대공약수·약수와 배수·윤리·알고리즘", "3": "프랙탈·등비수열·무한성·추상 사고", "4": "이차방정식·물리 모델·철학", "5": "최소공배수·주기·추상적 시간", "6": "회귀·일차방정식·기계학습·인식론", "7": "연립방정식·지구과학·추론", "8": "등차수열·분류·기후 윤리", "9": "최소공배수·주기·지질학", "10": "피보나치·패턴 인식·생명철학", "11": "최대공약수·분류·생태 윤리", "12": "등비수열·분류·기계학습", "13": "회귀·일차방정식·유기화학·정체성", "14": "연립방정식·분자 조합·미학", "15": "최소공배수·반응 주기·알고리즘", "16": "최대공약수·격자·질서", "17": "이차방정식·전하 균형·추상 모델", "18": "프랙탈·등비수열·분류", "19": "최소공배수·천문학·우주철학", "20": "회귀·기계학습·관측", "21": "이차함수·최솟값·추상 사고", "22": "분류·일차부등식·의료윤리", "23": "등비수열·회귀·의생명학", "24": "최대공약수·알고리즘·의생명 관리", "25": "pseudo code·등차수열·알고리즘 윤리", "26": "연립방정식·회귀 보정·공학철학", "27": "인공지능·분류·일차부등식", "28": "소수·암호학·시민 인문학", "29": "최소공배수·실생활 알고리즘", "30": "기계학습·회귀·인문학"};
+const TOTAL=30;
+function norm(x){return String(x||'').replace(/,/g,'').trim();}
+function checkOne(n){
+ const u=norm(document.getElementById('ans'+n).value), c=norm(ANSWERS[n]), r=document.getElementById('res'+n);
+ if(u===c){r.textContent=' ✅ 정답';r.style.color='#15803d';return 1;}
+ r.textContent=' ❌ 오답';r.style.color='#b91c1c';return 0;
+}
+function toggleSol(n){const e=document.getElementById('sol'+n);e.style.display=e.style.display==='block'?'none':'block';}
+function gradeAll(){let s=0;for(let i=1;i<=TOTAL;i++)s+=checkOne(i);document.getElementById('score').textContent=s+' / '+TOTAL+'점';return s;}
+function timestamp(){const d=new Date(),p=x=>String(x).padStart(2,'0');return d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'_'+p(d.getHours())+p(d.getMinutes())+p(d.getSeconds());}
+function downloadTxt(){
+ const s=gradeAll(), sid=document.getElementById('studentId').value.trim()||'학번', name=document.getElementById('studentName').value.trim()||'이름', t=timestamp();
+ let lines=['과학고 창의력 경진대회 최고급 융합 단답형 결과','학번: '+sid,'이름: '+name,'점수: '+s+' / '+TOTAL,'응시시각: '+t,''];
+ for(let i=1;i<=TOTAL;i++){
+  const u=norm(document.getElementById('ans'+i).value), ok=u===norm(ANSWERS[i])?'정답':'오답';
+  lines.push('['+i+'번] '+PARTS[i]+' - '+TITLES[i]);
+  lines.push('융합요소: '+TAGS[i]);
+  lines.push('제출답: '+(u||'미입력'));
+  lines.push('정답: '+ANSWERS[i]);
+  lines.push('결과: '+ok);
+  lines.push('상세풀이: '+SOLUTIONS[i]);
+  lines.push('');
+ }
+ const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
+ const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+ a.download=sid+'_'+name+'_창의력_'+s+'점_'+t+'.txt';
+ document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>
