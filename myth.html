@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>그리스 로마 신화 등장인물 OOP HTML 변환</title>
+<style>
+:root {
+  --navy:#0f172a;
+  --blue:#1e3a8a;
+  --gold:#b45309;
+  --amber:#f59e0b;
+  --paper:#fffaf0;
+  --ink:#1f2937;
+  --muted:#64748b;
+  --line:#e5e7eb;
+  --card:#ffffff;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  font-family:"Malgun Gothic","Apple SD Gothic Neo",Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 8% 8%, rgba(245,158,11,.20), transparent 30%),
+    radial-gradient(circle at 90% 4%, rgba(79,70,229,.18), transparent 28%),
+    linear-gradient(135deg,#fff7ed,#eef2ff 45%,#fdf2f8);
+}
+header {
+  padding:36px 42px;
+  color:white;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255,255,255,.22), transparent 28%),
+    linear-gradient(135deg,#7c2d12,#92400e,#3730a3,#0f172a);
+  box-shadow:0 12px 32px rgba(15,23,42,.28);
+}
+header h1 { margin:0 0 10px; font-size:34px; letter-spacing:-1px; }
+header p { margin:7px 0; line-height:1.75; opacity:.96; }
+.layout {
+  display:grid;
+  grid-template-columns:310px 1fr;
+  gap:18px;
+  padding:20px;
+}
+aside {
+  position:sticky;
+  top:18px;
+  height:calc(100vh - 36px);
+  overflow:auto;
+  background:rgba(255,255,255,.92);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:18px;
+  box-shadow:0 10px 28px rgba(15,23,42,.09);
+}
+aside h2 { margin:0 0 12px; border:0; padding:0; font-size:21px; }
+aside a, .navbtn {
+  display:block;
+  width:100%;
+  margin:7px 0;
+  padding:10px 12px;
+  border:1px solid #e2e8f0;
+  border-radius:14px;
+  background:#f8fafc;
+  color:#334155;
+  text-align:left;
+  text-decoration:none;
+  font-weight:850;
+  cursor:pointer;
+}
+aside a:hover, .navbtn:hover { background:#eef2ff; color:#3730a3; }
+main {
+  background:rgba(255,255,255,.72);
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:20px;
+  box-shadow:0 10px 28px rgba(15,23,42,.08);
+}
+.card {
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:24px;
+  margin-bottom:18px;
+  box-shadow:0 6px 18px rgba(15,23,42,.055);
+}
+h2 {
+  margin:0 0 14px;
+  padding-bottom:10px;
+  border-bottom:3px solid var(--amber);
+  font-size:25px;
+}
+.story {
+  padding:17px 19px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#fff7ed,#eef2ff);
+  border-left:8px solid var(--gold);
+  line-height:1.85;
+  margin:12px 0;
+}
+.controls {
+  display:grid;
+  grid-template-columns:1.1fr 1fr auto auto;
+  gap:10px;
+  margin:15px 0;
+  align-items:end;
+}
+label { font-weight:900; }
+select, input[type=text] {
+  width:100%;
+  margin-top:6px;
+  padding:13px 14px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:white;
+  font-size:15px;
+}
+button {
+  border:0;
+  border-radius:14px;
+  padding:12px 15px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+  font-weight:900;
+}
+button.alt { background:#7c3aed; }
+button.gold { background:#b45309; }
+.detail {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+.detail-title {
+  font-size:26px;
+  font-weight:950;
+  color:#7c2d12;
+  margin:4px 0 0;
+}
+.detail-box {
+  border:1px solid #e5e7eb;
+  border-radius:20px;
+  padding:17px;
+  background:#f8fafc;
+  line-height:1.8;
+}
+.detail-box b { color:#1d4ed8; }
+.dict-view {
+  white-space:pre-wrap;
+  background:#0f172a;
+  color:#e2e8f0;
+  padding:16px;
+  border-radius:18px;
+  overflow:auto;
+  line-height:1.55;
+}
+.table-wrap { overflow:auto; border-radius:18px; border:1px solid #e5e7eb; }
+table { width:100%; border-collapse:collapse; background:white; }
+th, td {
+  border-bottom:1px solid #e5e7eb;
+  padding:12px 13px;
+  text-align:left;
+  vertical-align:top;
+  line-height:1.65;
+}
+th {
+  position:sticky;
+  top:0;
+  z-index:2;
+  background:#fef3c7;
+  color:#78350f;
+}
+td.name { font-weight:950; color:#7c2d12; min-width:230px; }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:14px;
+}
+.person-card {
+  border:1px solid #e5e7eb;
+  border-radius:22px;
+  padding:17px;
+  background:linear-gradient(180deg,#fff,#f9fafb);
+}
+.person-card h3 { margin:0 0 8px; color:#7c2d12; font-size:20px; }
+.person-card p { line-height:1.75; margin:9px 0; }
+.person-card b { color:#1d4ed8; }
+.pill {
+  display:inline-block;
+  background:#fffbeb;
+  color:#92400e;
+  border:1px solid #fde68a;
+  border-radius:999px;
+  padding:6px 11px;
+  font-size:13px;
+  font-weight:900;
+}
+.smallpill { font-size:12px; padding:4px 8px; }
+.stat-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;
+}
+.stat {
+  padding:15px;
+  border-radius:18px;
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+}
+.stat b { font-size:24px; color:#1d4ed8; }
+pre {
+  background:#0f172a;
+  color:#e2e8f0;
+  padding:17px;
+  border-radius:18px;
+  overflow:auto;
+  line-height:1.55;
+  font-size:14px;
+}
+.hidden { display:none!important; }
+.note { color:var(--muted); font-size:13px; line-height:1.7; }
+@media(max-width:1050px) {
+  .layout { grid-template-columns:1fr; }
+  aside { position:relative; height:auto; }
+  .controls { grid-template-columns:1fr; }
+}
+@media print {
+  aside, .controls button { display:none; }
+  .layout { display:block; padding:0; }
+  main { box-shadow:none; border:0; }
+  .card,.person-card { break-inside:avoid; }
+}
+</style>
+</head>
+<body>
+<header>
+<h1>🏛️ 그리스 로마 신화 등장인물 OOP · HTML 변환판</h1>
+<p>Tkinter 프로그램의 드롭다운 선택 기능을 웹 HTML 인터페이스로 변환했습니다.</p>
+<p>인물·성격·역할을 키로 갖는 딕셔너리 데이터 <b>106명</b>을 검색, 분류, 표, 카드, 상세 소개로 확인할 수 있습니다.</p>
+</header>
+
+<div class="layout">
+<aside>
+  <h2>📚 메뉴</h2>
+  <a href="#select">인물 드롭다운</a>
+  <a href="#table">전체 표</a>
+  <a href="#cards">카드 소개</a>
+  <a href="#oop">OOP 코드</a>
+  <a href="#stats">분류 통계</a>
+  <h3>분류 필터</h3>
+  <button class="navbtn" onclick="filterCategory('전체')">전체 보기</button>
+  <button class="navbtn" onclick="filterCategory("올림포스 주요 신")">올림포스 주요 신</button>
+<button class="navbtn" onclick="filterCategory("원초신·티탄")">원초신·티탄</button>
+<button class="navbtn" onclick="filterCategory("기타 신·신격")">기타 신·신격</button>
+<button class="navbtn" onclick="filterCategory("영웅·반신")">영웅·반신</button>
+<button class="navbtn" onclick="filterCategory("인간·왕가·예언자")">인간·왕가·예언자</button>
+<button class="navbtn" onclick="filterCategory("괴물·상징적 존재")">괴물·상징적 존재</button>
+</aside>
+
+<main>
+<section class="card" id="select">
+  <h2>Ⅰ. 드롭다운으로 인물 선택</h2>
+  <div class="story">
+    파이썬 Tkinter의 Combobox 기능을 HTML의 select 드롭다운으로 변환했습니다.
+    인물을 선택하면 성격, 역할, 분류, 딕셔너리 표현이 즉시 나타납니다.
+  </div>
+
+  <div class="controls">
+    <label>인물 선택
+      <select id="personSelect" onchange="showSelectedPerson()">
+        <option value="">인물을 선택하세요</option>
+        <option value="제우스 Zeus / 유피테르 Jupiter">제우스 Zeus / 유피테르 Jupiter</option>
+<option value="헤라 Hera / 유노 Juno">헤라 Hera / 유노 Juno</option>
+<option value="포세이돈 Poseidon / 넵투누스 Neptune">포세이돈 Poseidon / 넵투누스 Neptune</option>
+<option value="하데스 Hades / 플루토 Pluto">하데스 Hades / 플루토 Pluto</option>
+<option value="데메테르 Demeter / 케레스 Ceres">데메테르 Demeter / 케레스 Ceres</option>
+<option value="아테나 Athena / 미네르바 Minerva">아테나 Athena / 미네르바 Minerva</option>
+<option value="아폴론 Apollo">아폴론 Apollo</option>
+<option value="아르테미스 Artemis / 디아나 Diana">아르테미스 Artemis / 디아나 Diana</option>
+<option value="아레스 Ares / 마르스 Mars">아레스 Ares / 마르스 Mars</option>
+<option value="아프로디테 Aphrodite / 베누스 Venus">아프로디테 Aphrodite / 베누스 Venus</option>
+<option value="헤파이스토스 Hephaestus / 불카누스 Vulcan">헤파이스토스 Hephaestus / 불카누스 Vulcan</option>
+<option value="헤르메스 Hermes / 메르쿠리우스 Mercury">헤르메스 Hermes / 메르쿠리우스 Mercury</option>
+<option value="디오니소스 Dionysus / 바쿠스 Bacchus">디오니소스 Dionysus / 바쿠스 Bacchus</option>
+<option value="헤스티아 Hestia / 베스타 Vesta">헤스티아 Hestia / 베스타 Vesta</option>
+<option value="카오스 Chaos">카오스 Chaos</option>
+<option value="가이아 Gaia">가이아 Gaia</option>
+<option value="우라노스 Uranus">우라노스 Uranus</option>
+<option value="타르타로스 Tartarus">타르타로스 Tartarus</option>
+<option value="에로스 Eros">에로스 Eros</option>
+<option value="닉스 Nyx">닉스 Nyx</option>
+<option value="에레보스 Erebus">에레보스 Erebus</option>
+<option value="크로노스 Cronus / 사투르누스 Saturn">크로노스 Cronus / 사투르누스 Saturn</option>
+<option value="레아 Rhea">레아 Rhea</option>
+<option value="오케아노스 Oceanus">오케아노스 Oceanus</option>
+<option value="테티스 Tethys">테티스 Tethys</option>
+<option value="히페리온 Hyperion">히페리온 Hyperion</option>
+<option value="테이아 Theia">테이아 Theia</option>
+<option value="이아페토스 Iapetus">이아페토스 Iapetus</option>
+<option value="테미스 Themis">테미스 Themis</option>
+<option value="므네모시네 Mnemosyne">므네모시네 Mnemosyne</option>
+<option value="프로메테우스 Prometheus">프로메테우스 Prometheus</option>
+<option value="에피메테우스 Epimetheus">에피메테우스 Epimetheus</option>
+<option value="아틀라스 Atlas">아틀라스 Atlas</option>
+<option value="페르세포네 Persephone / 프로세르피나 Proserpina">페르세포네 Persephone / 프로세르피나 Proserpina</option>
+<option value="헬리오스 Helios / 솔 Sol">헬리오스 Helios / 솔 Sol</option>
+<option value="셀레네 Selene / 루나 Luna">셀레네 Selene / 루나 Luna</option>
+<option value="에오스 Eos / 아우로라 Aurora">에오스 Eos / 아우로라 Aurora</option>
+<option value="니케 Nike / 빅토리아 Victoria">니케 Nike / 빅토리아 Victoria</option>
+<option value="네메시스 Nemesis">네메시스 Nemesis</option>
+<option value="헤카테 Hecate">헤카테 Hecate</option>
+<option value="이리스 Iris">이리스 Iris</option>
+<option value="판 Pan">판 Pan</option>
+<option value="아스클레피오스 Asclepius">아스클레피오스 Asclepius</option>
+<option value="모이라이 Moirai">모이라이 Moirai</option>
+<option value="무사이 Mousai / 뮤즈 Muses">무사이 Mousai / 뮤즈 Muses</option>
+<option value="카론 Charon">카론 Charon</option>
+<option value="타나토스 Thanatos">타나토스 Thanatos</option>
+<option value="히프노스 Hypnos">히프노스 Hypnos</option>
+<option value="헤라클레스 Heracles / 헤르쿨레스 Hercules">헤라클레스 Heracles / 헤르쿨레스 Hercules</option>
+<option value="페르세우스 Perseus">페르세우스 Perseus</option>
+<option value="테세우스 Theseus">테세우스 Theseus</option>
+<option value="아킬레우스 Achilles">아킬레우스 Achilles</option>
+<option value="오디세우스 Odysseus / 율리시스 Ulysses">오디세우스 Odysseus / 율리시스 Ulysses</option>
+<option value="이아손 Jason">이아손 Jason</option>
+<option value="오르페우스 Orpheus">오르페우스 Orpheus</option>
+<option value="벨레로폰 Bellerophon">벨레로폰 Bellerophon</option>
+<option value="아탈란테 Atalanta">아탈란테 Atalanta</option>
+<option value="아리아드네 Ariadne">아리아드네 Ariadne</option>
+<option value="안드로메다 Andromeda">안드로메다 Andromeda</option>
+<option value="멜레아그로스 Meleager">멜레아그로스 Meleager</option>
+<option value="카스토르 Castor">카스토르 Castor</option>
+<option value="폴리데우케스 Polydeuces / 폴룩스 Pollux">폴리데우케스 Polydeuces / 폴룩스 Pollux</option>
+<option value="프리아모스 Priam">프리아모스 Priam</option>
+<option value="헥토르 Hector">헥토르 Hector</option>
+<option value="파리스 Paris">파리스 Paris</option>
+<option value="헬레네 Helen">헬레네 Helen</option>
+<option value="카산드라 Cassandra">카산드라 Cassandra</option>
+<option value="아가멤논 Agamemnon">아가멤논 Agamemnon</option>
+<option value="클리타임네스트라 Clytemnestra">클리타임네스트라 Clytemnestra</option>
+<option value="이피게네이아 Iphigenia">이피게네이아 Iphigenia</option>
+<option value="오레스테스 Orestes">오레스테스 Orestes</option>
+<option value="엘렉트라 Electra">엘렉트라 Electra</option>
+<option value="오이디푸스 Oedipus">오이디푸스 Oedipus</option>
+<option value="안티고네 Antigone">안티고네 Antigone</option>
+<option value="테이레시아스 Tiresias">테이레시아스 Tiresias</option>
+<option value="미다스 Midas">미다스 Midas</option>
+<option value="시시포스 Sisyphus">시시포스 Sisyphus</option>
+<option value="탄탈로스 Tantalus">탄탈로스 Tantalus</option>
+<option value="니오베 Niobe">니오베 Niobe</option>
+<option value="다이달로스 Daedalus">다이달로스 Daedalus</option>
+<option value="이카로스 Icarus">이카로스 Icarus</option>
+<option value="피그말리온 Pygmalion">피그말리온 Pygmalion</option>
+<option value="갈라테이아 Galatea">갈라테이아 Galatea</option>
+<option value="나르키소스 Narcissus">나르키소스 Narcissus</option>
+<option value="에코 Echo">에코 Echo</option>
+<option value="아라크네 Arachne">아라크네 Arachne</option>
+<option value="프시케 Psyche">프시케 Psyche</option>
+<option value="에우리디케 Eurydice">에우리디케 Eurydice</option>
+<option value="메데이아 Medea">메데이아 Medea</option>
+<option value="메두사 Medusa">메두사 Medusa</option>
+<option value="미노타우로스 Minotaur">미노타우로스 Minotaur</option>
+<option value="스핑크스 Sphinx">스핑크스 Sphinx</option>
+<option value="키마이라 Chimera">키마이라 Chimera</option>
+<option value="히드라 Hydra">히드라 Hydra</option>
+<option value="케르베로스 Cerberus">케르베로스 Cerberus</option>
+<option value="스킬라 Scylla">스킬라 Scylla</option>
+<option value="카리브디스 Charybdis">카리브디스 Charybdis</option>
+<option value="키클롭스 Cyclops / 폴리페모스 Polyphemus">키클롭스 Cyclops / 폴리페모스 Polyphemus</option>
+<option value="세이렌 Sirens">세이렌 Sirens</option>
+<option value="하르피이아이 Harpies">하르피이아이 Harpies</option>
+<option value="그라이아이 Graeae">그라이아이 Graeae</option>
+<option value="고르곤 Gorgons">고르곤 Gorgons</option>
+<option value="페가소스 Pegasus">페가소스 Pegasus</option>
+<option value="켄타우로스 Centaurs">켄타우로스 Centaurs</option>
+<option value="케이론 Chiron">케이론 Chiron</option>
+<option value="라돈 Ladon">라돈 Ladon</option>
+      </select>
+    </label>
+    <label>키워드 검색
+      <input type="text" id="searchInput" placeholder="예: 지혜, 저승, 전쟁, 괴물, 영웅">
+    </label>
+    <button onclick="searchKeyword()">검색</button>
+    <button class="alt" onclick="resetAll()">초기화</button>
+  </div>
+
+  <div class="detail" id="detailPanel">
+    <div class="detail-title">인물을 선택하세요</div>
+    <div class="detail-box">드롭다운에서 인물을 선택하면 이곳에 설명이 나타납니다.</div>
+  </div>
+</section>
+
+<section class="card" id="table">
+  <h2>Ⅱ. 인물 · 성격 · 역할 전체 표</h2>
+  <div class="table-wrap">
+    <table id="peopleTable">
+      <thead>
+        <tr><th>인물</th><th>성격</th><th>역할</th><th>분류</th></tr>
+      </thead>
+      <tbody>
+        <tr data-cat="올림포스 주요 신">
+<td class="name">제우스 Zeus / 유피테르 Jupiter</td>
+<td>권위적이고 강력하며 질서와 심판을 중시하지만, 욕망과 감정에 흔들리는 약점도 지닌 통치자형 인물이다.</td>
+<td>하늘·번개·왕권의 신이자 올림포스의 왕. 티탄을 물리친 뒤 신과 인간 세계의 질서를 다스린다.</td>
+<td><span class="pill smallpill">올림포스 주요 신</span></td>
+</tr>
+<tr data-cat="올림포스 주요 신">
+<td class="name">헤라 Hera / 유노 Juno</td>
+<td>위엄 있고 자존심이 강하며 결혼과 가정의 질서를 지키려 한다. 배신에는 강한 질투와 분노를 드러낸다.</td>
+<td>결혼·가정·여성 권위의 여신이자 신들의 여왕. 혼인의 신성함과 왕비의 권위를 상징한다.</td>
+<td><span class="pill smallpill">올림포스 주요 신</span></td>
+</tr>
+<tr data-cat="올림포스 주요 신">
+<td class="name">포세이돈 Poseidon / 넵투누스 Neptune</td>
+<td>거칠고 자존심이 강하며 쉽게 분노한다. 바다처럼 깊고 예측하기 어려운 힘을 상징한다.</td>
+<td>바다·지진·말의 신. 삼지창으로 바다와 대지를 흔들며 항해자들에게 경외의 대상이 된다.</td>
+<td><span class="pill smallpill">올림포스 주요 신</span></td>
+</tr>
+<tr data-cat="올림포스 주요 신">
+<td class="name">하데스 Hades / 플루토 Pluto</td>
+<td>차갑고 엄격하지만 무조건 악한 존재는 아니다. 자신의 영역과 규칙을 철저히 지키는 질서형 인물이다.</td>
+<td>저승과 죽은 자의 세계를 다스리는 신. 죽음, 운명, 지하의 부를 상징한다.</td>
+<td><span class="pill smallpill">올림포스 주요 신</span></td>
+</tr>
+<tr data-cat="올림포스 주요 신">
+<td class="name">데메테르 Demeter / 케레스 Ceres</td>
+<td>모성애가 깊고 생명을 돌보는 따뜻한 성격이다. 딸을 잃었을 때는 세계를 굶주리게 할 만큼 절박하다.</td>
+<td>농업·곡식·수확의 여신. 페르세포네 신화에서 계절의 순환과 생명의 회복을 설명한다.</td>
+<td><span class="pill smallpill">올림포스 주요 신</span></td>
+</tr>
+<tr data-cat="올림포스 주요 신">
+<td class="name">아테나 Athena / 미네르바 Minerva</td>
+<td>냉철하고 이성적이며 전략과 지혜를 중시한다. 충동적 폭력보다 판단과 계획을 앞세운다.</td>
+<td>지혜·전략·공예·도시 문명의 수호신. 아테네의 수호신이며 이성과 문명의 이상을 대표한다.</td>
+<td><span class="pill smallpill">올림포스 주요 신</span></td>
+</tr>
+<tr data-cat="올림포스 주요 신">
+<td class="name">아폴론 Apollo</td>
+<td>밝고 고귀하며 질서와 조화를 사랑하지만, 자존심이 강해 모욕에는 엄격하다.</td>
+<td>태양·예언·음악·의술의 신. 델포이 신탁의 주인이며 조화와 치유를 상징한다.</td>
+<td><span class="pill smallpill">올림포스 주요 신</span></td>
+</tr>
+<tr data-cat="올림포스 주요 신">
+<td class="name">아르테미스 Artemis / 디아나 Diana</td>
+<td>독립적이고 강인하며 자유와 순결을 중시한다. 자신의 영역을 침범하는 자에게 단호하다.</td>
+<td>달·사냥·야생·젊은 여성의 수호신. 자연의 자유로움과 문명 밖 신성함을 상징한다.</td>
+<td><span class="pill smallpill">올림포스 주요 신</span></td>
+</tr>
+<tr data-cat="올림포스 주요 신">
+<td class="name">아레스 Ares / 마르스 Mars</td>
+<td>충동적이고 호전적이며 피와 전투의 열기를 즐긴다. 전략보다 본능적 투쟁에 가깝다.</td>
+<td>전쟁의 잔혹함과 파괴성을 드러내는 신. 로마에서는 군사력과 국가의 상징으로 높게 평가되었다.</td>
+<td><span class="pill smallpill">올림포스 주요 신</span></td>
+</tr>
+<tr data-cat="올림포스 주요 신">
+<td class="name">아프로디테 Aphrodite / 베누스 Venus</td>
+<td>매혹적이고 감각적이며 사랑의 힘을 잘 안다. 사랑이 기쁨과 갈등을 함께 낳는다는 점을 보여 준다.</td>
+<td>사랑·아름다움·욕망의 여신. 파리스의 심판과 트로이 전쟁의 원인에 깊이 관여한다.</td>
+<td><span class="pill smallpill">올림포스 주요 신</span></td>
+</tr>
+<tr data-cat="올림포스 주요 신">
+<td class="name">헤파이스토스 Hephaestus / 불카누스 Vulcan</td>
+<td>성실하고 창조적이며 장인 정신이 강하다. 외적 결핍을 기술과 지혜로 극복한다.</td>
+<td>불·대장장이·기술의 신. 신들의 무기와 도구를 만들며 기술 문명과 발명의 원형이 된다.</td>
+<td><span class="pill smallpill">올림포스 주요 신</span></td>
+</tr>
+<tr data-cat="올림포스 주요 신">
+<td class="name">헤르메스 Hermes / 메르쿠리우스 Mercury</td>
+<td>영리하고 민첩하며 장난기와 재치가 넘친다. 경계를 넘나드는 자유로운 성격이다.</td>
+<td>전령·여행·상업·도둑·영혼 안내의 신. 신과 인간, 삶과 죽음 사이를 연결한다.</td>
+<td><span class="pill smallpill">올림포스 주요 신</span></td>
+</tr>
+<tr data-cat="올림포스 주요 신">
+<td class="name">디오니소스 Dionysus / 바쿠스 Bacchus</td>
+<td>자유롭고 열정적이며 규범을 흔드는 힘을 지닌다. 기쁨과 광기, 해방과 파괴가 공존한다.</td>
+<td>포도주·축제·연극·광기의 신. 억압된 감정과 본능, 문명과 야성의 경계를 드러낸다.</td>
+<td><span class="pill smallpill">올림포스 주요 신</span></td>
+</tr>
+<tr data-cat="올림포스 주요 신">
+<td class="name">헤스티아 Hestia / 베스타 Vesta</td>
+<td>조용하고 온화하며 안정과 평화를 중시한다. 다툼보다 공동체의 중심을 지키는 성격이다.</td>
+<td>화로·가정·공동체의 여신. 눈에 띄지 않지만 모든 삶의 출발점인 안정과 귀속감을 상징한다.</td>
+<td><span class="pill smallpill">올림포스 주요 신</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">카오스 Chaos</td>
+<td>형태와 질서가 없는 원초적 공허로, 인격적 성격보다 모든 가능성의 시작을 나타낸다.</td>
+<td>우주 생성 이전의 혼돈. 가이아, 타르타로스, 에로스 등 원초 존재가 출현하는 배경이다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">가이아 Gaia</td>
+<td>모든 생명을 품는 어머니이지만, 억압적 권력에는 강하게 맞서는 대지의 의지를 지닌다.</td>
+<td>대지의 여신이자 신화 세계의 근원. 우라노스, 티탄, 거인족 등 수많은 존재를 낳는다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">우라노스 Uranus</td>
+<td>권위적이고 억압적인 하늘의 아버지로 묘사된다. 자식을 두려워하여 폭력적으로 통제한다.</td>
+<td>하늘의 원초 신. 크로노스에게 몰락하며 최초의 권력 전복과 세대 갈등을 상징한다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">타르타로스 Tartarus</td>
+<td>깊고 어두운 심연 그 자체에 가까운 존재이다. 공포와 감금, 원초적 벌의 공간성을 지닌다.</td>
+<td>지하 깊은 심연이자 티탄과 괴물들이 갇히는 장소. 우주 질서의 어두운 밑바닥을 상징한다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">에로스 Eros</td>
+<td>초기 신화에서는 세계를 결합시키는 원초적 사랑의 힘이다. 후대에는 장난기 많은 사랑의 신으로도 변한다.</td>
+<td>생성과 결합, 욕망을 일으키는 원초적 힘. 쿠피도와 연결되어 사랑의 화살 이미지로 알려진다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">닉스 Nyx</td>
+<td>어둡고 신비로우며 신들조차 두려워하는 밤의 권위를 지닌다.</td>
+<td>밤의 여신. 죽음, 잠, 운명, 불화 등 여러 어두운 신격의 어머니로 등장한다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">에레보스 Erebus</td>
+<td>어둠과 그림자의 원초적 성격을 지닌 존재이다. 빛 이전의 깊은 어둠을 나타낸다.</td>
+<td>암흑의 신격. 지하 세계와 밤의 어둠을 구성하는 원초적 요소이다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">크로노스 Cronus / 사투르누스 Saturn</td>
+<td>권력을 잃을까 두려워 자식을 삼키는 불안한 지배자다. 두려움이 폭력으로 변한 인물이다.</td>
+<td>제우스 이전 세대의 티탄 왕. 우라노스를 몰아내지만 다시 자식 세대에게 몰락한다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">레아 Rhea</td>
+<td>자식을 지키려는 모성적 지혜와 결단력을 지녔다. 폭력적 권력에 맞서 속임수를 사용한다.</td>
+<td>제우스, 헤라, 포세이돈, 하데스 등의 어머니. 제우스를 숨겨 크로노스의 폭정을 끝내는 계기를 만든다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">오케아노스 Oceanus</td>
+<td>거대한 흐름처럼 포용적이고 오래된 질서를 상징한다. 직접 충돌보다 세계를 둘러싼 안정성을 보여 준다.</td>
+<td>세계를 둘러싼 큰 강의 티탄. 강과 물의 근원, 세계의 가장자리를 상징한다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">테티스 Tethys</td>
+<td>생명을 품고 기르는 물의 어머니 이미지가 강하다. 부드럽지만 원초적 생명력을 지닌다.</td>
+<td>오케아노스의 배우자이자 강과 샘의 어머니. 물과 생명의 근원을 상징한다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">히페리온 Hyperion</td>
+<td>높은 곳에서 빛을 비추는 장엄함과 원초적 권위를 지닌다.</td>
+<td>빛의 티탄. 헬리오스, 셀레네, 에오스의 아버지로 천체의 빛과 연결된다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">테이아 Theia</td>
+<td>빛나는 아름다움과 찬란함을 상징하는 티탄 여신이다. 광휘와 시각의 신성함을 품는다.</td>
+<td>헬리오스, 셀레네, 에오스의 어머니. 태양, 달, 새벽으로 이어지는 빛의 계보를 이룬다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">이아페토스 Iapetus</td>
+<td>인간 운명과 한계를 암시하는 어두운 계보의 티탄이다.</td>
+<td>프로메테우스, 에피메테우스, 아틀라스 등의 아버지. 인간과 고통의 계보에 연결된다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">테미스 Themis</td>
+<td>공정하고 질서정연하며 신성한 법과 균형을 중시한다.</td>
+<td>정의와 신성한 질서의 티탄 여신. 호라이와 모이라이의 어머니로 질서와 운명을 나타낸다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">므네모시네 Mnemosyne</td>
+<td>기억을 보존하고 의미를 이어 주는 깊고 사려 깊은 성격을 상징한다.</td>
+<td>기억의 여신이자 무사이의 어머니. 이야기, 학문, 예술의 기억 기반을 제공한다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">프로메테우스 Prometheus</td>
+<td>지혜롭고 반항적이며 인간을 향한 연민이 강하다. 권력보다 인간의 가능성을 더 중요하게 여긴다.</td>
+<td>인간에게 불을 가져다주어 문명의 시작을 연 티탄. 희생적 지식인과 저항의 상징이다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">에피메테우스 Epimetheus</td>
+<td>선량하지만 신중하지 못하고 결과를 늦게 깨닫는다. 이름처럼 ‘나중에 생각하는 자’이다.</td>
+<td>판도라를 받아들여 인간 세계에 고통이 들어오는 사건과 연결된다. 성급한 판단의 위험을 보여 준다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="원초신·티탄">
+<td class="name">아틀라스 Atlas</td>
+<td>강인하고 인내심이 크며 거대한 벌을 감당하는 묵직한 존재다.</td>
+<td>하늘을 떠받치는 벌을 받은 티탄. 책임, 짐, 세계의 무게를 상징한다.</td>
+<td><span class="pill smallpill">원초신·티탄</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">페르세포네 Persephone / 프로세르피나 Proserpina</td>
+<td>순수한 소녀와 엄숙한 저승의 왕비라는 양면성을 지닌다. 삶과 죽음의 경계를 오간다.</td>
+<td>하데스의 왕비이자 봄의 귀환을 상징한다. 데메테르와 함께 계절의 순환을 설명한다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">헬리오스 Helios / 솔 Sol</td>
+<td>모든 것을 내려다보는 밝고 엄정한 관찰자다. 숨겨진 진실을 알고 있는 존재로 나타난다.</td>
+<td>태양신. 하늘을 가로지르며 세상을 비추고 감춰진 사건의 증언자가 된다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">셀레네 Selene / 루나 Luna</td>
+<td>은은하고 신비로우며 밤의 정적과 감성을 품는다.</td>
+<td>달의 여신. 밤, 주기, 여성적 신비, 엔디미온 신화와 연결된다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">에오스 Eos / 아우로라 Aurora</td>
+<td>새벽처럼 밝고 생동감 있으며 새로운 시작을 알린다.</td>
+<td>새벽의 여신. 어둠에서 빛으로 넘어가는 전환과 하루의 시작을 상징한다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">니케 Nike / 빅토리아 Victoria</td>
+<td>민첩하고 승리를 향해 곧장 나아가는 힘을 상징한다.</td>
+<td>승리의 여신. 전쟁, 경기, 경쟁에서 승리의 순간을 의인화한다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">네메시스 Nemesis</td>
+<td>냉정하고 균형을 중시하며 오만을 용납하지 않는다.</td>
+<td>응보와 균형의 여신. 지나친 오만과 불균형에 벌을 내리는 정의의 힘이다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">헤카테 Hecate</td>
+<td>신비롭고 어둡지만 지혜롭다. 경계와 갈림길의 불확실성을 다룬다.</td>
+<td>마법, 밤, 갈림길, 유령의 여신. 보이지 않는 세계와 선택의 경계를 상징한다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">이리스 Iris</td>
+<td>가볍고 빠르며 소식을 전달하는 밝은 존재다.</td>
+<td>무지개의 여신이자 신들의 전령. 하늘과 땅, 신과 인간 사이의 메시지를 이어 준다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">판 Pan</td>
+<td>야성적이고 장난스럽고 본능적이다. 자연의 즉흥성과 두려움을 함께 품는다.</td>
+<td>목자와 숲, 들판, 야생 음악의 신. 공포를 뜻하는 panic의 어원과 연결된다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">아스클레피오스 Asclepius</td>
+<td>치유에 헌신적이고 지식 탐구가 강하지만, 생명과 죽음의 경계를 넘으려 한다.</td>
+<td>의술의 신. 의학과 치유의 상징이며 뱀이 감긴 지팡이로 대표된다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">모이라이 Moirai</td>
+<td>감정에 흔들리지 않고 냉정하게 운명의 실을 다루는 존재들이다.</td>
+<td>운명의 여신들. 클로토, 라케시스, 아트로포스로 구성되며 인간과 신의 운명을 결정한다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">무사이 Mousai / 뮤즈 Muses</td>
+<td>영감을 주고 기억과 예술을 일깨우는 창조적 존재들이다.</td>
+<td>시, 음악, 역사, 천문 등 예술과 학문의 여신들. 창작과 지식의 근원을 상징한다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">카론 Charon</td>
+<td>말이 적고 엄격하며 규칙에 따라 움직이는 저승의 뱃사공이다.</td>
+<td>죽은 자의 영혼을 스틱스 강 건너 저승으로 실어 나른다. 삶과 죽음의 경계를 지킨다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">타나토스 Thanatos</td>
+<td>차갑고 피할 수 없지만 난폭함보다는 필연성을 상징한다.</td>
+<td>죽음의 의인화. 인간이 벗어날 수 없는 생의 끝을 나타낸다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="기타 신·신격">
+<td class="name">히프노스 Hypnos</td>
+<td>부드럽고 조용하며 의식을 잠재우는 평온함을 지닌다.</td>
+<td>잠의 신. 죽음의 형제이며 휴식, 망각, 꿈과 관련된다.</td>
+<td><span class="pill smallpill">기타 신·신격</span></td>
+</tr>
+<tr data-cat="영웅·반신">
+<td class="name">헤라클레스 Heracles / 헤르쿨레스 Hercules</td>
+<td>강인하고 용감하지만 충동과 고통을 함께 지닌다. 시련을 통해 정화되는 영웅이다.</td>
+<td>12과업을 수행한 대표적 영웅. 인간 한계를 넘어서는 힘과 속죄, 불멸을 상징한다.</td>
+<td><span class="pill smallpill">영웅·반신</span></td>
+</tr>
+<tr data-cat="영웅·반신">
+<td class="name">페르세우스 Perseus</td>
+<td>용감하고 기민하며 신들의 도움을 지혜롭게 활용한다.</td>
+<td>메두사를 물리치고 안드로메다를 구한 영웅. 괴물 퇴치와 왕가 구원의 서사를 이끈다.</td>
+<td><span class="pill smallpill">영웅·반신</span></td>
+</tr>
+<tr data-cat="영웅·반신">
+<td class="name">테세우스 Theseus</td>
+<td>용감하고 정치적 감각이 있으며 도시 질서를 세우려는 영웅이다.</td>
+<td>미노타우로스를 물리치고 아테네의 영웅이 된다. 미궁 탈출과 도시 통합을 상징한다.</td>
+<td><span class="pill smallpill">영웅·반신</span></td>
+</tr>
+<tr data-cat="영웅·반신">
+<td class="name">아킬레우스 Achilles</td>
+<td>용맹하고 자존심이 강하며 명예에 민감하다. 분노와 슬픔이 운명을 움직인다.</td>
+<td>트로이 전쟁의 최강 전사. 짧은 영광과 비극적 운명을 상징한다.</td>
+<td><span class="pill smallpill">영웅·반신</span></td>
+</tr>
+<tr data-cat="영웅·반신">
+<td class="name">오디세우스 Odysseus / 율리시스 Ulysses</td>
+<td>영리하고 인내심이 강하며 말과 전략에 능하다. 생존을 위해 지혜를 사용하는 인물이다.</td>
+<td>트로이 전쟁 후 긴 귀향 여행을 겪는 영웅. 인간의 지혜, 유혹 극복, 귀향의 의미를 보여 준다.</td>
+<td><span class="pill smallpill">영웅·반신</span></td>
+</tr>
+<tr data-cat="영웅·반신">
+<td class="name">이아손 Jason</td>
+<td>야망이 있고 모험심이 강하지만 우유부단하고 타인의 도움에 크게 의존한다.</td>
+<td>아르고호 원정대의 지도자. 황금 양털을 찾으며 모험과 배신, 영광의 불안정성을 보여 준다.</td>
+<td><span class="pill smallpill">영웅·반신</span></td>
+</tr>
+<tr data-cat="영웅·반신">
+<td class="name">오르페우스 Orpheus</td>
+<td>섬세하고 사랑이 깊으며 예술의 힘을 믿는다.</td>
+<td>음악으로 자연과 저승을 감동시킨 시인. 에우리디케를 되찾으려는 사랑과 상실의 상징이다.</td>
+<td><span class="pill smallpill">영웅·반신</span></td>
+</tr>
+<tr data-cat="영웅·반신">
+<td class="name">벨레로폰 Bellerophon</td>
+<td>용감하지만 성공 뒤 오만에 빠질 위험을 보여 준다.</td>
+<td>페가소스를 타고 키마이라를 물리친 영웅. 인간의 위업과 오만의 추락을 상징한다.</td>
+<td><span class="pill smallpill">영웅·반신</span></td>
+</tr>
+<tr data-cat="영웅·반신">
+<td class="name">아탈란테 Atalanta</td>
+<td>민첩하고 독립적이며 남성 영웅들과 경쟁할 만큼 뛰어나다.</td>
+<td>사냥과 달리기의 여영웅. 여성의 능력과 자유로운 선택을 상징한다.</td>
+<td><span class="pill smallpill">영웅·반신</span></td>
+</tr>
+<tr data-cat="영웅·반신">
+<td class="name">아리아드네 Ariadne</td>
+<td>사랑에 용감하고 지혜롭게 길을 찾는 인물이다. 버림받은 뒤에도 새로운 운명을 맞는다.</td>
+<td>테세우스에게 실타래를 주어 미궁 탈출을 돕는다. 길 찾기와 구원의 상징이다.</td>
+<td><span class="pill smallpill">영웅·반신</span></td>
+</tr>
+<tr data-cat="영웅·반신">
+<td class="name">안드로메다 Andromeda</td>
+<td>희생당하는 약자의 위치에 놓이지만 구원 뒤 새로운 왕가의 인물이 된다.</td>
+<td>바다 괴물에게 제물로 바쳐졌다가 페르세우스에게 구출된다. 부당한 희생과 구원을 보여 준다.</td>
+<td><span class="pill smallpill">영웅·반신</span></td>
+</tr>
+<tr data-cat="영웅·반신">
+<td class="name">멜레아그로스 Meleager</td>
+<td>용감하지만 가족과 명예 사이에서 비극적 갈등을 겪는다.</td>
+<td>칼리돈의 멧돼지 사냥 영웅. 영광과 가족 비극이 얽힌 인물이다.</td>
+<td><span class="pill smallpill">영웅·반신</span></td>
+</tr>
+<tr data-cat="영웅·반신">
+<td class="name">카스토르 Castor</td>
+<td>용맹하고 형제애가 깊은 전사적 성격을 지닌다.</td>
+<td>폴리데우케스와 함께 디오스쿠로이 형제 중 하나. 쌍둥이자리 신화와 연결된다.</td>
+<td><span class="pill smallpill">영웅·반신</span></td>
+</tr>
+<tr data-cat="영웅·반신">
+<td class="name">폴리데우케스 Polydeuces / 폴룩스 Pollux</td>
+<td>형제에 대한 사랑이 깊고 희생적인 마음을 지닌다.</td>
+<td>불멸성을 형제와 나누며 쌍둥이자리의 상징이 된다.</td>
+<td><span class="pill smallpill">영웅·반신</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">프리아모스 Priam</td>
+<td>존엄하고 가족을 사랑하는 왕이지만 전쟁의 비극을 감당해야 한다.</td>
+<td>트로이의 왕. 헥토르의 시신을 돌려받기 위해 아킬레우스를 찾아가 부성애를 보여 준다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">헥토르 Hector</td>
+<td>책임감 있고 가족을 사랑하며 명예를 중시하는 방어적 영웅이다.</td>
+<td>트로이 최고의 전사. 조국과 가족을 지키다 아킬레우스에게 죽는 비극적 인물이다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">파리스 Paris</td>
+<td>매력적이지만 판단이 가볍고 욕망에 흔들린다.</td>
+<td>파리스의 심판으로 트로이 전쟁의 원인을 제공한다. 선택의 결과와 욕망의 위험을 보여 준다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">헬레네 Helen</td>
+<td>절세의 아름다움을 지녔지만 그 아름다움 때문에 갈등의 중심에 놓인다.</td>
+<td>트로이 전쟁의 발단이 된 인물. 아름다움, 욕망, 책임의 문제를 상징한다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">카산드라 Cassandra</td>
+<td>진실을 보지만 누구에게도 믿음을 얻지 못하는 비극적 예언자다.</td>
+<td>트로이의 멸망을 예언하지만 무시당한다. 진실과 불신의 비극을 상징한다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">아가멤논 Agamemnon</td>
+<td>권위적이고 야심이 강하지만 가족과 신의 분노를 가볍게 여긴다.</td>
+<td>그리스 연합군 총사령관. 이피게네이아 희생과 귀환 후 죽음으로 권력의 비극을 보여 준다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">클리타임네스트라 Clytemnestra</td>
+<td>분노와 복수심이 강하며 딸의 희생에 대한 깊은 원한을 품는다.</td>
+<td>아가멤논을 살해한 왕비. 가족 희생, 복수, 정의의 모호함을 드러낸다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">이피게네이아 Iphigenia</td>
+<td>무고한 희생자의 성격이 강하며 가족과 국가 권력 사이에 놓인다.</td>
+<td>아가멤논이 전쟁을 위해 희생시키려 한 딸. 전쟁의 대가와 순수한 희생을 상징한다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">오레스테스 Orestes</td>
+<td>복수와 죄책감 사이에서 갈등하는 비극적 인물이다.</td>
+<td>아버지 아가멤논의 복수를 위해 어머니를 죽인다. 정의와 죄의 충돌을 보여 준다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">엘렉트라 Electra</td>
+<td>강한 원한과 가족에 대한 충성심을 지닌다.</td>
+<td>오레스테스와 함께 아가멤논의 복수를 추구한다. 복수 비극의 중심 인물이다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">오이디푸스 Oedipus</td>
+<td>지혜롭고 결단력 있지만 자신의 운명에는 눈먼 비극적 인물이다.</td>
+<td>스핑크스의 수수께끼를 풀고 왕이 되지만 예언된 운명을 피하지 못한다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">안티고네 Antigone</td>
+<td>신념이 강하고 가족과 신의 법을 인간의 명령보다 중시한다.</td>
+<td>국가 권력에 맞서 오빠의 장례를 치른다. 양심, 저항, 법의 충돌을 상징한다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">테이레시아스 Tiresias</td>
+<td>눈은 멀었지만 진실을 보는 예언자다. 지혜롭고 신비로운 권위를 지닌다.</td>
+<td>여러 비극에서 예언과 진실을 전달한다. 보이지 않는 진실과 인간 무지를 드러낸다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">미다스 Midas</td>
+<td>욕심이 많고 어리석지만 자신의 탐욕이 고통을 부른다는 사실을 깨닫는다.</td>
+<td>손대는 모든 것을 금으로 바꾸는 능력을 얻지만 저주가 된다. 탐욕의 위험을 상징한다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">시시포스 Sisyphus</td>
+<td>교활하고 지혜롭지만 신들을 속이려는 오만함을 지닌다.</td>
+<td>영원히 바위를 밀어 올리는 벌을 받는다. 부조리, 반복 노동, 인간 조건의 상징이다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">탄탈로스 Tantalus</td>
+<td>신의 은혜를 배반하고 오만하게 금기를 넘는다.</td>
+<td>영원한 굶주림과 갈증의 벌을 받는다. 탐욕과 신성 모독의 대가를 보여 준다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">니오베 Niobe</td>
+<td>자부심이 지나쳐 오만으로 변한 어머니이다.</td>
+<td>레토보다 자식이 많다고 자랑하다 자녀들을 잃는다. 인간의 오만과 슬픔을 상징한다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">다이달로스 Daedalus</td>
+<td>창의적이고 뛰어난 기술자지만 자신의 발명이 위험을 낳는다는 고통도 겪는다.</td>
+<td>미궁과 날개를 만든 장인. 기술의 창조성과 책임을 상징한다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">이카로스 Icarus</td>
+<td>호기심이 많고 자유를 갈망하지만 경고를 무시하는 성급함이 있다.</td>
+<td>태양 가까이 날다 추락한다. 젊은 욕망, 한계, 오만한 상승의 위험을 상징한다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">피그말리온 Pygmalion</td>
+<td>이상적 아름다움을 추구하고 자신의 창조물에 사랑을 품는다.</td>
+<td>조각상 갈라테이아를 사랑해 생명을 얻는다. 예술, 욕망, 창조의 힘을 보여 준다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">갈라테이아 Galatea</td>
+<td>예술 작품에서 생명을 얻은 존재로, 이상과 현실의 경계에 있다.</td>
+<td>피그말리온의 조각상이 생명을 얻은 인물. 예술이 현실로 변하는 상징이다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">나르키소스 Narcissus</td>
+<td>자기 자신에게 매혹되어 타인을 보지 못하는 성격이다.</td>
+<td>자신의 모습에 빠져 죽는다. 자기애와 고립, 타자 인식의 실패를 상징한다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">에코 Echo</td>
+<td>사랑을 표현하지 못하고 남의 말만 되풀이하는 슬픈 존재다.</td>
+<td>나르키소스를 사랑하지만 거절당한다. 목소리와 상실, 응답받지 못한 사랑을 상징한다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">아라크네 Arachne</td>
+<td>재능이 뛰어나지만 신과 겨루려는 오만함을 보인다.</td>
+<td>아테나와 베 짜기 경쟁을 하다 거미가 된다. 예술적 재능과 오만의 경계를 보여 준다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">프시케 Psyche</td>
+<td>순수하고 인내심이 강하며 고난을 통해 성숙한다.</td>
+<td>에로스의 사랑을 얻기 위해 시련을 겪는다. 영혼의 성장과 사랑의 신뢰를 상징한다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">에우리디케 Eurydice</td>
+<td>조용하고 비극적인 사랑의 대상이다.</td>
+<td>오르페우스가 저승에서 되찾으려 한 아내. 상실과 되돌릴 수 없는 선택을 상징한다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="인간·왕가·예언자">
+<td class="name">메데이아 Medea</td>
+<td>지혜롭고 강력한 마법 능력을 지녔지만 사랑과 배신 속에서 파괴적 복수심을 드러낸다.</td>
+<td>이아손을 돕지만 배신당한 뒤 비극적 복수를 행한다. 사랑, 배신, 분노의 극단을 상징한다.</td>
+<td><span class="pill smallpill">인간·왕가·예언자</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">메두사 Medusa</td>
+<td>두려움의 대상이지만 폭력과 저주의 희생자로도 해석된다.</td>
+<td>눈을 마주치면 돌로 만드는 고르곤. 페르세우스 신화에서 공포와 시선의 힘을 상징한다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">미노타우로스 Minotaur</td>
+<td>인간과 짐승의 혼합으로 억압된 본능과 비밀스러운 죄의 결과를 나타낸다.</td>
+<td>크레타 미궁에 갇힌 괴물. 테세우스에게 죽으며 미궁과 공포의 중심이 된다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">스핑크스 Sphinx</td>
+<td>수수께끼를 통해 인간의 지혜를 시험하는 냉혹한 존재다.</td>
+<td>오이디푸스에게 수수께끼를 내는 괴물. 지혜와 생존의 시험을 상징한다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">키마이라 Chimera</td>
+<td>여러 짐승이 섞인 혼돈의 형상으로 파괴적이고 기이하다.</td>
+<td>벨레로폰이 물리친 괴물. 혼합된 공포와 영웅적 도전의 대상을 상징한다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">히드라 Hydra</td>
+<td>끈질기고 재생력이 강하며 쉽게 제거되지 않는 악을 상징한다.</td>
+<td>머리를 자르면 더 늘어나는 괴물. 헤라클레스의 과업에서 반복되는 문제와 집요한 악을 나타낸다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">케르베로스 Cerberus</td>
+<td>충직하고 무시무시하며 경계를 지키는 존재다.</td>
+<td>저승의 문을 지키는 머리 셋 달린 개. 산 자와 죽은 자의 경계를 상징한다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">스킬라 Scylla</td>
+<td>바다의 좁은 길에서 인간을 위협하는 잔혹한 괴물이다.</td>
+<td>오디세우스의 항해에서 피할 수 없는 위험을 나타낸다. 선택의 비극을 상징한다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">카리브디스 Charybdis</td>
+<td>모든 것을 빨아들이는 파괴적 소용돌이의 성격을 지닌다.</td>
+<td>스킬라와 함께 양자택일의 위험을 만든다. 두 악 사이의 선택을 상징한다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">키클롭스 Cyclops / 폴리페모스 Polyphemus</td>
+<td>거칠고 단순하지만 강력하다. 문명 밖의 원초적 힘을 상징한다.</td>
+<td>외눈 거인. 오디세우스와의 대결에서 힘과 지혜의 충돌을 보여 준다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">세이렌 Sirens</td>
+<td>아름다운 목소리로 유혹하지만 파멸로 이끄는 위험한 존재다.</td>
+<td>노래로 항해자를 유혹한다. 지식과 욕망, 유혹의 위험을 상징한다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">하르피이아이 Harpies</td>
+<td>난폭하고 탐욕스러우며 갑작스러운 재앙처럼 등장한다.</td>
+<td>날개 달린 괴물로 음식과 사람을 낚아챈다. 약탈과 신의 벌을 상징한다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">그라이아이 Graeae</td>
+<td>늙고 신비로우며 하나의 눈과 이를 공유하는 기이한 존재들이다.</td>
+<td>페르세우스가 메두사를 찾기 위해 정보를 얻는 존재들. 지식의 관문 역할을 한다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">고르곤 Gorgons</td>
+<td>공포와 금기의 형상이며 보는 행위 자체를 위험하게 만든다.</td>
+<td>스테노, 에우리알레, 메두사로 이루어진 괴물 자매. 죽음과 마비되는 공포를 상징한다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">페가소스 Pegasus</td>
+<td>순수하고 고귀하며 자유롭게 하늘로 솟아오르는 존재다.</td>
+<td>날개 달린 말. 벨레로폰의 모험과 시적 영감, 하늘로 향하는 상상력을 상징한다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">켄타우로스 Centaurs</td>
+<td>인간의 이성과 짐승의 본능이 섞인 모순적 존재들이다.</td>
+<td>반인반마 종족. 야성, 술, 폭력, 때로는 지혜로운 교육자의 모습을 함께 지닌다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">케이론 Chiron</td>
+<td>온화하고 지혜로우며 다른 켄타우로스와 달리 절제와 교육의 상징이다.</td>
+<td>아킬레우스, 아스클레피오스 등 영웅들의 스승. 치유와 교육, 현명한 고통을 상징한다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+<tr data-cat="괴물·상징적 존재">
+<td class="name">라돈 Ladon</td>
+<td>충직하고 강력하며 신성한 보물을 지키는 수호자의 성격을 지닌다.</td>
+<td>헤스페리데스의 황금 사과를 지키는 용. 금지된 보물과 수호의 의미를 나타낸다.</td>
+<td><span class="pill smallpill">괴물·상징적 존재</span></td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="card" id="cards">
+  <h2>Ⅲ. 카드형 인물 소개</h2>
+  <div class="grid" id="cardGrid">
+    <article class="person-card" data-cat="올림포스 주요 신">
+<h3>제우스 Zeus / 유피테르 Jupiter</h3>
+<div class="pill">올림포스 주요 신</div>
+<p><b>성격</b> 권위적이고 강력하며 질서와 심판을 중시하지만, 욕망과 감정에 흔들리는 약점도 지닌 통치자형 인물이다.</p>
+<p><b>역할</b> 하늘·번개·왕권의 신이자 올림포스의 왕. 티탄을 물리친 뒤 신과 인간 세계의 질서를 다스린다.</p>
+</article>
+<article class="person-card" data-cat="올림포스 주요 신">
+<h3>헤라 Hera / 유노 Juno</h3>
+<div class="pill">올림포스 주요 신</div>
+<p><b>성격</b> 위엄 있고 자존심이 강하며 결혼과 가정의 질서를 지키려 한다. 배신에는 강한 질투와 분노를 드러낸다.</p>
+<p><b>역할</b> 결혼·가정·여성 권위의 여신이자 신들의 여왕. 혼인의 신성함과 왕비의 권위를 상징한다.</p>
+</article>
+<article class="person-card" data-cat="올림포스 주요 신">
+<h3>포세이돈 Poseidon / 넵투누스 Neptune</h3>
+<div class="pill">올림포스 주요 신</div>
+<p><b>성격</b> 거칠고 자존심이 강하며 쉽게 분노한다. 바다처럼 깊고 예측하기 어려운 힘을 상징한다.</p>
+<p><b>역할</b> 바다·지진·말의 신. 삼지창으로 바다와 대지를 흔들며 항해자들에게 경외의 대상이 된다.</p>
+</article>
+<article class="person-card" data-cat="올림포스 주요 신">
+<h3>하데스 Hades / 플루토 Pluto</h3>
+<div class="pill">올림포스 주요 신</div>
+<p><b>성격</b> 차갑고 엄격하지만 무조건 악한 존재는 아니다. 자신의 영역과 규칙을 철저히 지키는 질서형 인물이다.</p>
+<p><b>역할</b> 저승과 죽은 자의 세계를 다스리는 신. 죽음, 운명, 지하의 부를 상징한다.</p>
+</article>
+<article class="person-card" data-cat="올림포스 주요 신">
+<h3>데메테르 Demeter / 케레스 Ceres</h3>
+<div class="pill">올림포스 주요 신</div>
+<p><b>성격</b> 모성애가 깊고 생명을 돌보는 따뜻한 성격이다. 딸을 잃었을 때는 세계를 굶주리게 할 만큼 절박하다.</p>
+<p><b>역할</b> 농업·곡식·수확의 여신. 페르세포네 신화에서 계절의 순환과 생명의 회복을 설명한다.</p>
+</article>
+<article class="person-card" data-cat="올림포스 주요 신">
+<h3>아테나 Athena / 미네르바 Minerva</h3>
+<div class="pill">올림포스 주요 신</div>
+<p><b>성격</b> 냉철하고 이성적이며 전략과 지혜를 중시한다. 충동적 폭력보다 판단과 계획을 앞세운다.</p>
+<p><b>역할</b> 지혜·전략·공예·도시 문명의 수호신. 아테네의 수호신이며 이성과 문명의 이상을 대표한다.</p>
+</article>
+<article class="person-card" data-cat="올림포스 주요 신">
+<h3>아폴론 Apollo</h3>
+<div class="pill">올림포스 주요 신</div>
+<p><b>성격</b> 밝고 고귀하며 질서와 조화를 사랑하지만, 자존심이 강해 모욕에는 엄격하다.</p>
+<p><b>역할</b> 태양·예언·음악·의술의 신. 델포이 신탁의 주인이며 조화와 치유를 상징한다.</p>
+</article>
+<article class="person-card" data-cat="올림포스 주요 신">
+<h3>아르테미스 Artemis / 디아나 Diana</h3>
+<div class="pill">올림포스 주요 신</div>
+<p><b>성격</b> 독립적이고 강인하며 자유와 순결을 중시한다. 자신의 영역을 침범하는 자에게 단호하다.</p>
+<p><b>역할</b> 달·사냥·야생·젊은 여성의 수호신. 자연의 자유로움과 문명 밖 신성함을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="올림포스 주요 신">
+<h3>아레스 Ares / 마르스 Mars</h3>
+<div class="pill">올림포스 주요 신</div>
+<p><b>성격</b> 충동적이고 호전적이며 피와 전투의 열기를 즐긴다. 전략보다 본능적 투쟁에 가깝다.</p>
+<p><b>역할</b> 전쟁의 잔혹함과 파괴성을 드러내는 신. 로마에서는 군사력과 국가의 상징으로 높게 평가되었다.</p>
+</article>
+<article class="person-card" data-cat="올림포스 주요 신">
+<h3>아프로디테 Aphrodite / 베누스 Venus</h3>
+<div class="pill">올림포스 주요 신</div>
+<p><b>성격</b> 매혹적이고 감각적이며 사랑의 힘을 잘 안다. 사랑이 기쁨과 갈등을 함께 낳는다는 점을 보여 준다.</p>
+<p><b>역할</b> 사랑·아름다움·욕망의 여신. 파리스의 심판과 트로이 전쟁의 원인에 깊이 관여한다.</p>
+</article>
+<article class="person-card" data-cat="올림포스 주요 신">
+<h3>헤파이스토스 Hephaestus / 불카누스 Vulcan</h3>
+<div class="pill">올림포스 주요 신</div>
+<p><b>성격</b> 성실하고 창조적이며 장인 정신이 강하다. 외적 결핍을 기술과 지혜로 극복한다.</p>
+<p><b>역할</b> 불·대장장이·기술의 신. 신들의 무기와 도구를 만들며 기술 문명과 발명의 원형이 된다.</p>
+</article>
+<article class="person-card" data-cat="올림포스 주요 신">
+<h3>헤르메스 Hermes / 메르쿠리우스 Mercury</h3>
+<div class="pill">올림포스 주요 신</div>
+<p><b>성격</b> 영리하고 민첩하며 장난기와 재치가 넘친다. 경계를 넘나드는 자유로운 성격이다.</p>
+<p><b>역할</b> 전령·여행·상업·도둑·영혼 안내의 신. 신과 인간, 삶과 죽음 사이를 연결한다.</p>
+</article>
+<article class="person-card" data-cat="올림포스 주요 신">
+<h3>디오니소스 Dionysus / 바쿠스 Bacchus</h3>
+<div class="pill">올림포스 주요 신</div>
+<p><b>성격</b> 자유롭고 열정적이며 규범을 흔드는 힘을 지닌다. 기쁨과 광기, 해방과 파괴가 공존한다.</p>
+<p><b>역할</b> 포도주·축제·연극·광기의 신. 억압된 감정과 본능, 문명과 야성의 경계를 드러낸다.</p>
+</article>
+<article class="person-card" data-cat="올림포스 주요 신">
+<h3>헤스티아 Hestia / 베스타 Vesta</h3>
+<div class="pill">올림포스 주요 신</div>
+<p><b>성격</b> 조용하고 온화하며 안정과 평화를 중시한다. 다툼보다 공동체의 중심을 지키는 성격이다.</p>
+<p><b>역할</b> 화로·가정·공동체의 여신. 눈에 띄지 않지만 모든 삶의 출발점인 안정과 귀속감을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>카오스 Chaos</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 형태와 질서가 없는 원초적 공허로, 인격적 성격보다 모든 가능성의 시작을 나타낸다.</p>
+<p><b>역할</b> 우주 생성 이전의 혼돈. 가이아, 타르타로스, 에로스 등 원초 존재가 출현하는 배경이다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>가이아 Gaia</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 모든 생명을 품는 어머니이지만, 억압적 권력에는 강하게 맞서는 대지의 의지를 지닌다.</p>
+<p><b>역할</b> 대지의 여신이자 신화 세계의 근원. 우라노스, 티탄, 거인족 등 수많은 존재를 낳는다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>우라노스 Uranus</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 권위적이고 억압적인 하늘의 아버지로 묘사된다. 자식을 두려워하여 폭력적으로 통제한다.</p>
+<p><b>역할</b> 하늘의 원초 신. 크로노스에게 몰락하며 최초의 권력 전복과 세대 갈등을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>타르타로스 Tartarus</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 깊고 어두운 심연 그 자체에 가까운 존재이다. 공포와 감금, 원초적 벌의 공간성을 지닌다.</p>
+<p><b>역할</b> 지하 깊은 심연이자 티탄과 괴물들이 갇히는 장소. 우주 질서의 어두운 밑바닥을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>에로스 Eros</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 초기 신화에서는 세계를 결합시키는 원초적 사랑의 힘이다. 후대에는 장난기 많은 사랑의 신으로도 변한다.</p>
+<p><b>역할</b> 생성과 결합, 욕망을 일으키는 원초적 힘. 쿠피도와 연결되어 사랑의 화살 이미지로 알려진다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>닉스 Nyx</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 어둡고 신비로우며 신들조차 두려워하는 밤의 권위를 지닌다.</p>
+<p><b>역할</b> 밤의 여신. 죽음, 잠, 운명, 불화 등 여러 어두운 신격의 어머니로 등장한다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>에레보스 Erebus</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 어둠과 그림자의 원초적 성격을 지닌 존재이다. 빛 이전의 깊은 어둠을 나타낸다.</p>
+<p><b>역할</b> 암흑의 신격. 지하 세계와 밤의 어둠을 구성하는 원초적 요소이다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>크로노스 Cronus / 사투르누스 Saturn</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 권력을 잃을까 두려워 자식을 삼키는 불안한 지배자다. 두려움이 폭력으로 변한 인물이다.</p>
+<p><b>역할</b> 제우스 이전 세대의 티탄 왕. 우라노스를 몰아내지만 다시 자식 세대에게 몰락한다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>레아 Rhea</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 자식을 지키려는 모성적 지혜와 결단력을 지녔다. 폭력적 권력에 맞서 속임수를 사용한다.</p>
+<p><b>역할</b> 제우스, 헤라, 포세이돈, 하데스 등의 어머니. 제우스를 숨겨 크로노스의 폭정을 끝내는 계기를 만든다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>오케아노스 Oceanus</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 거대한 흐름처럼 포용적이고 오래된 질서를 상징한다. 직접 충돌보다 세계를 둘러싼 안정성을 보여 준다.</p>
+<p><b>역할</b> 세계를 둘러싼 큰 강의 티탄. 강과 물의 근원, 세계의 가장자리를 상징한다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>테티스 Tethys</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 생명을 품고 기르는 물의 어머니 이미지가 강하다. 부드럽지만 원초적 생명력을 지닌다.</p>
+<p><b>역할</b> 오케아노스의 배우자이자 강과 샘의 어머니. 물과 생명의 근원을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>히페리온 Hyperion</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 높은 곳에서 빛을 비추는 장엄함과 원초적 권위를 지닌다.</p>
+<p><b>역할</b> 빛의 티탄. 헬리오스, 셀레네, 에오스의 아버지로 천체의 빛과 연결된다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>테이아 Theia</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 빛나는 아름다움과 찬란함을 상징하는 티탄 여신이다. 광휘와 시각의 신성함을 품는다.</p>
+<p><b>역할</b> 헬리오스, 셀레네, 에오스의 어머니. 태양, 달, 새벽으로 이어지는 빛의 계보를 이룬다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>이아페토스 Iapetus</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 인간 운명과 한계를 암시하는 어두운 계보의 티탄이다.</p>
+<p><b>역할</b> 프로메테우스, 에피메테우스, 아틀라스 등의 아버지. 인간과 고통의 계보에 연결된다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>테미스 Themis</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 공정하고 질서정연하며 신성한 법과 균형을 중시한다.</p>
+<p><b>역할</b> 정의와 신성한 질서의 티탄 여신. 호라이와 모이라이의 어머니로 질서와 운명을 나타낸다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>므네모시네 Mnemosyne</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 기억을 보존하고 의미를 이어 주는 깊고 사려 깊은 성격을 상징한다.</p>
+<p><b>역할</b> 기억의 여신이자 무사이의 어머니. 이야기, 학문, 예술의 기억 기반을 제공한다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>프로메테우스 Prometheus</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 지혜롭고 반항적이며 인간을 향한 연민이 강하다. 권력보다 인간의 가능성을 더 중요하게 여긴다.</p>
+<p><b>역할</b> 인간에게 불을 가져다주어 문명의 시작을 연 티탄. 희생적 지식인과 저항의 상징이다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>에피메테우스 Epimetheus</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 선량하지만 신중하지 못하고 결과를 늦게 깨닫는다. 이름처럼 ‘나중에 생각하는 자’이다.</p>
+<p><b>역할</b> 판도라를 받아들여 인간 세계에 고통이 들어오는 사건과 연결된다. 성급한 판단의 위험을 보여 준다.</p>
+</article>
+<article class="person-card" data-cat="원초신·티탄">
+<h3>아틀라스 Atlas</h3>
+<div class="pill">원초신·티탄</div>
+<p><b>성격</b> 강인하고 인내심이 크며 거대한 벌을 감당하는 묵직한 존재다.</p>
+<p><b>역할</b> 하늘을 떠받치는 벌을 받은 티탄. 책임, 짐, 세계의 무게를 상징한다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>페르세포네 Persephone / 프로세르피나 Proserpina</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 순수한 소녀와 엄숙한 저승의 왕비라는 양면성을 지닌다. 삶과 죽음의 경계를 오간다.</p>
+<p><b>역할</b> 하데스의 왕비이자 봄의 귀환을 상징한다. 데메테르와 함께 계절의 순환을 설명한다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>헬리오스 Helios / 솔 Sol</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 모든 것을 내려다보는 밝고 엄정한 관찰자다. 숨겨진 진실을 알고 있는 존재로 나타난다.</p>
+<p><b>역할</b> 태양신. 하늘을 가로지르며 세상을 비추고 감춰진 사건의 증언자가 된다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>셀레네 Selene / 루나 Luna</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 은은하고 신비로우며 밤의 정적과 감성을 품는다.</p>
+<p><b>역할</b> 달의 여신. 밤, 주기, 여성적 신비, 엔디미온 신화와 연결된다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>에오스 Eos / 아우로라 Aurora</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 새벽처럼 밝고 생동감 있으며 새로운 시작을 알린다.</p>
+<p><b>역할</b> 새벽의 여신. 어둠에서 빛으로 넘어가는 전환과 하루의 시작을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>니케 Nike / 빅토리아 Victoria</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 민첩하고 승리를 향해 곧장 나아가는 힘을 상징한다.</p>
+<p><b>역할</b> 승리의 여신. 전쟁, 경기, 경쟁에서 승리의 순간을 의인화한다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>네메시스 Nemesis</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 냉정하고 균형을 중시하며 오만을 용납하지 않는다.</p>
+<p><b>역할</b> 응보와 균형의 여신. 지나친 오만과 불균형에 벌을 내리는 정의의 힘이다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>헤카테 Hecate</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 신비롭고 어둡지만 지혜롭다. 경계와 갈림길의 불확실성을 다룬다.</p>
+<p><b>역할</b> 마법, 밤, 갈림길, 유령의 여신. 보이지 않는 세계와 선택의 경계를 상징한다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>이리스 Iris</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 가볍고 빠르며 소식을 전달하는 밝은 존재다.</p>
+<p><b>역할</b> 무지개의 여신이자 신들의 전령. 하늘과 땅, 신과 인간 사이의 메시지를 이어 준다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>판 Pan</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 야성적이고 장난스럽고 본능적이다. 자연의 즉흥성과 두려움을 함께 품는다.</p>
+<p><b>역할</b> 목자와 숲, 들판, 야생 음악의 신. 공포를 뜻하는 panic의 어원과 연결된다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>아스클레피오스 Asclepius</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 치유에 헌신적이고 지식 탐구가 강하지만, 생명과 죽음의 경계를 넘으려 한다.</p>
+<p><b>역할</b> 의술의 신. 의학과 치유의 상징이며 뱀이 감긴 지팡이로 대표된다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>모이라이 Moirai</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 감정에 흔들리지 않고 냉정하게 운명의 실을 다루는 존재들이다.</p>
+<p><b>역할</b> 운명의 여신들. 클로토, 라케시스, 아트로포스로 구성되며 인간과 신의 운명을 결정한다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>무사이 Mousai / 뮤즈 Muses</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 영감을 주고 기억과 예술을 일깨우는 창조적 존재들이다.</p>
+<p><b>역할</b> 시, 음악, 역사, 천문 등 예술과 학문의 여신들. 창작과 지식의 근원을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>카론 Charon</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 말이 적고 엄격하며 규칙에 따라 움직이는 저승의 뱃사공이다.</p>
+<p><b>역할</b> 죽은 자의 영혼을 스틱스 강 건너 저승으로 실어 나른다. 삶과 죽음의 경계를 지킨다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>타나토스 Thanatos</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 차갑고 피할 수 없지만 난폭함보다는 필연성을 상징한다.</p>
+<p><b>역할</b> 죽음의 의인화. 인간이 벗어날 수 없는 생의 끝을 나타낸다.</p>
+</article>
+<article class="person-card" data-cat="기타 신·신격">
+<h3>히프노스 Hypnos</h3>
+<div class="pill">기타 신·신격</div>
+<p><b>성격</b> 부드럽고 조용하며 의식을 잠재우는 평온함을 지닌다.</p>
+<p><b>역할</b> 잠의 신. 죽음의 형제이며 휴식, 망각, 꿈과 관련된다.</p>
+</article>
+<article class="person-card" data-cat="영웅·반신">
+<h3>헤라클레스 Heracles / 헤르쿨레스 Hercules</h3>
+<div class="pill">영웅·반신</div>
+<p><b>성격</b> 강인하고 용감하지만 충동과 고통을 함께 지닌다. 시련을 통해 정화되는 영웅이다.</p>
+<p><b>역할</b> 12과업을 수행한 대표적 영웅. 인간 한계를 넘어서는 힘과 속죄, 불멸을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="영웅·반신">
+<h3>페르세우스 Perseus</h3>
+<div class="pill">영웅·반신</div>
+<p><b>성격</b> 용감하고 기민하며 신들의 도움을 지혜롭게 활용한다.</p>
+<p><b>역할</b> 메두사를 물리치고 안드로메다를 구한 영웅. 괴물 퇴치와 왕가 구원의 서사를 이끈다.</p>
+</article>
+<article class="person-card" data-cat="영웅·반신">
+<h3>테세우스 Theseus</h3>
+<div class="pill">영웅·반신</div>
+<p><b>성격</b> 용감하고 정치적 감각이 있으며 도시 질서를 세우려는 영웅이다.</p>
+<p><b>역할</b> 미노타우로스를 물리치고 아테네의 영웅이 된다. 미궁 탈출과 도시 통합을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="영웅·반신">
+<h3>아킬레우스 Achilles</h3>
+<div class="pill">영웅·반신</div>
+<p><b>성격</b> 용맹하고 자존심이 강하며 명예에 민감하다. 분노와 슬픔이 운명을 움직인다.</p>
+<p><b>역할</b> 트로이 전쟁의 최강 전사. 짧은 영광과 비극적 운명을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="영웅·반신">
+<h3>오디세우스 Odysseus / 율리시스 Ulysses</h3>
+<div class="pill">영웅·반신</div>
+<p><b>성격</b> 영리하고 인내심이 강하며 말과 전략에 능하다. 생존을 위해 지혜를 사용하는 인물이다.</p>
+<p><b>역할</b> 트로이 전쟁 후 긴 귀향 여행을 겪는 영웅. 인간의 지혜, 유혹 극복, 귀향의 의미를 보여 준다.</p>
+</article>
+<article class="person-card" data-cat="영웅·반신">
+<h3>이아손 Jason</h3>
+<div class="pill">영웅·반신</div>
+<p><b>성격</b> 야망이 있고 모험심이 강하지만 우유부단하고 타인의 도움에 크게 의존한다.</p>
+<p><b>역할</b> 아르고호 원정대의 지도자. 황금 양털을 찾으며 모험과 배신, 영광의 불안정성을 보여 준다.</p>
+</article>
+<article class="person-card" data-cat="영웅·반신">
+<h3>오르페우스 Orpheus</h3>
+<div class="pill">영웅·반신</div>
+<p><b>성격</b> 섬세하고 사랑이 깊으며 예술의 힘을 믿는다.</p>
+<p><b>역할</b> 음악으로 자연과 저승을 감동시킨 시인. 에우리디케를 되찾으려는 사랑과 상실의 상징이다.</p>
+</article>
+<article class="person-card" data-cat="영웅·반신">
+<h3>벨레로폰 Bellerophon</h3>
+<div class="pill">영웅·반신</div>
+<p><b>성격</b> 용감하지만 성공 뒤 오만에 빠질 위험을 보여 준다.</p>
+<p><b>역할</b> 페가소스를 타고 키마이라를 물리친 영웅. 인간의 위업과 오만의 추락을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="영웅·반신">
+<h3>아탈란테 Atalanta</h3>
+<div class="pill">영웅·반신</div>
+<p><b>성격</b> 민첩하고 독립적이며 남성 영웅들과 경쟁할 만큼 뛰어나다.</p>
+<p><b>역할</b> 사냥과 달리기의 여영웅. 여성의 능력과 자유로운 선택을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="영웅·반신">
+<h3>아리아드네 Ariadne</h3>
+<div class="pill">영웅·반신</div>
+<p><b>성격</b> 사랑에 용감하고 지혜롭게 길을 찾는 인물이다. 버림받은 뒤에도 새로운 운명을 맞는다.</p>
+<p><b>역할</b> 테세우스에게 실타래를 주어 미궁 탈출을 돕는다. 길 찾기와 구원의 상징이다.</p>
+</article>
+<article class="person-card" data-cat="영웅·반신">
+<h3>안드로메다 Andromeda</h3>
+<div class="pill">영웅·반신</div>
+<p><b>성격</b> 희생당하는 약자의 위치에 놓이지만 구원 뒤 새로운 왕가의 인물이 된다.</p>
+<p><b>역할</b> 바다 괴물에게 제물로 바쳐졌다가 페르세우스에게 구출된다. 부당한 희생과 구원을 보여 준다.</p>
+</article>
+<article class="person-card" data-cat="영웅·반신">
+<h3>멜레아그로스 Meleager</h3>
+<div class="pill">영웅·반신</div>
+<p><b>성격</b> 용감하지만 가족과 명예 사이에서 비극적 갈등을 겪는다.</p>
+<p><b>역할</b> 칼리돈의 멧돼지 사냥 영웅. 영광과 가족 비극이 얽힌 인물이다.</p>
+</article>
+<article class="person-card" data-cat="영웅·반신">
+<h3>카스토르 Castor</h3>
+<div class="pill">영웅·반신</div>
+<p><b>성격</b> 용맹하고 형제애가 깊은 전사적 성격을 지닌다.</p>
+<p><b>역할</b> 폴리데우케스와 함께 디오스쿠로이 형제 중 하나. 쌍둥이자리 신화와 연결된다.</p>
+</article>
+<article class="person-card" data-cat="영웅·반신">
+<h3>폴리데우케스 Polydeuces / 폴룩스 Pollux</h3>
+<div class="pill">영웅·반신</div>
+<p><b>성격</b> 형제에 대한 사랑이 깊고 희생적인 마음을 지닌다.</p>
+<p><b>역할</b> 불멸성을 형제와 나누며 쌍둥이자리의 상징이 된다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>프리아모스 Priam</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 존엄하고 가족을 사랑하는 왕이지만 전쟁의 비극을 감당해야 한다.</p>
+<p><b>역할</b> 트로이의 왕. 헥토르의 시신을 돌려받기 위해 아킬레우스를 찾아가 부성애를 보여 준다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>헥토르 Hector</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 책임감 있고 가족을 사랑하며 명예를 중시하는 방어적 영웅이다.</p>
+<p><b>역할</b> 트로이 최고의 전사. 조국과 가족을 지키다 아킬레우스에게 죽는 비극적 인물이다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>파리스 Paris</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 매력적이지만 판단이 가볍고 욕망에 흔들린다.</p>
+<p><b>역할</b> 파리스의 심판으로 트로이 전쟁의 원인을 제공한다. 선택의 결과와 욕망의 위험을 보여 준다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>헬레네 Helen</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 절세의 아름다움을 지녔지만 그 아름다움 때문에 갈등의 중심에 놓인다.</p>
+<p><b>역할</b> 트로이 전쟁의 발단이 된 인물. 아름다움, 욕망, 책임의 문제를 상징한다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>카산드라 Cassandra</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 진실을 보지만 누구에게도 믿음을 얻지 못하는 비극적 예언자다.</p>
+<p><b>역할</b> 트로이의 멸망을 예언하지만 무시당한다. 진실과 불신의 비극을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>아가멤논 Agamemnon</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 권위적이고 야심이 강하지만 가족과 신의 분노를 가볍게 여긴다.</p>
+<p><b>역할</b> 그리스 연합군 총사령관. 이피게네이아 희생과 귀환 후 죽음으로 권력의 비극을 보여 준다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>클리타임네스트라 Clytemnestra</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 분노와 복수심이 강하며 딸의 희생에 대한 깊은 원한을 품는다.</p>
+<p><b>역할</b> 아가멤논을 살해한 왕비. 가족 희생, 복수, 정의의 모호함을 드러낸다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>이피게네이아 Iphigenia</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 무고한 희생자의 성격이 강하며 가족과 국가 권력 사이에 놓인다.</p>
+<p><b>역할</b> 아가멤논이 전쟁을 위해 희생시키려 한 딸. 전쟁의 대가와 순수한 희생을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>오레스테스 Orestes</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 복수와 죄책감 사이에서 갈등하는 비극적 인물이다.</p>
+<p><b>역할</b> 아버지 아가멤논의 복수를 위해 어머니를 죽인다. 정의와 죄의 충돌을 보여 준다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>엘렉트라 Electra</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 강한 원한과 가족에 대한 충성심을 지닌다.</p>
+<p><b>역할</b> 오레스테스와 함께 아가멤논의 복수를 추구한다. 복수 비극의 중심 인물이다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>오이디푸스 Oedipus</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 지혜롭고 결단력 있지만 자신의 운명에는 눈먼 비극적 인물이다.</p>
+<p><b>역할</b> 스핑크스의 수수께끼를 풀고 왕이 되지만 예언된 운명을 피하지 못한다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>안티고네 Antigone</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 신념이 강하고 가족과 신의 법을 인간의 명령보다 중시한다.</p>
+<p><b>역할</b> 국가 권력에 맞서 오빠의 장례를 치른다. 양심, 저항, 법의 충돌을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>테이레시아스 Tiresias</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 눈은 멀었지만 진실을 보는 예언자다. 지혜롭고 신비로운 권위를 지닌다.</p>
+<p><b>역할</b> 여러 비극에서 예언과 진실을 전달한다. 보이지 않는 진실과 인간 무지를 드러낸다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>미다스 Midas</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 욕심이 많고 어리석지만 자신의 탐욕이 고통을 부른다는 사실을 깨닫는다.</p>
+<p><b>역할</b> 손대는 모든 것을 금으로 바꾸는 능력을 얻지만 저주가 된다. 탐욕의 위험을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>시시포스 Sisyphus</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 교활하고 지혜롭지만 신들을 속이려는 오만함을 지닌다.</p>
+<p><b>역할</b> 영원히 바위를 밀어 올리는 벌을 받는다. 부조리, 반복 노동, 인간 조건의 상징이다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>탄탈로스 Tantalus</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 신의 은혜를 배반하고 오만하게 금기를 넘는다.</p>
+<p><b>역할</b> 영원한 굶주림과 갈증의 벌을 받는다. 탐욕과 신성 모독의 대가를 보여 준다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>니오베 Niobe</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 자부심이 지나쳐 오만으로 변한 어머니이다.</p>
+<p><b>역할</b> 레토보다 자식이 많다고 자랑하다 자녀들을 잃는다. 인간의 오만과 슬픔을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>다이달로스 Daedalus</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 창의적이고 뛰어난 기술자지만 자신의 발명이 위험을 낳는다는 고통도 겪는다.</p>
+<p><b>역할</b> 미궁과 날개를 만든 장인. 기술의 창조성과 책임을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>이카로스 Icarus</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 호기심이 많고 자유를 갈망하지만 경고를 무시하는 성급함이 있다.</p>
+<p><b>역할</b> 태양 가까이 날다 추락한다. 젊은 욕망, 한계, 오만한 상승의 위험을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>피그말리온 Pygmalion</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 이상적 아름다움을 추구하고 자신의 창조물에 사랑을 품는다.</p>
+<p><b>역할</b> 조각상 갈라테이아를 사랑해 생명을 얻는다. 예술, 욕망, 창조의 힘을 보여 준다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>갈라테이아 Galatea</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 예술 작품에서 생명을 얻은 존재로, 이상과 현실의 경계에 있다.</p>
+<p><b>역할</b> 피그말리온의 조각상이 생명을 얻은 인물. 예술이 현실로 변하는 상징이다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>나르키소스 Narcissus</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 자기 자신에게 매혹되어 타인을 보지 못하는 성격이다.</p>
+<p><b>역할</b> 자신의 모습에 빠져 죽는다. 자기애와 고립, 타자 인식의 실패를 상징한다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>에코 Echo</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 사랑을 표현하지 못하고 남의 말만 되풀이하는 슬픈 존재다.</p>
+<p><b>역할</b> 나르키소스를 사랑하지만 거절당한다. 목소리와 상실, 응답받지 못한 사랑을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>아라크네 Arachne</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 재능이 뛰어나지만 신과 겨루려는 오만함을 보인다.</p>
+<p><b>역할</b> 아테나와 베 짜기 경쟁을 하다 거미가 된다. 예술적 재능과 오만의 경계를 보여 준다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>프시케 Psyche</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 순수하고 인내심이 강하며 고난을 통해 성숙한다.</p>
+<p><b>역할</b> 에로스의 사랑을 얻기 위해 시련을 겪는다. 영혼의 성장과 사랑의 신뢰를 상징한다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>에우리디케 Eurydice</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 조용하고 비극적인 사랑의 대상이다.</p>
+<p><b>역할</b> 오르페우스가 저승에서 되찾으려 한 아내. 상실과 되돌릴 수 없는 선택을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="인간·왕가·예언자">
+<h3>메데이아 Medea</h3>
+<div class="pill">인간·왕가·예언자</div>
+<p><b>성격</b> 지혜롭고 강력한 마법 능력을 지녔지만 사랑과 배신 속에서 파괴적 복수심을 드러낸다.</p>
+<p><b>역할</b> 이아손을 돕지만 배신당한 뒤 비극적 복수를 행한다. 사랑, 배신, 분노의 극단을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>메두사 Medusa</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 두려움의 대상이지만 폭력과 저주의 희생자로도 해석된다.</p>
+<p><b>역할</b> 눈을 마주치면 돌로 만드는 고르곤. 페르세우스 신화에서 공포와 시선의 힘을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>미노타우로스 Minotaur</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 인간과 짐승의 혼합으로 억압된 본능과 비밀스러운 죄의 결과를 나타낸다.</p>
+<p><b>역할</b> 크레타 미궁에 갇힌 괴물. 테세우스에게 죽으며 미궁과 공포의 중심이 된다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>스핑크스 Sphinx</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 수수께끼를 통해 인간의 지혜를 시험하는 냉혹한 존재다.</p>
+<p><b>역할</b> 오이디푸스에게 수수께끼를 내는 괴물. 지혜와 생존의 시험을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>키마이라 Chimera</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 여러 짐승이 섞인 혼돈의 형상으로 파괴적이고 기이하다.</p>
+<p><b>역할</b> 벨레로폰이 물리친 괴물. 혼합된 공포와 영웅적 도전의 대상을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>히드라 Hydra</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 끈질기고 재생력이 강하며 쉽게 제거되지 않는 악을 상징한다.</p>
+<p><b>역할</b> 머리를 자르면 더 늘어나는 괴물. 헤라클레스의 과업에서 반복되는 문제와 집요한 악을 나타낸다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>케르베로스 Cerberus</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 충직하고 무시무시하며 경계를 지키는 존재다.</p>
+<p><b>역할</b> 저승의 문을 지키는 머리 셋 달린 개. 산 자와 죽은 자의 경계를 상징한다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>스킬라 Scylla</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 바다의 좁은 길에서 인간을 위협하는 잔혹한 괴물이다.</p>
+<p><b>역할</b> 오디세우스의 항해에서 피할 수 없는 위험을 나타낸다. 선택의 비극을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>카리브디스 Charybdis</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 모든 것을 빨아들이는 파괴적 소용돌이의 성격을 지닌다.</p>
+<p><b>역할</b> 스킬라와 함께 양자택일의 위험을 만든다. 두 악 사이의 선택을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>키클롭스 Cyclops / 폴리페모스 Polyphemus</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 거칠고 단순하지만 강력하다. 문명 밖의 원초적 힘을 상징한다.</p>
+<p><b>역할</b> 외눈 거인. 오디세우스와의 대결에서 힘과 지혜의 충돌을 보여 준다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>세이렌 Sirens</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 아름다운 목소리로 유혹하지만 파멸로 이끄는 위험한 존재다.</p>
+<p><b>역할</b> 노래로 항해자를 유혹한다. 지식과 욕망, 유혹의 위험을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>하르피이아이 Harpies</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 난폭하고 탐욕스러우며 갑작스러운 재앙처럼 등장한다.</p>
+<p><b>역할</b> 날개 달린 괴물로 음식과 사람을 낚아챈다. 약탈과 신의 벌을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>그라이아이 Graeae</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 늙고 신비로우며 하나의 눈과 이를 공유하는 기이한 존재들이다.</p>
+<p><b>역할</b> 페르세우스가 메두사를 찾기 위해 정보를 얻는 존재들. 지식의 관문 역할을 한다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>고르곤 Gorgons</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 공포와 금기의 형상이며 보는 행위 자체를 위험하게 만든다.</p>
+<p><b>역할</b> 스테노, 에우리알레, 메두사로 이루어진 괴물 자매. 죽음과 마비되는 공포를 상징한다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>페가소스 Pegasus</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 순수하고 고귀하며 자유롭게 하늘로 솟아오르는 존재다.</p>
+<p><b>역할</b> 날개 달린 말. 벨레로폰의 모험과 시적 영감, 하늘로 향하는 상상력을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>켄타우로스 Centaurs</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 인간의 이성과 짐승의 본능이 섞인 모순적 존재들이다.</p>
+<p><b>역할</b> 반인반마 종족. 야성, 술, 폭력, 때로는 지혜로운 교육자의 모습을 함께 지닌다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>케이론 Chiron</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 온화하고 지혜로우며 다른 켄타우로스와 달리 절제와 교육의 상징이다.</p>
+<p><b>역할</b> 아킬레우스, 아스클레피오스 등 영웅들의 스승. 치유와 교육, 현명한 고통을 상징한다.</p>
+</article>
+<article class="person-card" data-cat="괴물·상징적 존재">
+<h3>라돈 Ladon</h3>
+<div class="pill">괴물·상징적 존재</div>
+<p><b>성격</b> 충직하고 강력하며 신성한 보물을 지키는 수호자의 성격을 지닌다.</p>
+<p><b>역할</b> 헤스페리데스의 황금 사과를 지키는 용. 금지된 보물과 수호의 의미를 나타낸다.</p>
+</article>
+  </div>
+</section>
+
+<section class="card" id="oop">
+  <h2>Ⅳ. OOP 핵심 구조</h2>
+  <div class="story">
+    원본 Tkinter 코드의 핵심 구조는 <b>MythCharacter</b>와 <b>MythDictionary</b> 클래스입니다.
+    인물 1명은 딕셔너리로 표현되고, 전체 인물은 리스트로 관리됩니다.
+  </div>
+  <pre><code>class MythCharacter:
+    def __init__(self, name, personality, role, category):
+        self.data = {
+            &quot;인물&quot;: name,
+            &quot;성격&quot;: personality,
+            &quot;역할&quot;: role,
+            &quot;분류&quot;: category
+        }
+
+    def to_dict(self):
+        return self.data
+
+
+class MythDictionary:
+    def __init__(self, raw_data):
+        self.characters = []
+        for item in raw_data:
+            person = MythCharacter(
+                item[&quot;인물&quot;],
+                item[&quot;성격&quot;],
+                item[&quot;역할&quot;],
+                item[&quot;분류&quot;]
+            )
+            self.characters.append(person.to_dict())
+
+    def find_by_name(self, name):
+        for p in self.characters:
+            if p[&quot;인물&quot;] == name:
+                return p
+        return None
+
+    def search(self, keyword):
+        result = []
+        for p in self.characters:
+            text = p[&quot;인물&quot;] + p[&quot;성격&quot;] + p[&quot;역할&quot;] + p[&quot;분류&quot;]
+            if keyword in text:
+                result.append(p)
+        return result
+</code></pre>
+</section>
+
+<section class="card" id="stats">
+  <h2>Ⅴ. 분류별 통계</h2>
+  <div class="stat-grid" id="statsBox"></div>
+  <p class="note">※ 그리스·로마 신화는 전승과 문헌에 따라 등장인물 범위와 이름 표기가 달라질 수 있습니다. 이 자료는 학교 수업용 핵심 인물을 폭넓게 정리한 버전입니다.</p>
+</section>
+</main>
+</div>
+
+<script>
+const mythCharacters = [{"분류": "올림포스 주요 신", "인물": "제우스 Zeus / 유피테르 Jupiter", "성격": "권위적이고 강력하며 질서와 심판을 중시하지만, 욕망과 감정에 흔들리는 약점도 지닌 통치자형 인물이다.", "역할": "하늘·번개·왕권의 신이자 올림포스의 왕. 티탄을 물리친 뒤 신과 인간 세계의 질서를 다스린다."}, {"분류": "올림포스 주요 신", "인물": "헤라 Hera / 유노 Juno", "성격": "위엄 있고 자존심이 강하며 결혼과 가정의 질서를 지키려 한다. 배신에는 강한 질투와 분노를 드러낸다.", "역할": "결혼·가정·여성 권위의 여신이자 신들의 여왕. 혼인의 신성함과 왕비의 권위를 상징한다."}, {"분류": "올림포스 주요 신", "인물": "포세이돈 Poseidon / 넵투누스 Neptune", "성격": "거칠고 자존심이 강하며 쉽게 분노한다. 바다처럼 깊고 예측하기 어려운 힘을 상징한다.", "역할": "바다·지진·말의 신. 삼지창으로 바다와 대지를 흔들며 항해자들에게 경외의 대상이 된다."}, {"분류": "올림포스 주요 신", "인물": "하데스 Hades / 플루토 Pluto", "성격": "차갑고 엄격하지만 무조건 악한 존재는 아니다. 자신의 영역과 규칙을 철저히 지키는 질서형 인물이다.", "역할": "저승과 죽은 자의 세계를 다스리는 신. 죽음, 운명, 지하의 부를 상징한다."}, {"분류": "올림포스 주요 신", "인물": "데메테르 Demeter / 케레스 Ceres", "성격": "모성애가 깊고 생명을 돌보는 따뜻한 성격이다. 딸을 잃었을 때는 세계를 굶주리게 할 만큼 절박하다.", "역할": "농업·곡식·수확의 여신. 페르세포네 신화에서 계절의 순환과 생명의 회복을 설명한다."}, {"분류": "올림포스 주요 신", "인물": "아테나 Athena / 미네르바 Minerva", "성격": "냉철하고 이성적이며 전략과 지혜를 중시한다. 충동적 폭력보다 판단과 계획을 앞세운다.", "역할": "지혜·전략·공예·도시 문명의 수호신. 아테네의 수호신이며 이성과 문명의 이상을 대표한다."}, {"분류": "올림포스 주요 신", "인물": "아폴론 Apollo", "성격": "밝고 고귀하며 질서와 조화를 사랑하지만, 자존심이 강해 모욕에는 엄격하다.", "역할": "태양·예언·음악·의술의 신. 델포이 신탁의 주인이며 조화와 치유를 상징한다."}, {"분류": "올림포스 주요 신", "인물": "아르테미스 Artemis / 디아나 Diana", "성격": "독립적이고 강인하며 자유와 순결을 중시한다. 자신의 영역을 침범하는 자에게 단호하다.", "역할": "달·사냥·야생·젊은 여성의 수호신. 자연의 자유로움과 문명 밖 신성함을 상징한다."}, {"분류": "올림포스 주요 신", "인물": "아레스 Ares / 마르스 Mars", "성격": "충동적이고 호전적이며 피와 전투의 열기를 즐긴다. 전략보다 본능적 투쟁에 가깝다.", "역할": "전쟁의 잔혹함과 파괴성을 드러내는 신. 로마에서는 군사력과 국가의 상징으로 높게 평가되었다."}, {"분류": "올림포스 주요 신", "인물": "아프로디테 Aphrodite / 베누스 Venus", "성격": "매혹적이고 감각적이며 사랑의 힘을 잘 안다. 사랑이 기쁨과 갈등을 함께 낳는다는 점을 보여 준다.", "역할": "사랑·아름다움·욕망의 여신. 파리스의 심판과 트로이 전쟁의 원인에 깊이 관여한다."}, {"분류": "올림포스 주요 신", "인물": "헤파이스토스 Hephaestus / 불카누스 Vulcan", "성격": "성실하고 창조적이며 장인 정신이 강하다. 외적 결핍을 기술과 지혜로 극복한다.", "역할": "불·대장장이·기술의 신. 신들의 무기와 도구를 만들며 기술 문명과 발명의 원형이 된다."}, {"분류": "올림포스 주요 신", "인물": "헤르메스 Hermes / 메르쿠리우스 Mercury", "성격": "영리하고 민첩하며 장난기와 재치가 넘친다. 경계를 넘나드는 자유로운 성격이다.", "역할": "전령·여행·상업·도둑·영혼 안내의 신. 신과 인간, 삶과 죽음 사이를 연결한다."}, {"분류": "올림포스 주요 신", "인물": "디오니소스 Dionysus / 바쿠스 Bacchus", "성격": "자유롭고 열정적이며 규범을 흔드는 힘을 지닌다. 기쁨과 광기, 해방과 파괴가 공존한다.", "역할": "포도주·축제·연극·광기의 신. 억압된 감정과 본능, 문명과 야성의 경계를 드러낸다."}, {"분류": "올림포스 주요 신", "인물": "헤스티아 Hestia / 베스타 Vesta", "성격": "조용하고 온화하며 안정과 평화를 중시한다. 다툼보다 공동체의 중심을 지키는 성격이다.", "역할": "화로·가정·공동체의 여신. 눈에 띄지 않지만 모든 삶의 출발점인 안정과 귀속감을 상징한다."}, {"분류": "원초신·티탄", "인물": "카오스 Chaos", "성격": "형태와 질서가 없는 원초적 공허로, 인격적 성격보다 모든 가능성의 시작을 나타낸다.", "역할": "우주 생성 이전의 혼돈. 가이아, 타르타로스, 에로스 등 원초 존재가 출현하는 배경이다."}, {"분류": "원초신·티탄", "인물": "가이아 Gaia", "성격": "모든 생명을 품는 어머니이지만, 억압적 권력에는 강하게 맞서는 대지의 의지를 지닌다.", "역할": "대지의 여신이자 신화 세계의 근원. 우라노스, 티탄, 거인족 등 수많은 존재를 낳는다."}, {"분류": "원초신·티탄", "인물": "우라노스 Uranus", "성격": "권위적이고 억압적인 하늘의 아버지로 묘사된다. 자식을 두려워하여 폭력적으로 통제한다.", "역할": "하늘의 원초 신. 크로노스에게 몰락하며 최초의 권력 전복과 세대 갈등을 상징한다."}, {"분류": "원초신·티탄", "인물": "타르타로스 Tartarus", "성격": "깊고 어두운 심연 그 자체에 가까운 존재이다. 공포와 감금, 원초적 벌의 공간성을 지닌다.", "역할": "지하 깊은 심연이자 티탄과 괴물들이 갇히는 장소. 우주 질서의 어두운 밑바닥을 상징한다."}, {"분류": "원초신·티탄", "인물": "에로스 Eros", "성격": "초기 신화에서는 세계를 결합시키는 원초적 사랑의 힘이다. 후대에는 장난기 많은 사랑의 신으로도 변한다.", "역할": "생성과 결합, 욕망을 일으키는 원초적 힘. 쿠피도와 연결되어 사랑의 화살 이미지로 알려진다."}, {"분류": "원초신·티탄", "인물": "닉스 Nyx", "성격": "어둡고 신비로우며 신들조차 두려워하는 밤의 권위를 지닌다.", "역할": "밤의 여신. 죽음, 잠, 운명, 불화 등 여러 어두운 신격의 어머니로 등장한다."}, {"분류": "원초신·티탄", "인물": "에레보스 Erebus", "성격": "어둠과 그림자의 원초적 성격을 지닌 존재이다. 빛 이전의 깊은 어둠을 나타낸다.", "역할": "암흑의 신격. 지하 세계와 밤의 어둠을 구성하는 원초적 요소이다."}, {"분류": "원초신·티탄", "인물": "크로노스 Cronus / 사투르누스 Saturn", "성격": "권력을 잃을까 두려워 자식을 삼키는 불안한 지배자다. 두려움이 폭력으로 변한 인물이다.", "역할": "제우스 이전 세대의 티탄 왕. 우라노스를 몰아내지만 다시 자식 세대에게 몰락한다."}, {"분류": "원초신·티탄", "인물": "레아 Rhea", "성격": "자식을 지키려는 모성적 지혜와 결단력을 지녔다. 폭력적 권력에 맞서 속임수를 사용한다.", "역할": "제우스, 헤라, 포세이돈, 하데스 등의 어머니. 제우스를 숨겨 크로노스의 폭정을 끝내는 계기를 만든다."}, {"분류": "원초신·티탄", "인물": "오케아노스 Oceanus", "성격": "거대한 흐름처럼 포용적이고 오래된 질서를 상징한다. 직접 충돌보다 세계를 둘러싼 안정성을 보여 준다.", "역할": "세계를 둘러싼 큰 강의 티탄. 강과 물의 근원, 세계의 가장자리를 상징한다."}, {"분류": "원초신·티탄", "인물": "테티스 Tethys", "성격": "생명을 품고 기르는 물의 어머니 이미지가 강하다. 부드럽지만 원초적 생명력을 지닌다.", "역할": "오케아노스의 배우자이자 강과 샘의 어머니. 물과 생명의 근원을 상징한다."}, {"분류": "원초신·티탄", "인물": "히페리온 Hyperion", "성격": "높은 곳에서 빛을 비추는 장엄함과 원초적 권위를 지닌다.", "역할": "빛의 티탄. 헬리오스, 셀레네, 에오스의 아버지로 천체의 빛과 연결된다."}, {"분류": "원초신·티탄", "인물": "테이아 Theia", "성격": "빛나는 아름다움과 찬란함을 상징하는 티탄 여신이다. 광휘와 시각의 신성함을 품는다.", "역할": "헬리오스, 셀레네, 에오스의 어머니. 태양, 달, 새벽으로 이어지는 빛의 계보를 이룬다."}, {"분류": "원초신·티탄", "인물": "이아페토스 Iapetus", "성격": "인간 운명과 한계를 암시하는 어두운 계보의 티탄이다.", "역할": "프로메테우스, 에피메테우스, 아틀라스 등의 아버지. 인간과 고통의 계보에 연결된다."}, {"분류": "원초신·티탄", "인물": "테미스 Themis", "성격": "공정하고 질서정연하며 신성한 법과 균형을 중시한다.", "역할": "정의와 신성한 질서의 티탄 여신. 호라이와 모이라이의 어머니로 질서와 운명을 나타낸다."}, {"분류": "원초신·티탄", "인물": "므네모시네 Mnemosyne", "성격": "기억을 보존하고 의미를 이어 주는 깊고 사려 깊은 성격을 상징한다.", "역할": "기억의 여신이자 무사이의 어머니. 이야기, 학문, 예술의 기억 기반을 제공한다."}, {"분류": "원초신·티탄", "인물": "프로메테우스 Prometheus", "성격": "지혜롭고 반항적이며 인간을 향한 연민이 강하다. 권력보다 인간의 가능성을 더 중요하게 여긴다.", "역할": "인간에게 불을 가져다주어 문명의 시작을 연 티탄. 희생적 지식인과 저항의 상징이다."}, {"분류": "원초신·티탄", "인물": "에피메테우스 Epimetheus", "성격": "선량하지만 신중하지 못하고 결과를 늦게 깨닫는다. 이름처럼 ‘나중에 생각하는 자’이다.", "역할": "판도라를 받아들여 인간 세계에 고통이 들어오는 사건과 연결된다. 성급한 판단의 위험을 보여 준다."}, {"분류": "원초신·티탄", "인물": "아틀라스 Atlas", "성격": "강인하고 인내심이 크며 거대한 벌을 감당하는 묵직한 존재다.", "역할": "하늘을 떠받치는 벌을 받은 티탄. 책임, 짐, 세계의 무게를 상징한다."}, {"분류": "기타 신·신격", "인물": "페르세포네 Persephone / 프로세르피나 Proserpina", "성격": "순수한 소녀와 엄숙한 저승의 왕비라는 양면성을 지닌다. 삶과 죽음의 경계를 오간다.", "역할": "하데스의 왕비이자 봄의 귀환을 상징한다. 데메테르와 함께 계절의 순환을 설명한다."}, {"분류": "기타 신·신격", "인물": "헬리오스 Helios / 솔 Sol", "성격": "모든 것을 내려다보는 밝고 엄정한 관찰자다. 숨겨진 진실을 알고 있는 존재로 나타난다.", "역할": "태양신. 하늘을 가로지르며 세상을 비추고 감춰진 사건의 증언자가 된다."}, {"분류": "기타 신·신격", "인물": "셀레네 Selene / 루나 Luna", "성격": "은은하고 신비로우며 밤의 정적과 감성을 품는다.", "역할": "달의 여신. 밤, 주기, 여성적 신비, 엔디미온 신화와 연결된다."}, {"분류": "기타 신·신격", "인물": "에오스 Eos / 아우로라 Aurora", "성격": "새벽처럼 밝고 생동감 있으며 새로운 시작을 알린다.", "역할": "새벽의 여신. 어둠에서 빛으로 넘어가는 전환과 하루의 시작을 상징한다."}, {"분류": "기타 신·신격", "인물": "니케 Nike / 빅토리아 Victoria", "성격": "민첩하고 승리를 향해 곧장 나아가는 힘을 상징한다.", "역할": "승리의 여신. 전쟁, 경기, 경쟁에서 승리의 순간을 의인화한다."}, {"분류": "기타 신·신격", "인물": "네메시스 Nemesis", "성격": "냉정하고 균형을 중시하며 오만을 용납하지 않는다.", "역할": "응보와 균형의 여신. 지나친 오만과 불균형에 벌을 내리는 정의의 힘이다."}, {"분류": "기타 신·신격", "인물": "헤카테 Hecate", "성격": "신비롭고 어둡지만 지혜롭다. 경계와 갈림길의 불확실성을 다룬다.", "역할": "마법, 밤, 갈림길, 유령의 여신. 보이지 않는 세계와 선택의 경계를 상징한다."}, {"분류": "기타 신·신격", "인물": "이리스 Iris", "성격": "가볍고 빠르며 소식을 전달하는 밝은 존재다.", "역할": "무지개의 여신이자 신들의 전령. 하늘과 땅, 신과 인간 사이의 메시지를 이어 준다."}, {"분류": "기타 신·신격", "인물": "판 Pan", "성격": "야성적이고 장난스럽고 본능적이다. 자연의 즉흥성과 두려움을 함께 품는다.", "역할": "목자와 숲, 들판, 야생 음악의 신. 공포를 뜻하는 panic의 어원과 연결된다."}, {"분류": "기타 신·신격", "인물": "아스클레피오스 Asclepius", "성격": "치유에 헌신적이고 지식 탐구가 강하지만, 생명과 죽음의 경계를 넘으려 한다.", "역할": "의술의 신. 의학과 치유의 상징이며 뱀이 감긴 지팡이로 대표된다."}, {"분류": "기타 신·신격", "인물": "모이라이 Moirai", "성격": "감정에 흔들리지 않고 냉정하게 운명의 실을 다루는 존재들이다.", "역할": "운명의 여신들. 클로토, 라케시스, 아트로포스로 구성되며 인간과 신의 운명을 결정한다."}, {"분류": "기타 신·신격", "인물": "무사이 Mousai / 뮤즈 Muses", "성격": "영감을 주고 기억과 예술을 일깨우는 창조적 존재들이다.", "역할": "시, 음악, 역사, 천문 등 예술과 학문의 여신들. 창작과 지식의 근원을 상징한다."}, {"분류": "기타 신·신격", "인물": "카론 Charon", "성격": "말이 적고 엄격하며 규칙에 따라 움직이는 저승의 뱃사공이다.", "역할": "죽은 자의 영혼을 스틱스 강 건너 저승으로 실어 나른다. 삶과 죽음의 경계를 지킨다."}, {"분류": "기타 신·신격", "인물": "타나토스 Thanatos", "성격": "차갑고 피할 수 없지만 난폭함보다는 필연성을 상징한다.", "역할": "죽음의 의인화. 인간이 벗어날 수 없는 생의 끝을 나타낸다."}, {"분류": "기타 신·신격", "인물": "히프노스 Hypnos", "성격": "부드럽고 조용하며 의식을 잠재우는 평온함을 지닌다.", "역할": "잠의 신. 죽음의 형제이며 휴식, 망각, 꿈과 관련된다."}, {"분류": "영웅·반신", "인물": "헤라클레스 Heracles / 헤르쿨레스 Hercules", "성격": "강인하고 용감하지만 충동과 고통을 함께 지닌다. 시련을 통해 정화되는 영웅이다.", "역할": "12과업을 수행한 대표적 영웅. 인간 한계를 넘어서는 힘과 속죄, 불멸을 상징한다."}, {"분류": "영웅·반신", "인물": "페르세우스 Perseus", "성격": "용감하고 기민하며 신들의 도움을 지혜롭게 활용한다.", "역할": "메두사를 물리치고 안드로메다를 구한 영웅. 괴물 퇴치와 왕가 구원의 서사를 이끈다."}, {"분류": "영웅·반신", "인물": "테세우스 Theseus", "성격": "용감하고 정치적 감각이 있으며 도시 질서를 세우려는 영웅이다.", "역할": "미노타우로스를 물리치고 아테네의 영웅이 된다. 미궁 탈출과 도시 통합을 상징한다."}, {"분류": "영웅·반신", "인물": "아킬레우스 Achilles", "성격": "용맹하고 자존심이 강하며 명예에 민감하다. 분노와 슬픔이 운명을 움직인다.", "역할": "트로이 전쟁의 최강 전사. 짧은 영광과 비극적 운명을 상징한다."}, {"분류": "영웅·반신", "인물": "오디세우스 Odysseus / 율리시스 Ulysses", "성격": "영리하고 인내심이 강하며 말과 전략에 능하다. 생존을 위해 지혜를 사용하는 인물이다.", "역할": "트로이 전쟁 후 긴 귀향 여행을 겪는 영웅. 인간의 지혜, 유혹 극복, 귀향의 의미를 보여 준다."}, {"분류": "영웅·반신", "인물": "이아손 Jason", "성격": "야망이 있고 모험심이 강하지만 우유부단하고 타인의 도움에 크게 의존한다.", "역할": "아르고호 원정대의 지도자. 황금 양털을 찾으며 모험과 배신, 영광의 불안정성을 보여 준다."}, {"분류": "영웅·반신", "인물": "오르페우스 Orpheus", "성격": "섬세하고 사랑이 깊으며 예술의 힘을 믿는다.", "역할": "음악으로 자연과 저승을 감동시킨 시인. 에우리디케를 되찾으려는 사랑과 상실의 상징이다."}, {"분류": "영웅·반신", "인물": "벨레로폰 Bellerophon", "성격": "용감하지만 성공 뒤 오만에 빠질 위험을 보여 준다.", "역할": "페가소스를 타고 키마이라를 물리친 영웅. 인간의 위업과 오만의 추락을 상징한다."}, {"분류": "영웅·반신", "인물": "아탈란테 Atalanta", "성격": "민첩하고 독립적이며 남성 영웅들과 경쟁할 만큼 뛰어나다.", "역할": "사냥과 달리기의 여영웅. 여성의 능력과 자유로운 선택을 상징한다."}, {"분류": "영웅·반신", "인물": "아리아드네 Ariadne", "성격": "사랑에 용감하고 지혜롭게 길을 찾는 인물이다. 버림받은 뒤에도 새로운 운명을 맞는다.", "역할": "테세우스에게 실타래를 주어 미궁 탈출을 돕는다. 길 찾기와 구원의 상징이다."}, {"분류": "영웅·반신", "인물": "안드로메다 Andromeda", "성격": "희생당하는 약자의 위치에 놓이지만 구원 뒤 새로운 왕가의 인물이 된다.", "역할": "바다 괴물에게 제물로 바쳐졌다가 페르세우스에게 구출된다. 부당한 희생과 구원을 보여 준다."}, {"분류": "영웅·반신", "인물": "멜레아그로스 Meleager", "성격": "용감하지만 가족과 명예 사이에서 비극적 갈등을 겪는다.", "역할": "칼리돈의 멧돼지 사냥 영웅. 영광과 가족 비극이 얽힌 인물이다."}, {"분류": "영웅·반신", "인물": "카스토르 Castor", "성격": "용맹하고 형제애가 깊은 전사적 성격을 지닌다.", "역할": "폴리데우케스와 함께 디오스쿠로이 형제 중 하나. 쌍둥이자리 신화와 연결된다."}, {"분류": "영웅·반신", "인물": "폴리데우케스 Polydeuces / 폴룩스 Pollux", "성격": "형제에 대한 사랑이 깊고 희생적인 마음을 지닌다.", "역할": "불멸성을 형제와 나누며 쌍둥이자리의 상징이 된다."}, {"분류": "인간·왕가·예언자", "인물": "프리아모스 Priam", "성격": "존엄하고 가족을 사랑하는 왕이지만 전쟁의 비극을 감당해야 한다.", "역할": "트로이의 왕. 헥토르의 시신을 돌려받기 위해 아킬레우스를 찾아가 부성애를 보여 준다."}, {"분류": "인간·왕가·예언자", "인물": "헥토르 Hector", "성격": "책임감 있고 가족을 사랑하며 명예를 중시하는 방어적 영웅이다.", "역할": "트로이 최고의 전사. 조국과 가족을 지키다 아킬레우스에게 죽는 비극적 인물이다."}, {"분류": "인간·왕가·예언자", "인물": "파리스 Paris", "성격": "매력적이지만 판단이 가볍고 욕망에 흔들린다.", "역할": "파리스의 심판으로 트로이 전쟁의 원인을 제공한다. 선택의 결과와 욕망의 위험을 보여 준다."}, {"분류": "인간·왕가·예언자", "인물": "헬레네 Helen", "성격": "절세의 아름다움을 지녔지만 그 아름다움 때문에 갈등의 중심에 놓인다.", "역할": "트로이 전쟁의 발단이 된 인물. 아름다움, 욕망, 책임의 문제를 상징한다."}, {"분류": "인간·왕가·예언자", "인물": "카산드라 Cassandra", "성격": "진실을 보지만 누구에게도 믿음을 얻지 못하는 비극적 예언자다.", "역할": "트로이의 멸망을 예언하지만 무시당한다. 진실과 불신의 비극을 상징한다."}, {"분류": "인간·왕가·예언자", "인물": "아가멤논 Agamemnon", "성격": "권위적이고 야심이 강하지만 가족과 신의 분노를 가볍게 여긴다.", "역할": "그리스 연합군 총사령관. 이피게네이아 희생과 귀환 후 죽음으로 권력의 비극을 보여 준다."}, {"분류": "인간·왕가·예언자", "인물": "클리타임네스트라 Clytemnestra", "성격": "분노와 복수심이 강하며 딸의 희생에 대한 깊은 원한을 품는다.", "역할": "아가멤논을 살해한 왕비. 가족 희생, 복수, 정의의 모호함을 드러낸다."}, {"분류": "인간·왕가·예언자", "인물": "이피게네이아 Iphigenia", "성격": "무고한 희생자의 성격이 강하며 가족과 국가 권력 사이에 놓인다.", "역할": "아가멤논이 전쟁을 위해 희생시키려 한 딸. 전쟁의 대가와 순수한 희생을 상징한다."}, {"분류": "인간·왕가·예언자", "인물": "오레스테스 Orestes", "성격": "복수와 죄책감 사이에서 갈등하는 비극적 인물이다.", "역할": "아버지 아가멤논의 복수를 위해 어머니를 죽인다. 정의와 죄의 충돌을 보여 준다."}, {"분류": "인간·왕가·예언자", "인물": "엘렉트라 Electra", "성격": "강한 원한과 가족에 대한 충성심을 지닌다.", "역할": "오레스테스와 함께 아가멤논의 복수를 추구한다. 복수 비극의 중심 인물이다."}, {"분류": "인간·왕가·예언자", "인물": "오이디푸스 Oedipus", "성격": "지혜롭고 결단력 있지만 자신의 운명에는 눈먼 비극적 인물이다.", "역할": "스핑크스의 수수께끼를 풀고 왕이 되지만 예언된 운명을 피하지 못한다."}, {"분류": "인간·왕가·예언자", "인물": "안티고네 Antigone", "성격": "신념이 강하고 가족과 신의 법을 인간의 명령보다 중시한다.", "역할": "국가 권력에 맞서 오빠의 장례를 치른다. 양심, 저항, 법의 충돌을 상징한다."}, {"분류": "인간·왕가·예언자", "인물": "테이레시아스 Tiresias", "성격": "눈은 멀었지만 진실을 보는 예언자다. 지혜롭고 신비로운 권위를 지닌다.", "역할": "여러 비극에서 예언과 진실을 전달한다. 보이지 않는 진실과 인간 무지를 드러낸다."}, {"분류": "인간·왕가·예언자", "인물": "미다스 Midas", "성격": "욕심이 많고 어리석지만 자신의 탐욕이 고통을 부른다는 사실을 깨닫는다.", "역할": "손대는 모든 것을 금으로 바꾸는 능력을 얻지만 저주가 된다. 탐욕의 위험을 상징한다."}, {"분류": "인간·왕가·예언자", "인물": "시시포스 Sisyphus", "성격": "교활하고 지혜롭지만 신들을 속이려는 오만함을 지닌다.", "역할": "영원히 바위를 밀어 올리는 벌을 받는다. 부조리, 반복 노동, 인간 조건의 상징이다."}, {"분류": "인간·왕가·예언자", "인물": "탄탈로스 Tantalus", "성격": "신의 은혜를 배반하고 오만하게 금기를 넘는다.", "역할": "영원한 굶주림과 갈증의 벌을 받는다. 탐욕과 신성 모독의 대가를 보여 준다."}, {"분류": "인간·왕가·예언자", "인물": "니오베 Niobe", "성격": "자부심이 지나쳐 오만으로 변한 어머니이다.", "역할": "레토보다 자식이 많다고 자랑하다 자녀들을 잃는다. 인간의 오만과 슬픔을 상징한다."}, {"분류": "인간·왕가·예언자", "인물": "다이달로스 Daedalus", "성격": "창의적이고 뛰어난 기술자지만 자신의 발명이 위험을 낳는다는 고통도 겪는다.", "역할": "미궁과 날개를 만든 장인. 기술의 창조성과 책임을 상징한다."}, {"분류": "인간·왕가·예언자", "인물": "이카로스 Icarus", "성격": "호기심이 많고 자유를 갈망하지만 경고를 무시하는 성급함이 있다.", "역할": "태양 가까이 날다 추락한다. 젊은 욕망, 한계, 오만한 상승의 위험을 상징한다."}, {"분류": "인간·왕가·예언자", "인물": "피그말리온 Pygmalion", "성격": "이상적 아름다움을 추구하고 자신의 창조물에 사랑을 품는다.", "역할": "조각상 갈라테이아를 사랑해 생명을 얻는다. 예술, 욕망, 창조의 힘을 보여 준다."}, {"분류": "인간·왕가·예언자", "인물": "갈라테이아 Galatea", "성격": "예술 작품에서 생명을 얻은 존재로, 이상과 현실의 경계에 있다.", "역할": "피그말리온의 조각상이 생명을 얻은 인물. 예술이 현실로 변하는 상징이다."}, {"분류": "인간·왕가·예언자", "인물": "나르키소스 Narcissus", "성격": "자기 자신에게 매혹되어 타인을 보지 못하는 성격이다.", "역할": "자신의 모습에 빠져 죽는다. 자기애와 고립, 타자 인식의 실패를 상징한다."}, {"분류": "인간·왕가·예언자", "인물": "에코 Echo", "성격": "사랑을 표현하지 못하고 남의 말만 되풀이하는 슬픈 존재다.", "역할": "나르키소스를 사랑하지만 거절당한다. 목소리와 상실, 응답받지 못한 사랑을 상징한다."}, {"분류": "인간·왕가·예언자", "인물": "아라크네 Arachne", "성격": "재능이 뛰어나지만 신과 겨루려는 오만함을 보인다.", "역할": "아테나와 베 짜기 경쟁을 하다 거미가 된다. 예술적 재능과 오만의 경계를 보여 준다."}, {"분류": "인간·왕가·예언자", "인물": "프시케 Psyche", "성격": "순수하고 인내심이 강하며 고난을 통해 성숙한다.", "역할": "에로스의 사랑을 얻기 위해 시련을 겪는다. 영혼의 성장과 사랑의 신뢰를 상징한다."}, {"분류": "인간·왕가·예언자", "인물": "에우리디케 Eurydice", "성격": "조용하고 비극적인 사랑의 대상이다.", "역할": "오르페우스가 저승에서 되찾으려 한 아내. 상실과 되돌릴 수 없는 선택을 상징한다."}, {"분류": "인간·왕가·예언자", "인물": "메데이아 Medea", "성격": "지혜롭고 강력한 마법 능력을 지녔지만 사랑과 배신 속에서 파괴적 복수심을 드러낸다.", "역할": "이아손을 돕지만 배신당한 뒤 비극적 복수를 행한다. 사랑, 배신, 분노의 극단을 상징한다."}, {"분류": "괴물·상징적 존재", "인물": "메두사 Medusa", "성격": "두려움의 대상이지만 폭력과 저주의 희생자로도 해석된다.", "역할": "눈을 마주치면 돌로 만드는 고르곤. 페르세우스 신화에서 공포와 시선의 힘을 상징한다."}, {"분류": "괴물·상징적 존재", "인물": "미노타우로스 Minotaur", "성격": "인간과 짐승의 혼합으로 억압된 본능과 비밀스러운 죄의 결과를 나타낸다.", "역할": "크레타 미궁에 갇힌 괴물. 테세우스에게 죽으며 미궁과 공포의 중심이 된다."}, {"분류": "괴물·상징적 존재", "인물": "스핑크스 Sphinx", "성격": "수수께끼를 통해 인간의 지혜를 시험하는 냉혹한 존재다.", "역할": "오이디푸스에게 수수께끼를 내는 괴물. 지혜와 생존의 시험을 상징한다."}, {"분류": "괴물·상징적 존재", "인물": "키마이라 Chimera", "성격": "여러 짐승이 섞인 혼돈의 형상으로 파괴적이고 기이하다.", "역할": "벨레로폰이 물리친 괴물. 혼합된 공포와 영웅적 도전의 대상을 상징한다."}, {"분류": "괴물·상징적 존재", "인물": "히드라 Hydra", "성격": "끈질기고 재생력이 강하며 쉽게 제거되지 않는 악을 상징한다.", "역할": "머리를 자르면 더 늘어나는 괴물. 헤라클레스의 과업에서 반복되는 문제와 집요한 악을 나타낸다."}, {"분류": "괴물·상징적 존재", "인물": "케르베로스 Cerberus", "성격": "충직하고 무시무시하며 경계를 지키는 존재다.", "역할": "저승의 문을 지키는 머리 셋 달린 개. 산 자와 죽은 자의 경계를 상징한다."}, {"분류": "괴물·상징적 존재", "인물": "스킬라 Scylla", "성격": "바다의 좁은 길에서 인간을 위협하는 잔혹한 괴물이다.", "역할": "오디세우스의 항해에서 피할 수 없는 위험을 나타낸다. 선택의 비극을 상징한다."}, {"분류": "괴물·상징적 존재", "인물": "카리브디스 Charybdis", "성격": "모든 것을 빨아들이는 파괴적 소용돌이의 성격을 지닌다.", "역할": "스킬라와 함께 양자택일의 위험을 만든다. 두 악 사이의 선택을 상징한다."}, {"분류": "괴물·상징적 존재", "인물": "키클롭스 Cyclops / 폴리페모스 Polyphemus", "성격": "거칠고 단순하지만 강력하다. 문명 밖의 원초적 힘을 상징한다.", "역할": "외눈 거인. 오디세우스와의 대결에서 힘과 지혜의 충돌을 보여 준다."}, {"분류": "괴물·상징적 존재", "인물": "세이렌 Sirens", "성격": "아름다운 목소리로 유혹하지만 파멸로 이끄는 위험한 존재다.", "역할": "노래로 항해자를 유혹한다. 지식과 욕망, 유혹의 위험을 상징한다."}, {"분류": "괴물·상징적 존재", "인물": "하르피이아이 Harpies", "성격": "난폭하고 탐욕스러우며 갑작스러운 재앙처럼 등장한다.", "역할": "날개 달린 괴물로 음식과 사람을 낚아챈다. 약탈과 신의 벌을 상징한다."}, {"분류": "괴물·상징적 존재", "인물": "그라이아이 Graeae", "성격": "늙고 신비로우며 하나의 눈과 이를 공유하는 기이한 존재들이다.", "역할": "페르세우스가 메두사를 찾기 위해 정보를 얻는 존재들. 지식의 관문 역할을 한다."}, {"분류": "괴물·상징적 존재", "인물": "고르곤 Gorgons", "성격": "공포와 금기의 형상이며 보는 행위 자체를 위험하게 만든다.", "역할": "스테노, 에우리알레, 메두사로 이루어진 괴물 자매. 죽음과 마비되는 공포를 상징한다."}, {"분류": "괴물·상징적 존재", "인물": "페가소스 Pegasus", "성격": "순수하고 고귀하며 자유롭게 하늘로 솟아오르는 존재다.", "역할": "날개 달린 말. 벨레로폰의 모험과 시적 영감, 하늘로 향하는 상상력을 상징한다."}, {"분류": "괴물·상징적 존재", "인물": "켄타우로스 Centaurs", "성격": "인간의 이성과 짐승의 본능이 섞인 모순적 존재들이다.", "역할": "반인반마 종족. 야성, 술, 폭력, 때로는 지혜로운 교육자의 모습을 함께 지닌다."}, {"분류": "괴물·상징적 존재", "인물": "케이론 Chiron", "성격": "온화하고 지혜로우며 다른 켄타우로스와 달리 절제와 교육의 상징이다.", "역할": "아킬레우스, 아스클레피오스 등 영웅들의 스승. 치유와 교육, 현명한 고통을 상징한다."}, {"분류": "괴물·상징적 존재", "인물": "라돈 Ladon", "성격": "충직하고 강력하며 신성한 보물을 지키는 수호자의 성격을 지닌다.", "역할": "헤스페리데스의 황금 사과를 지키는 용. 금지된 보물과 수호의 의미를 나타낸다."}];
+
+function escapeHtml(s) {
+  return String(s)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
+
+function findByName(name) {
+  return mythCharacters.find(p => p["인물"] === name);
+}
+
+function personHtml(p) {
+  if (!p) {
+    return `<div class="detail-title">인물을 선택하세요</div>
+            <div class="detail-box">드롭다운에서 인물을 선택하면 이곳에 설명이 나타납니다.</div>`;
+  }
+  return `
+    <div class="detail-title">${escapeHtml(p["인물"])}</div>
+    <div><span class="pill">${escapeHtml(p["분류"])}</span></div>
+    <div class="detail-box"><b>성격</b><br>${escapeHtml(p["성격"])}</div>
+    <div class="detail-box"><b>역할</b><br>${escapeHtml(p["역할"])}</div>
+    <div class="dict-view">${escapeHtml(JSON.stringify(p, null, 4))}</div>
+  `;
+}
+
+function showSelectedPerson() {
+  const name = document.getElementById("personSelect").value;
+  const p = findByName(name);
+  document.getElementById("detailPanel").innerHTML = personHtml(p);
+}
+
+function filterRowsAndCards(predicate) {
+  document.querySelectorAll("#peopleTable tbody tr").forEach(row => {
+    row.classList.toggle("hidden", !predicate(row.innerText, row.dataset.cat));
+  });
+  document.querySelectorAll(".person-card").forEach(card => {
+    card.classList.toggle("hidden", !predicate(card.innerText, card.dataset.cat));
+  });
+}
+
+function filterCategory(cat) {
+  filterRowsAndCards((text, rowCat) => cat === "전체" || rowCat === cat);
+  const first = mythCharacters.find(p => cat === "전체" || p["분류"] === cat);
+  if (first) {
+    document.getElementById("personSelect").value = first["인물"];
+    document.getElementById("detailPanel").innerHTML = personHtml(first);
+  }
+}
+
+function searchKeyword() {
+  const q = document.getElementById("searchInput").value.trim().toLowerCase();
+  if (!q) {
+    resetAll();
+    return;
+  }
+  filterRowsAndCards((text) => text.toLowerCase().includes(q));
+
+  const first = mythCharacters.find(p => (
+    p["인물"] + " " + p["성격"] + " " + p["역할"] + " " + p["분류"]
+  ).toLowerCase().includes(q));
+
+  if (first) {
+    document.getElementById("personSelect").value = first["인물"];
+    document.getElementById("detailPanel").innerHTML = personHtml(first);
+  } else {
+    document.getElementById("detailPanel").innerHTML =
+      `<div class="detail-title">검색 결과 없음</div><div class="detail-box">다른 검색어를 입력해 보세요.</div>`;
+  }
+}
+
+function resetAll() {
+  document.getElementById("searchInput").value = "";
+  document.getElementById("personSelect").value = "";
+  filterRowsAndCards(() => true);
+  document.getElementById("detailPanel").innerHTML = personHtml(null);
+}
+
+function makeStats() {
+  const counter = {};
+  mythCharacters.forEach(p => counter[p["분류"]] = (counter[p["분류"]] || 0) + 1);
+  document.getElementById("statsBox").innerHTML =
+    Object.entries(counter).map(([k,v]) =>
+      `<div class="stat"><b>${v}</b><br>${escapeHtml(k)}</div>`
+    ).join("");
+}
+makeStats();
+</script>
+</body>
+</html>
