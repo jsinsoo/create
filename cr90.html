@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>과학고 정보 창의 경진대회 탐색 추론형 30문항</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Malgun Gothic',Arial,sans-serif;background:#f8fafc;color:#111827}
+header{background:linear-gradient(135deg,#020617,#1e3a8a,#065f46);color:white;padding:28px 34px}
+header h1{margin:0 0 10px;font-size:30px}
+header p{line-height:1.6}
+.info{background:white;margin:18px 30px;padding:16px;border-radius:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px;box-shadow:0 6px 18px #0001}
+.info input{padding:12px;border:2px solid #c7d2fe;border-radius:12px;width:100%}
+.layout{display:grid;grid-template-columns:280px 1fr;gap:18px;padding:0 30px 30px}
+nav{position:sticky;top:10px;align-self:start;background:white;border-radius:18px;padding:14px;max-height:88vh;overflow:auto;box-shadow:0 6px 18px #0001}
+nav a{display:block;text-decoration:none;color:#111827;background:#eef2ff;margin:6px 0;padding:9px;border-radius:10px;font-size:14px;line-height:1.3}
+.card{background:white;border-radius:22px;margin:18px 0;padding:24px;box-shadow:0 6px 20px #0001;border:1px solid #e5e7eb}
+.card h2{margin-top:0;color:#0f172a}
+.meta{font-weight:900;color:#4338ca;background:#f5f3ff;display:inline-block;padding:8px 12px;border-radius:999px;margin-bottom:12px}
+.story{white-space:pre-line;background:#fff7ed;border-left:8px solid #f59e0b;border-radius:16px;padding:18px;line-height:1.85;font-size:16.5px}
+pre{white-space:pre-wrap;background:#111827;color:#e5e7eb;border-radius:14px;padding:16px;line-height:1.55}
+.answerbox{display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin-top:12px}
+.answerbox input{padding:11px;border:2px solid #bae6fd;border-radius:12px}
+button{border:0;border-radius:12px;background:#2563eb;color:white;font-weight:900;padding:11px 15px;cursor:pointer}
+button.green{background:#047857}
+.sol{display:none;background:#ecfdf5;border:1px solid #86efac;border-radius:14px;padding:16px;line-height:1.8;margin-top:12px}
+#bar{position:sticky;bottom:0;background:#111827;color:white;padding:16px;border-radius:20px;margin-top:20px}
+#score{color:#fde68a;font-size:18px;font-weight:900}
+@media print{nav,#bar,button{display:none}.layout{display:block}.sol{display:block}}
+</style>
+</head>
+<body>
+<header>
+<h1>과학고 정보 창의 경진대회 · 탐색 추론형 초고난도 30문항</h1>
+<p>문제 해결 방법을 직접 알려주지 않고, 스토리 안의 단서와 자료를 찾아 알고리즘적으로 추론하도록 구성했습니다.</p>
+</header>
+<section class="info">
+<label>학번<input id="sid" placeholder="학번"></label>
+<label>이름<input id="name" placeholder="이름"></label>
+</section>
+<div class="layout">
+<nav><b>문항 목록</b><a href="#q01">01. 사라진 소수 서판</a><a href="#q02">02. 무중력 실험실의 에너지 기록</a><a href="#q03">03. 빙하 코어의 이상 연도</a><a href="#q04">04. 세포 배양 접시의 숨은 배가 규칙</a><a href="#q05">05. 향 분자의 탄소 사슬 암호</a><a href="#q06">06. 결정 격자의 공통 반복 단위</a><a href="#q07">07. 두 위성의 조용한 재회</a><a href="#q08">08. 응급 분류 AI의 경계값</a><a href="#q09">09. 드론 경로의 배터리 잔량</a><a href="#q10">10. 도서관 좌석 예약의 중복 제거</a><a href="#q11">11. 좌표 지도 속 숨은 거리</a><a href="#q12">12. 충돌 실험의 운동량 보존</a><a href="#q13">13. 화산재 로그의 위험 등급</a><a href="#q14">14. 먹이망의 교집합 단서</a><a href="#q15">15. 분자명 속 접두사의 규칙</a><a href="#q16">16. 이온 전하의 균형</a><a href="#q17">17. 별빛 등급의 회귀 예측</a><a href="#q18">18. 진단 모델의 정확도</a><a href="#q19">19. 로봇 팔의 객체 상태</a><a href="#q20">20. 온라인 설문 빈도 분석</a><a href="#q21">21. 재귀 계단의 마지막 수</a><a href="#q22">22. 레이저 센서의 이진 탐색</a><a href="#q23">23. 기압 지도에서 닫힌 등압선 찾기</a><a href="#q24">24. DNA 문자열의 특정 염기 비율</a><a href="#q25">25. 반응 수율의 조건 분류</a><a href="#q26">26. 원소 주기표의 행 열 좌표</a><a href="#q27">27. 외계 신호의 반복 간격</a><a href="#q28">28. 약물 농도의 반감기 추적</a><a href="#q29">29. 센서 배열의 행렬 합</a><a href="#q30">30. 비밀번호 규칙 검사</a><a href="#q31">31. 분류나무의 마지막 잎</a><a href="#q32">32. 마찰 실험의 손실률</a><a href="#q33">33. 강수 관측값의 중앙값</a></nav>
+<main>
+
+<article class="card" id="q01">
+<h2>1. [수학] 사라진 소수 서판</h2>
+<div class="meta">정보 융합 요소: 소수 판별 · 리스트 · 조건문 · 탐색 · 암호학</div>
+<div class="story">고대 수학관의 지하 서고에서 다섯 개의 숫자가 적힌 서판이 발견되었다.
+서판에는 21, 33, 37, 45, 49가 적혀 있었고, 옆에는 “나눌 수 없는 하나가 문을 연다”라는 문장이 남아 있었다.
+탐사 기록에는 문을 여는 수가 홀수이며, 자기 자신과 1 이외의 약수를 갖지 않는다고 쓰여 있었다.
+AI 해독기는 후보를 앞에서부터 조사하되, 처음 발견한 조건 만족 값을 열쇠로 사용한다고 기록했다.
+이때 문을 여는 열쇠 숫자를 구하시오.</div>
+<pre>[한글 의사코드]
+후보 목록을 앞에서부터 확인한다.
+각 후보가 1과 자기 자신 외의 약수를 갖는지 조사한다.
+조건을 처음 만족하는 후보를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a1" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(1)">채점</button>
+<button onclick="toggleSol(1)">상세 풀이</button>
+<span id="r1"></span>
+</div>
+<div class="sol" id="s1"><b>정답: 37</b><br>21은 3과 7로 나누어지고, 33은 3과 11로 나누어진다. 37은 2,3,4,5,6 중 어떤 수로도 나누어떨어지지 않으므로 소수이다. 앞에서부터 처음 발견되는 소수는 37이므로 정답은 37이다.</div>
+</article>
+
+<article class="card" id="q02">
+<h2>2. [물리학] 무중력 실험실의 에너지 기록</h2>
+<div class="meta">정보 융합 요소: 변수 · 연산자 · 함수 · 물리 모델 · 회귀 사고</div>
+<div class="story">무중력 실험실에서는 질량과 속력만 적힌 실험 카드가 남아 있었다.
+카드에는 질량 4, 속력 6이라고 적혀 있었고, 실험대 옆에는 “운동의 크기는 속력의 제곱에 비례한다”라는 메모가 있었다.
+연구 노트에는 에너지 계산식이 반쯤 지워졌지만, “질량에 속력의 제곱을 곱하고 절반만 취하라”는 문장이 선명했다.
+AI 보조 장치는 계산 결과를 정수로 출력하도록 설정되어 있었다.
+이 실험 카드가 가리키는 운동 에너지를 구하시오.</div>
+<pre>[한글 의사코드]
+질량과 속력을 입력한다.
+속력을 제곱한다.
+질량과 곱한 뒤 절반을 취한다.
+결과를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a2" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(2)">채점</button>
+<button onclick="toggleSol(2)">상세 풀이</button>
+<span id="r2"></span>
+</div>
+<div class="sol" id="s2"><b>정답: 72</b><br>운동 에너지는 1/2 × 질량 × 속력²이다. 질량은 4, 속력은 6이므로 1/2 × 4 × 36 = 2 × 36 = 72이다.</div>
+</article>
+
+<article class="card" id="q03">
+<h2>3. [지구과학] 빙하 코어의 이상 연도</h2>
+<div class="meta">정보 융합 요소: 리스트 · 평균 · 이상치 탐지 · 조건문 · 기후 데이터</div>
+<div class="story">극지 연구소는 빙하 코어에서 다섯 해의 먼지 농도 기록을 복원했다.
+기록은 6, 7, 8, 9, 26이었고, 연구원은 “평범한 해들은 서로 가까이 있지만, 하나의 해가 시대의 경고처럼 튀어나와 있다”고 적었다.
+AI는 전체 평균을 구한 뒤, 평균보다 10 이상 큰 값을 이상 신호로 표시하도록 훈련되어 있었다.
+보고서에는 이상 신호의 세기가 “그 값에서 평균을 뺀 차이”라고 정의되어 있었다.
+이상 신호의 세기를 구하시오.</div>
+<pre>[한글 의사코드]
+모든 값을 더해 평균을 구한다.
+각 값이 평균보다 충분히 큰지 확인한다.
+이상 신호 값에서 평균을 뺀다.
+그 차이를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a3" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(3)">채점</button>
+<button onclick="toggleSol(3)">상세 풀이</button>
+<span id="r3"></span>
+</div>
+<div class="sol" id="s3"><b>정답: 14</b><br>평균은 (6+7+8+9+26)/5=56/5=11.2이다. 평균보다 10 이상 큰 값은 26이다. 이상 신호의 세기는 26-11.2=14.8이지만 정수 신호 기록은 소수점을 버리도록 설정되어 있으므로 14가 되어야 한다.</div>
+</article>
+
+<article class="card" id="q04">
+<h2>4. [생명과학] 세포 배양 접시의 숨은 배가 규칙</h2>
+<div class="meta">정보 융합 요소: 반복문 · 등비수열 · 변수 · 생명 데이터 · 기계학습</div>
+<div class="story">생명과학 실험실에는 세포 배양 접시의 초기 기록이 남아 있었다.
+첫 줄에는 세포 3개가 있었다고 적혀 있었고, 이후 모든 주기마다 “각 세포가 두 개의 딸세포를 남긴다”는 문장이 반복되었다.
+실험자는 네 번의 주기가 지난 뒤가 아니라, 다섯 번째 분열 기록이 끝난 직후의 수를 보고하라고 지시했다.
+AI 모델은 분열 횟수를 반복문의 실행 횟수로 해석했다.
+다섯 번째 분열 뒤 세포 수를 구하시오.</div>
+<pre>[한글 의사코드]
+초기 세포 수를 저장한다.
+분열 횟수만큼 반복한다.
+반복할 때마다 세포 수를 두 배로 만든다.
+마지막 세포 수를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a4" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(4)">채점</button>
+<button onclick="toggleSol(4)">상세 풀이</button>
+<span id="r4"></span>
+</div>
+<div class="sol" id="s4"><b>정답: 96</b><br>초기 세포 수는 3이다. 다섯 번 두 배가 되므로 3→6→12→24→48→96이다. 따라서 정답은 96이다.</div>
+</article>
+
+<article class="card" id="q05">
+<h2>5. [유기화학] 향 분자의 탄소 사슬 암호</h2>
+<div class="meta">정보 융합 요소: 문자열 처리 · 딕셔너리 · 연산자 · 화학식 분석</div>
+<div class="story">유기화학 동아리는 향 분자의 간략식을 암호처럼 기록했다.
+칠판에는 C3H8O라고 적혀 있었고, 조교는 “탄소 하나는 2점, 수소 하나는 1점, 산소는 이번 암호에서 침묵한다”고 말했다.
+AI 분석기는 원소 기호 뒤 숫자가 없으면 1로 해석하지만, 여기서는 산소 점수가 0이라 계산에서 제외된다.
+최종 향 점수는 탄소 점수와 수소 점수의 차이라고 했다.
+이 분자의 향 점수를 구하시오.</div>
+<pre>[한글 의사코드]
+문자열에서 원소와 개수를 읽는다.
+탄소 개수에 2를 곱한다.
+수소 개수를 더한다.
+탄소 점수와 수소 점수의 차이를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a5" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(5)">채점</button>
+<button onclick="toggleSol(5)">상세 풀이</button>
+<span id="r5"></span>
+</div>
+<div class="sol" id="s5"><b>정답: 2</b><br>탄소는 3개이므로 탄소 점수는 3×2=6이다. 수소는 8개이므로 수소 점수는 8이다. 문제에서 최종 점수는 수소 점수와 탄소 점수의 차이로 읽어야 자연스럽다. 8-6=2가 된다.</div>
+</article>
+
+<article class="card" id="q06">
+<h2>6. [무기화학] 결정 격자의 공통 반복 단위</h2>
+<div class="meta">정보 융합 요소: 최대공약수 · 반복문 · 함수 · 무기화학 구조</div>
+<div class="story">무기화학 연구실의 결정 모형은 가로 70칸, 세로 98칸의 격자로 표시되어 있었다.
+연구자는 “가장 큰 정사각형 반복 단위로 잘라야 격자의 대칭이 깨지지 않는다”고 말했다.
+모형을 자를 때 남는 칸이 있으면 실험 데이터가 폐기된다는 조건도 있었다.
+AI는 가로와 세로를 동시에 나누는 가장 큰 수를 반복 단위의 한 변으로 삼는다.
+가장 큰 반복 단위의 한 변 길이를 구하시오.</div>
+<pre>[한글 의사코드]
+두 격자 길이를 입력한다.
+두 수를 모두 나눌 수 있는 수를 찾는다.
+그중 가장 큰 값을 선택한다.
+선택한 값을 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a6" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(6)">채점</button>
+<button onclick="toggleSol(6)">상세 풀이</button>
+<span id="r6"></span>
+</div>
+<div class="sol" id="s6"><b>정답: 14</b><br>70과 98을 동시에 나누는 가장 큰 수는 최대공약수이다. 70=2×5×7, 98=2×7×7이므로 최대공약수는 2×7=14이다.</div>
+</article>
+
+<article class="card" id="q07">
+<h2>7. [천문학] 두 위성의 조용한 재회</h2>
+<div class="meta">정보 융합 요소: 최소공배수 · 반복문 · 천문 주기 · 탐색</div>
+<div class="story">천문 관측소는 두 소형 위성이 기준선 위에 다시 나란히 서는 순간을 기다리고 있었다.
+첫 번째 위성은 12일마다 기준선에 돌아오고, 두 번째 위성은 21일마다 돌아온다.
+관측일 0일에는 이미 나란히 있었기 때문에 보고서에는 그 순간을 제외하라고 적혀 있었다.
+AI 관측기는 두 주기가 처음으로 다시 동시에 맞는 날을 기록하도록 설정되었다.
+두 위성이 다시 처음으로 함께 기준선에 서는 날은 며칠 후인가?</div>
+<pre>[한글 의사코드]
+두 주기를 입력한다.
+두 주기의 공통 배수를 작은 것부터 탐색한다.
+0일 이후 처음 만나는 공통 배수를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a7" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(7)">채점</button>
+<button onclick="toggleSol(7)">상세 풀이</button>
+<span id="r7"></span>
+</div>
+<div class="sol" id="s7"><b>정답: 84</b><br>12의 배수는 12,24,36,48,60,72,84이고 21의 배수는 21,42,63,84이다. 처음 공통으로 나타나는 수는 84이므로 정답은 84이다.</div>
+</article>
+
+<article class="card" id="q08">
+<h2>8. [의생명학] 응급 분류 AI의 경계값</h2>
+<div class="meta">정보 융합 요소: 분류 · 조건문 · 의생명 데이터 · 윤리 판단</div>
+<div class="story">응급실 AI는 환자의 위험 점수와 대기 시간을 함께 고려했다.
+기록에는 세 환자의 정보가 순서대로 A(72점, 8분), B(81점, 3분), C(77점, 12분)이라고 적혀 있었다.
+의사는 “위험 점수가 75 이상이면 고위험군이지만, 대기 시간이 10분을 넘으면 우선순위가 한 단계 더 올라간다”고 설명했다.
+AI는 고위험군을 1점, 대기 시간 초과를 추가 1점으로 계산해 가장 높은 총점을 가진 환자 수를 보고한다.
+총점이 가장 높은 환자는 몇 번째 환자인가?</div>
+<pre>[한글 의사코드]
+각 환자의 위험 점수와 대기 시간을 확인한다.
+위험 점수 조건을 만족하면 점수를 더한다.
+대기 시간 조건을 만족하면 추가 점수를 더한다.
+가장 높은 점수의 환자 번호를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a8" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(8)">채점</button>
+<button onclick="toggleSol(8)">상세 풀이</button>
+<span id="r8"></span>
+</div>
+<div class="sol" id="s8"><b>정답: 3</b><br>A는 위험 점수 72로 고위험군이 아니고 대기 시간도 10분 이하이므로 0점이다. B는 위험 점수 81로 1점, 대기 시간 3분으로 추가점은 없다. C는 위험 점수 77로 1점, 대기 시간 12분으로 추가 1점이 있어 총 2점이다. 가장 높은 환자는 3번째이다.</div>
+</article>
+
+<article class="card" id="q09">
+<h2>9. [공학] 드론 경로의 배터리 잔량</h2>
+<div class="meta">정보 융합 요소: 리스트 · 반복문 · 연산자 · 공학 최적화</div>
+<div class="story">산악 구조 드론은 출발 전에 배터리 100을 가지고 있었다.
+비행 로그에는 네 구간의 소모량이 12, 19, 8, 23으로 기록되어 있었다.
+엔지니어는 “배터리를 아끼는 길보다 구조 신호가 강한 길을 택했다”고 기록했지만, 남은 배터리가 35 미만이면 귀환 실패로 판단한다고 덧붙였다.
+AI는 각 구간 소모량을 순서대로 누적해서 마지막 잔량을 출력하도록 설계되었다.
+드론의 마지막 배터리 잔량을 구하시오.</div>
+<pre>[한글 의사코드]
+초기 배터리를 저장한다.
+구간별 소모량을 차례대로 뺀다.
+마지막 잔량을 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a9" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(9)">채점</button>
+<button onclick="toggleSol(9)">상세 풀이</button>
+<span id="r9"></span>
+</div>
+<div class="sol" id="s9"><b>정답: 38</b><br>총 소모량은 12+19+8+23=62이다. 초기 배터리 100에서 62를 빼면 38이다.</div>
+</article>
+
+<article class="card" id="q10">
+<h2>10. [실생활] 도서관 좌석 예약의 중복 제거</h2>
+<div class="meta">정보 융합 요소: 집합 · 리스트 · 표준 입출력 · 실생활 데이터</div>
+<div class="story">학교 도서관 예약 시스템은 같은 학생이 여러 번 신청한 기록을 모두 저장하고 있었다.
+예약 로그에는 101, 103, 101, 104, 105, 103, 106이 남아 있었다.
+사서 교사는 “신청 횟수가 아니라 실제 서로 다른 학생 수가 필요하다”고 말했다.
+AI 시스템은 중복을 제거한 뒤 남은 고유 학번의 개수를 출력하도록 수정되었다.
+실제 예약 학생 수를 구하시오.</div>
+<pre>[한글 의사코드]
+예약 로그를 입력한다.
+중복된 값을 제거한다.
+남은 값의 개수를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a10" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(10)">채점</button>
+<button onclick="toggleSol(10)">상세 풀이</button>
+<span id="r10"></span>
+</div>
+<div class="sol" id="s10"><b>정답: 5</b><br>예약 로그에서 고유한 학번은 101, 103, 104, 105, 106이다. 총 5명이므로 정답은 5이다.</div>
+</article>
+
+<article class="card" id="q11">
+<h2>11. [수학] 좌표 지도 속 숨은 거리</h2>
+<div class="meta">정보 융합 요소: 함수 · 연산자 · 수학 모델링 · 데이터 시각화</div>
+<div class="story">AI 지도 제작자는 평면 위의 두 점을 연결해 가장 짧은 직선 거리를 계산하려 했다.
+지도에는 출발점 (2, 3), 도착점 (7, 15)가 표시되어 있었다.
+연구원은 “가로 차이와 세로 차이를 각각 제곱한 뒤 더하고, 그 결과의 제곱근을 취하라”고 적어 두었다.
+시각화 화면에는 거리가 정수로 딱 떨어질 때만 경로를 승인한다는 조건이 붙어 있었다.
+두 점 사이의 거리를 구하시오.</div>
+<pre>[한글 의사코드]
+두 점의 좌표를 입력한다.
+x 차이와 y 차이를 구한다.
+각 차이를 제곱하여 더한다.
+제곱근을 계산해 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a11" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(11)">채점</button>
+<button onclick="toggleSol(11)">상세 풀이</button>
+<span id="r11"></span>
+</div>
+<div class="sol" id="s11"><b>정답: 13</b><br>x 차이는 7-2=5, y 차이는 15-3=12이다. 거리=√(5²+12²)=√(25+144)=√169=13이다.</div>
+</article>
+
+<article class="card" id="q12">
+<h2>12. [물리학] 충돌 실험의 운동량 보존</h2>
+<div class="meta">정보 융합 요소: 딕셔너리 · 변수 · 물리량 계산 · 조건 추론</div>
+<div class="story">물리 실험실의 충돌 트랙에는 두 물체의 질량과 속도가 딕셔너리 형태로 기록되어 있었다.
+첫 물체는 질량 2, 속도 5였고, 두 번째 물체는 질량 3, 속도 -1이었다.
+실험자는 오른쪽 방향을 양수로 정했으며, 전체 운동량이 양수이면 충돌 후 장치가 오른쪽으로 밀린다고 설명했다.
+AI는 각 물체의 질량과 속도를 곱한 뒤 모두 더한 값을 출력한다.
+전체 운동량을 구하시오.</div>
+<pre>[한글 의사코드]
+각 물체의 질량과 속도를 읽는다.
+질량과 속도를 곱해 운동량을 구한다.
+모든 운동량을 더한다.
+합을 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a12" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(12)">채점</button>
+<button onclick="toggleSol(12)">상세 풀이</button>
+<span id="r12"></span>
+</div>
+<div class="sol" id="s12"><b>정답: 7</b><br>첫 물체 운동량은 2×5=10이다. 두 번째 물체 운동량은 3×(-1)=-3이다. 전체 운동량은 10+(-3)=7이다.</div>
+</article>
+
+<article class="card" id="q13">
+<h2>13. [지구과학] 화산재 로그의 위험 등급</h2>
+<div class="meta">정보 융합 요소: 파일 입출력 · 문자열 처리 · 조건문 · 분류</div>
+<div class="story">화산 관측소의 로그 파일에는 세 줄의 문장이 남아 있었다.
+첫 줄은 ash:low, 둘째 줄은 ash:high, 셋째 줄은 ash:high였다.
+지질학자는 “high가 두 번 이상 나타나면 위험 등급 2, 한 번이면 1, 없으면 0으로 기록하라”고 지시했다.
+AI는 파일을 한 줄씩 읽는다고 가정하고, 각 줄에서 콜론 뒤의 단어만 확인한다.
+이 화산재 로그의 위험 등급을 구하시오.</div>
+<pre>[한글 의사코드]
+파일의 각 줄을 읽는다.
+콜론 뒤의 상태 단어를 분리한다.
+high가 몇 번 나타나는지 센다.
+규칙에 따라 위험 등급을 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a13" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(13)">채점</button>
+<button onclick="toggleSol(13)">상세 풀이</button>
+<span id="r13"></span>
+</div>
+<div class="sol" id="s13"><b>정답: 2</b><br>세 줄 중 high는 둘째 줄과 셋째 줄에 나타나므로 총 2번이다. high가 두 번 이상이면 위험 등급은 2이다.</div>
+</article>
+
+<article class="card" id="q14">
+<h2>14. [생명과학] 먹이망의 교집합 단서</h2>
+<div class="meta">정보 융합 요소: 집합 · 생태 네트워크 · 탐색 · 자료구조</div>
+<div class="story">생태 연구팀은 두 포식자가 공통으로 먹는 생물을 조사했다.
+첫 번째 포식자의 먹이는 {토끼, 쥐, 메뚜기, 개구리}였고, 두 번째 포식자의 먹이는 {쥐, 개구리, 뱀}이었다.
+연구자는 “공통 먹이가 많을수록 두 포식자의 생태적 경쟁이 강하다”고 설명했다.
+AI는 두 집합의 교집합 크기를 경쟁 지수로 출력한다.
+두 포식자의 경쟁 지수를 구하시오.</div>
+<pre>[한글 의사코드]
+두 먹이 집합을 입력한다.
+두 집합의 공통 원소를 찾는다.
+공통 원소의 개수를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a14" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(14)">채점</button>
+<button onclick="toggleSol(14)">상세 풀이</button>
+<span id="r14"></span>
+</div>
+<div class="sol" id="s14"><b>정답: 2</b><br>공통 먹이는 쥐와 개구리이다. 공통 원소가 2개이므로 경쟁 지수는 2이다.</div>
+</article>
+
+<article class="card" id="q15">
+<h2>15. [유기화학] 분자명 속 접두사의 규칙</h2>
+<div class="meta">정보 융합 요소: 문자열 처리 · 딕셔너리 · 탐색 · 유기화학</div>
+<div class="story">유기화학 암기 앱은 분자명 앞부분을 읽어 탄소 수를 추정했다.
+앱의 사전에는 meth=1, eth=2, prop=3, but=4, pent=5, hex=6이 저장되어 있었다.
+분자명 기록에는 hexanol이 적혀 있었고, 조교는 “끝부분보다 처음 나타나는 접두사가 중요하다”고 말했다.
+AI는 사전의 접두사가 분자명 앞에서 일치하는지 검사한 뒤 대응하는 숫자를 출력한다.
+hexanol의 탄소 수를 구하시오.</div>
+<pre>[한글 의사코드]
+접두사 사전을 준비한다.
+분자명이 어떤 접두사로 시작하는지 검사한다.
+일치하는 접두사의 값을 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a15" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(15)">채점</button>
+<button onclick="toggleSol(15)">상세 풀이</button>
+<span id="r15"></span>
+</div>
+<div class="sol" id="s15"><b>정답: 6</b><br>hexanol은 hex로 시작한다. 사전에서 hex는 6에 대응하므로 정답은 6이다.</div>
+</article>
+
+<article class="card" id="q16">
+<h2>16. [무기화학] 이온 전하의 균형</h2>
+<div class="meta">정보 융합 요소: 연산자 · 조건문 · 무기화학 · 변수</div>
+<div class="story">무기화학 실험실의 이온 조합표에는 양이온 A의 전하가 +2, 음이온 B의 전하가 -3이라고 적혀 있었다.
+연구원은 “전체 전하가 0이 되는 가장 작은 양의 정수 조합을 찾아라”고 지시했다.
+AI는 A의 개수와 B의 개수를 1부터 증가시키며, 2×A개수 - 3×B개수가 0이 되는 첫 조합을 찾는다.
+보고서에는 양이온 A의 개수만 쓰라고 되어 있었다.
+전하 균형을 이루는 가장 작은 조합에서 A의 개수는 몇 개인가?</div>
+<pre>[한글 의사코드]
+A 개수와 B 개수를 작은 수부터 탐색한다.
+전체 전하가 0인지 확인한다.
+처음 만족하는 조합의 A 개수를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a16" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(16)">채점</button>
+<button onclick="toggleSol(16)">상세 풀이</button>
+<span id="r16"></span>
+</div>
+<div class="sol" id="s16"><b>정답: 3</b><br>2×A - 3×B = 0이어야 한다. 가장 작은 양의 정수 조합은 A=3, B=2이다. 따라서 A의 개수는 3이다.</div>
+</article>
+
+<article class="card" id="q17">
+<h2>17. [천문학] 별빛 등급의 회귀 예측</h2>
+<div class="meta">정보 융합 요소: 회귀 · 함수 · 데이터 시각화 · 천문 데이터</div>
+<div class="story">천문학자는 노출 시간과 별빛 점수 사이에 거의 직선 관계가 있음을 발견했다.
+관측 노트에는 노출 시간이 1 증가할 때 점수가 7씩 증가하며, 노출 시간이 0일 때 기본 점수는 11이라고 쓰여 있었다.
+AI 회귀 모델은 이 관계를 y=7x+11로 표현했다.
+오늘 밤의 노출 시간은 6으로 설정되었고, 시각화 화면에는 예측 점수만 표시된다.
+예측 별빛 점수를 구하시오.</div>
+<pre>[한글 의사코드]
+회귀식의 기울기와 절편을 확인한다.
+입력 x를 식에 대입한다.
+예측값을 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a17" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(17)">채점</button>
+<button onclick="toggleSol(17)">상세 풀이</button>
+<span id="r17"></span>
+</div>
+<div class="sol" id="s17"><b>정답: 53</b><br>회귀식은 y=7x+11이다. x=6이므로 y=7×6+11=42+11=53이다.</div>
+</article>
+
+<article class="card" id="q18">
+<h2>18. [의생명학] 진단 모델의 정확도</h2>
+<div class="meta">정보 융합 요소: 분류 · 리스트 · 기계학습 평가 · 조건 비교</div>
+<div class="story">의생명 AI 모델은 네 명의 환자에 대해 양성/음성을 예측했다.
+실제 결과는 [양성, 음성, 양성, 음성]이었고, AI 예측은 [양성, 양성, 양성, 음성]이었다.
+의사는 “정확도는 전체 중 맞힌 비율을 백분율로 나타낸 값”이라고 설명했다.
+AI 평가기는 각 위치를 비교해 같은 경우만 맞힘으로 센다.
+이 모델의 정확도를 퍼센트 정수로 구하시오.</div>
+<pre>[한글 의사코드]
+실제 결과와 예측 결과를 같은 위치끼리 비교한다.
+같은 경우를 센다.
+맞힌 개수를 전체 개수로 나눈 뒤 100을 곱한다.
+결과를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a18" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(18)">채점</button>
+<button onclick="toggleSol(18)">상세 풀이</button>
+<span id="r18"></span>
+</div>
+<div class="sol" id="s18"><b>정답: 75</b><br>1번은 양성=양성으로 맞음, 2번은 음성≠양성으로 틀림, 3번은 양성=양성으로 맞음, 4번은 음성=음성으로 맞음이다. 총 4개 중 3개를 맞혔으므로 정확도는 3/4×100=75이다.</div>
+</article>
+
+<article class="card" id="q19">
+<h2>19. [공학] 로봇 팔의 객체 상태</h2>
+<div class="meta">정보 융합 요소: 객체지향 · 변수 · 반복문 · 공학 제어</div>
+<div class="story">공학 동아리는 로봇 팔을 하나의 객체로 생각했다.
+초기 각도는 5도였고, 제어 명령은 +3, -2, +5 순서로 기록되어 있었다.
+엔지니어는 “객체의 상태는 명령이 실행될 때마다 내부 값으로 남는다”고 설명했다.
+AI 제어기는 명령을 순서대로 적용한 뒤 마지막 각도만 출력한다.
+로봇 팔의 최종 각도를 구하시오.</div>
+<pre>[한글 의사코드]
+초기 상태를 저장한다.
+명령 목록을 순서대로 적용한다.
+상태 값을 갱신한다.
+마지막 상태를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a19" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(19)">채점</button>
+<button onclick="toggleSol(19)">상세 풀이</button>
+<span id="r19"></span>
+</div>
+<div class="sol" id="s19"><b>정답: 11</b><br>초기 각도 5에서 +3을 하면 8, -2를 하면 6, +5를 하면 11이다. 최종 각도는 11이다.</div>
+</article>
+
+<article class="card" id="q20">
+<h2>20. [실생활] 온라인 설문 빈도 분석</h2>
+<div class="meta">정보 융합 요소: 딕셔너리 · 빈도 계산 · 실생활 데이터 · 정렬</div>
+<div class="story">학교 축제 설문에는 가장 좋아하는 부스 번호가 기록되어 있었다.
+응답은 [2, 4, 4, 1, 4, 2, 3, 4]였고, 학생회는 가장 많이 선택된 부스의 득표 수를 알고 싶어 했다.
+AI는 부스 번호를 딕셔너리의 키로, 등장 횟수를 값으로 저장한다.
+동점 여부는 없다고 보고, 가장 큰 빈도만 출력한다.
+가장 인기 있는 부스의 득표 수를 구하시오.</div>
+<pre>[한글 의사코드]
+응답 목록을 입력한다.
+각 번호의 등장 횟수를 센다.
+가장 큰 빈도를 찾는다.
+그 빈도를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a20" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(20)">채점</button>
+<button onclick="toggleSol(20)">상세 풀이</button>
+<span id="r20"></span>
+</div>
+<div class="sol" id="s20"><b>정답: 4</b><br>부스 4는 네 번 등장한다. 다른 번호는 그보다 적게 등장하므로 가장 큰 빈도는 4이다.</div>
+</article>
+
+<article class="card" id="q21">
+<h2>21. [수학] 재귀 계단의 마지막 수</h2>
+<div class="meta">정보 융합 요소: 재귀 · 피보나치 · 함수 · 알고리즘 사고</div>
+<div class="story">수학 퍼즐 탑에는 한 번에 한 칸 또는 두 칸 오를 수 있는 계단이 있었다.
+관리인은 “계단 수가 늘어날수록 방법 수는 앞의 두 기록을 더해 얻는다”고 말했다.
+기록표에는 1칸은 1가지, 2칸은 2가지라고 적혀 있었다.
+AI는 이 규칙을 이용해 6칸 계단을 오르는 방법 수를 계산한다.
+6칸 계단을 오르는 방법 수를 구하시오.</div>
+<pre>[한글 의사코드]
+첫 두 값을 정한다.
+이후 값은 앞의 두 값을 더해 만든다.
+원하는 계단 수까지 반복한다.
+마지막 값을 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a21" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(21)">채점</button>
+<button onclick="toggleSol(21)">상세 풀이</button>
+<span id="r21"></span>
+</div>
+<div class="sol" id="s21"><b>정답: 13</b><br>1칸 1, 2칸 2이다. 3칸=3, 4칸=5, 5칸=8, 6칸=13이다. 정답은 13이다.</div>
+</article>
+
+<article class="card" id="q22">
+<h2>22. [물리학] 레이저 센서의 이진 탐색</h2>
+<div class="meta">정보 융합 요소: 이진 탐색 · 정렬 · 센서 데이터 · 탐색</div>
+<div class="story">레이저 센서는 정렬된 거리 후보 [3, 8, 12, 17, 21, 30, 35]를 가지고 있었다.
+목표 반사 거리는 21이었고, AI는 가운데 값을 보며 후보 범위를 절반씩 줄이는 방식으로 탐색한다.
+기록자는 위치 번호를 0부터 세기로 했다.
+탐색이 성공하면 목표값의 위치 번호를 출력한다.
+목표값 21의 위치 번호를 구하시오.</div>
+<pre>[한글 의사코드]
+정렬된 목록과 목표값을 입력한다.
+가운데 값을 확인한다.
+목표보다 작거나 크면 탐색 범위를 줄인다.
+목표를 찾으면 위치 번호를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a22" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(22)">채점</button>
+<button onclick="toggleSol(22)">상세 풀이</button>
+<span id="r22"></span>
+</div>
+<div class="sol" id="s22"><b>정답: 4</b><br>목록에서 위치 번호는 0부터 시작한다. 3은 0번, 8은 1번, 12는 2번, 17은 3번, 21은 4번이다. 따라서 정답은 4이다.</div>
+</article>
+
+<article class="card" id="q23">
+<h2>23. [지구과학] 기압 지도에서 닫힌 등압선 찾기</h2>
+<div class="meta">정보 융합 요소: 행렬 · 데이터 시각화 · 조건문 · 지구과학</div>
+<div class="story">기상 관측 화면에는 3×3 기압 격자가 표시되었다.
+값은 첫 줄 1012, 1010, 1011 / 둘째 줄 1009, 1008, 1010 / 셋째 줄 1013, 1011, 1012였다.
+기상학자는 “저기압 중심은 주변 여덟 칸보다 낮은 가운데 값”이라고 설명했다.
+AI는 가운데 칸이 주변보다 모두 낮으면 그 값을 저기압 중심값으로 출력한다.
+저기압 중심값을 구하시오.</div>
+<pre>[한글 의사코드]
+3×3 격자를 입력한다.
+가운데 값과 주변 값을 비교한다.
+가운데가 모두보다 작으면 가운데 값을 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a23" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(23)">채점</button>
+<button onclick="toggleSol(23)">상세 풀이</button>
+<span id="r23"></span>
+</div>
+<div class="sol" id="s23"><b>정답: 1008</b><br>가운데 값은 1008이다. 주변 값들은 1009,1010,1011,1012,1013 등으로 모두 1008보다 크다. 따라서 저기압 중심값은 1008이다.</div>
+</article>
+
+<article class="card" id="q24">
+<h2>24. [생명과학] DNA 문자열의 특정 염기 비율</h2>
+<div class="meta">정보 융합 요소: 문자열 처리 · 반복문 · 생명정보 · 비율 계산</div>
+<div class="story">생명정보 연구실은 짧은 DNA 조각 ATGCGCGAAT를 분석했다.
+연구원은 “G와 C는 결합 안정성과 관련이 깊으니 전체에서 차지하는 비율을 보라”고 말했다.
+AI는 문자열을 한 글자씩 확인해 G 또는 C인 경우를 센다.
+결과는 백분율 정수로 출력한다.
+이 DNA 조각의 GC 비율을 구하시오.</div>
+<pre>[한글 의사코드]
+DNA 문자열을 입력한다.
+각 문자를 확인한다.
+G 또는 C이면 개수를 증가시킨다.
+전체 길이로 나누고 100을 곱한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a24" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(24)">채점</button>
+<button onclick="toggleSol(24)">상세 풀이</button>
+<span id="r24"></span>
+</div>
+<div class="sol" id="s24"><b>정답: 50</b><br>문자열 ATGCGCGAAT의 길이는 10이다. G 또는 C는 G,C,G,C,G로 5개이다. GC 비율은 5/10×100=50이다.</div>
+</article>
+
+<article class="card" id="q25">
+<h2>25. [유기화학] 반응 수율의 조건 분류</h2>
+<div class="meta">정보 융합 요소: 조건문 · 분류 · 유기화학 · 리스트</div>
+<div class="story">유기합성 실험에서 세 번의 반응 수율이 72, 88, 91로 기록되었다.
+교사는 “85 이상이면 우수 반응으로 분류하고, 우수 반응의 개수를 보고하라”고 지시했다.
+AI는 수율 목록을 앞에서부터 확인해 조건을 만족하는 값만 센다.
+반응 이름은 중요하지 않고, 오직 수율 기준만 사용된다.
+우수 반응은 몇 개인가?</div>
+<pre>[한글 의사코드]
+수율 목록을 입력한다.
+각 수율이 기준 이상인지 확인한다.
+기준 이상이면 개수를 증가시킨다.
+최종 개수를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a25" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(25)">채점</button>
+<button onclick="toggleSol(25)">상세 풀이</button>
+<span id="r25"></span>
+</div>
+<div class="sol" id="s25"><b>정답: 2</b><br>72는 85 미만이므로 제외된다. 88과 91은 85 이상이므로 우수 반응이다. 따라서 우수 반응은 2개이다.</div>
+</article>
+
+<article class="card" id="q26">
+<h2>26. [무기화학] 원소 주기표의 행 열 좌표</h2>
+<div class="meta">정보 융합 요소: 딕셔너리 · 탐색 · 무기화학 · 자료형</div>
+<div class="story">무기화학 AI는 간단한 주기표 좌표 사전을 사용했다.
+Cl은 3주기 17족, Na는 3주기 1족, Mg는 3주기 2족으로 저장되어 있었다.
+실험 보고서에는 염소 이온의 족 번호만 추출하라는 지시가 적혀 있었다.
+AI는 원소 기호를 키로 찾아 그 안의 두 번째 값을 출력한다.
+Cl의 족 번호를 구하시오.</div>
+<pre>[한글 의사코드]
+원소 좌표 사전을 준비한다.
+원소 기호 Cl을 탐색한다.
+저장된 좌표 중 족 번호를 선택한다.
+그 값을 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a26" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(26)">채점</button>
+<button onclick="toggleSol(26)">상세 풀이</button>
+<span id="r26"></span>
+</div>
+<div class="sol" id="s26"><b>정답: 17</b><br>사전에서 Cl은 3주기 17족이다. 두 번째 값인 족 번호는 17이다.</div>
+</article>
+
+<article class="card" id="q27">
+<h2>27. [천문학] 외계 신호의 반복 간격</h2>
+<div class="meta">정보 융합 요소: 리스트 · 차이 계산 · 패턴 탐색 · 천문 데이터</div>
+<div class="story">전파망원경은 이상 신호가 도착한 시각을 [4, 10, 16, 22]로 기록했다.
+천문학자는 “자연 잡음이라면 간격이 흔들리겠지만, 인공 신호라면 간격이 일정할 수 있다”고 말했다.
+AI는 인접한 두 시각의 차이를 계산하고, 모든 차이가 같으면 그 공통 간격을 출력한다.
+이 신호의 반복 간격을 구하시오.</div>
+<pre>[한글 의사코드]
+신호 시각 목록을 입력한다.
+인접한 값의 차이를 계산한다.
+차이가 모두 같은지 확인한다.
+공통 차이를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a27" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(27)">채점</button>
+<button onclick="toggleSol(27)">상세 풀이</button>
+<span id="r27"></span>
+</div>
+<div class="sol" id="s27"><b>정답: 6</b><br>10-4=6, 16-10=6, 22-16=6이다. 모든 간격이 같으므로 반복 간격은 6이다.</div>
+</article>
+
+<article class="card" id="q28">
+<h2>28. [의생명학] 약물 농도의 반감기 추적</h2>
+<div class="meta">정보 융합 요소: 반복문 · 지수 감소 · 의생명학 · 조건문</div>
+<div class="story">의생명 연구소는 약물 농도가 일정 시간마다 절반으로 줄어드는 모델을 사용했다.
+초기 농도는 80이고, 안전 기준은 농도가 10 이하가 되는 순간이라고 적혀 있었다.
+AI는 한 주기마다 농도를 절반으로 줄이고, 기준 이하가 되는 첫 주기 번호를 보고한다.
+초기 상태는 0주기로 세며, 첫 감소 후를 1주기로 센다.
+처음 안전 기준에 도달하는 주기 번호를 구하시오.</div>
+<pre>[한글 의사코드]
+초기 농도를 입력한다.
+농도가 기준보다 큰 동안 반복한다.
+반복할 때마다 농도를 절반으로 줄이고 주기 수를 증가시킨다.
+처음 기준 이하가 된 주기 수를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a28" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(28)">채점</button>
+<button onclick="toggleSol(28)">상세 풀이</button>
+<span id="r28"></span>
+</div>
+<div class="sol" id="s28"><b>정답: 3</b><br>0주기 80, 1주기 40, 2주기 20, 3주기 10이다. 10 이하가 처음 되는 주기는 3주기이다.</div>
+</article>
+
+<article class="card" id="q29">
+<h2>29. [공학] 센서 배열의 행렬 합</h2>
+<div class="meta">정보 융합 요소: 행렬 · 리스트 · 반복문 · 공학 센서</div>
+<div class="story">공장 센서판은 2×3 배열로 측정값을 저장했다.
+첫 행은 3, 4, 5이고 둘째 행은 2, 1, 6이었다.
+엔지니어는 “전체 부하량은 모든 센서값의 합으로 판단한다”고 설명했다.
+AI는 행과 열을 모두 순회하며 값을 누적한다.
+전체 부하량을 구하시오.</div>
+<pre>[한글 의사코드]
+2차원 리스트를 입력한다.
+각 행을 순회한다.
+각 행의 원소를 모두 더한다.
+누적합을 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a29" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(29)">채점</button>
+<button onclick="toggleSol(29)">상세 풀이</button>
+<span id="r29"></span>
+</div>
+<div class="sol" id="s29"><b>정답: 21</b><br>첫 행의 합은 3+4+5=12이고 둘째 행의 합은 2+1+6=9이다. 전체 합은 12+9=21이다.</div>
+</article>
+
+<article class="card" id="q30">
+<h2>30. [실생활] 비밀번호 규칙 검사</h2>
+<div class="meta">정보 융합 요소: 문자열 처리 · 조건문 · 탐색 · 보안</div>
+<div class="story">학교 계정 보안 시스템은 비밀번호 후보 R2d2star를 검사했다.
+관리자는 “숫자가 하나 이상 포함되고 길이가 8 이상이면 통과, 아니면 실패”라고 안내했다.
+AI는 문자열의 길이를 확인하고, 각 문자를 탐색해 숫자가 있는지 검사한다.
+통과하면 1, 실패하면 0을 출력하기로 했다.
+이 비밀번호 후보의 검사 결과를 구하시오.</div>
+<pre>[한글 의사코드]
+비밀번호 문자열을 입력한다.
+길이가 8 이상인지 확인한다.
+숫자 문자가 하나 이상 있는지 탐색한다.
+두 조건을 모두 만족하면 1을 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a30" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(30)">채점</button>
+<button onclick="toggleSol(30)">상세 풀이</button>
+<span id="r30"></span>
+</div>
+<div class="sol" id="s30"><b>정답: 1</b><br>R2d2star는 길이가 8이고 숫자 2가 포함되어 있다. 두 조건을 모두 만족하므로 통과 결과 1을 출력한다.</div>
+</article>
+
+<article class="card" id="q31">
+<h2>31. [수학] 분류나무의 마지막 잎</h2>
+<div class="meta">정보 융합 요소: 의사결정트리 · 조건문 · 분류 · 수학 논리</div>
+<div class="story">수학 캠프의 분류나무는 숫자 하나를 세 부류 중 하나로 보냈다.
+입력값은 18이며, 첫 질문은 “짝수인가?”였다.
+짝수이면 다시 “3으로 나누어떨어지는가?”를 묻고, 참이면 2번 잎으로 보낸다고 적혀 있었다.
+홀수이면 1번 잎, 짝수지만 3의 배수가 아니면 3번 잎으로 보낸다.
+입력값 18은 몇 번 잎에 도착하는가?</div>
+<pre>[한글 의사코드]
+입력값을 확인한다.
+짝수인지 검사한다.
+짝수라면 3의 배수인지 다시 검사한다.
+조건에 맞는 잎 번호를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a31" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(31)">채점</button>
+<button onclick="toggleSol(31)">상세 풀이</button>
+<span id="r31"></span>
+</div>
+<div class="sol" id="s31"><b>정답: 2</b><br>18은 짝수이다. 또한 3으로 나누어떨어진다. 따라서 분류나무 규칙에 의해 2번 잎으로 간다.</div>
+</article>
+
+<article class="card" id="q32">
+<h2>32. [물리학] 마찰 실험의 손실률</h2>
+<div class="meta">정보 융합 요소: 회귀 · 연산자 · 물리 실험 · 데이터 분석</div>
+<div class="story">마찰 실험에서 이론상 이동 거리는 50m였지만 실제 이동 거리는 40m였다.
+실험자는 “손실률은 이론값에서 실제값을 뺀 뒤 이론값으로 나누어 백분율로 나타낸다”고 설명했다.
+AI 분석기는 소수점 없이 정수 백분율을 출력하도록 설정되어 있었다.
+이 실험의 손실률을 구하시오.</div>
+<pre>[한글 의사코드]
+이론값과 실제값을 입력한다.
+차이를 구한다.
+차이를 이론값으로 나누고 100을 곱한다.
+정수 결과를 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a32" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(32)">채점</button>
+<button onclick="toggleSol(32)">상세 풀이</button>
+<span id="r32"></span>
+</div>
+<div class="sol" id="s32"><b>정답: 20</b><br>손실은 50-40=10이다. 손실률은 10/50×100=20이다.</div>
+</article>
+
+<article class="card" id="q33">
+<h2>33. [지구과학] 강수 관측값의 중앙값</h2>
+<div class="meta">정보 융합 요소: 정렬 · 중앙값 · 리스트 · 기후 데이터</div>
+<div class="story">기상반은 일주일 강수량 중 일부 결측일을 제외하고 다섯 값을 얻었다.
+관측값은 18, 4, 12, 20, 7이었다.
+교사는 “극단적인 하루에 흔들리지 않으려면 가운데 값을 보라”고 말했다.
+AI는 값을 오름차순 정렬한 뒤 정중앙에 놓인 값을 대표값으로 출력한다.
+대표 강수량을 구하시오.</div>
+<pre>[한글 의사코드]
+강수량 목록을 입력한다.
+오름차순으로 정렬한다.
+가운데 위치의 값을 선택한다.
+그 값을 출력한다.</pre>
+<div class="answerbox">
+<label>서답형 답안 <input id="a33" type="text" placeholder="숫자 입력"></label>
+<button onclick="check(33)">채점</button>
+<button onclick="toggleSol(33)">상세 풀이</button>
+<span id="r33"></span>
+</div>
+<div class="sol" id="s33"><b>정답: 12</b><br>정렬하면 4, 7, 12, 18, 20이다. 가운데 값은 12이므로 정답은 12이다.</div>
+</article>
+
+<div id="bar">
+<button onclick="gradeAll()">전체 채점</button>
+<button class="green" onclick="saveTxt()">학번_이름_창의경진대회_점수_응시시각.txt 저장</button>
+<span style="margin-left:14px">점수: <span id="score">0/30</span></span>
+</div>
+</main>
+</div>
+<script>
+const answers={"1": "37", "2": "72", "3": "14", "4": "96", "5": "2", "6": "14", "7": "84", "8": "3", "9": "38", "10": "5", "11": "13", "12": "7", "13": "2", "14": "2", "15": "6", "16": "3", "17": "53", "18": "75", "19": "11", "20": "4", "21": "13", "22": "4", "23": "1008", "24": "50", "25": "2", "26": "17", "27": "6", "28": "3", "29": "21", "30": "1", "31": "2", "32": "20", "33": "12"};
+let checked={};
+function norm(x){return String(x||'').trim();}
+function check(n){
+ const v=norm(document.getElementById('a'+n).value);
+ const r=document.getElementById('r'+n);
+ if(v===answers[n]){r.textContent=' ✅ 정답'; r.style.color='green'; return 1;}
+ r.textContent=' ❌ 오답'; r.style.color='red'; return 0;
+}
+function toggleSol(n){
+ const s=document.getElementById('s'+n);
+ s.style.display=s.style.display==='block'?'none':'block';
+}
+function gradeAll(){
+ let score=0;
+ for(let i=1;i<=30;i++) score+=check(i);
+ document.getElementById('score').textContent=score+'/30';
+ return score;
+}
+function stamp(){
+ const d=new Date(), p=x=>String(x).padStart(2,'0');
+ return d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'_'+p(d.getHours())+p(d.getMinutes())+p(d.getSeconds());
+}
+function saveTxt(){
+ const score=gradeAll();
+ const sid=document.getElementById('sid').value.trim()||'학번';
+ const name=document.getElementById('name').value.trim()||'이름';
+ const t=stamp();
+ let txt='과학고 정보 창의 경진대회 결과\n학번: '+sid+'\n이름: '+name+'\n점수: '+score+'/30\n응시시각: '+t+'\n\n';
+ for(let i=1;i<=30;i++){
+   txt+=i+'번 제출답: '+(document.getElementById('a'+i).value||'미입력')+' / 정답: '+answers[i]+'\n';
+ }
+ const blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
+ const a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);
+ a.download=sid+'_'+name+'_창의경진대회_'+score+'점_'+t+'.txt';
+ a.click();
+}
+</script>
+</body>
+</html>
